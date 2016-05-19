@@ -1,12 +1,7 @@
 
 CC = gcc
-GR = yacc
-AL = flex
 
-GRNAME = algebric_cc.y
 EXECNAME = algebric
-ALNME = algebric_cc.l
-
 
 LIBLDIR=
 #include
@@ -14,18 +9,17 @@ INCLUDE=
 
 #flags
 CFLAGS= 
-GFLAGS = -d -v
 
 all: algebric
 
-y.tab.c: $(GRNAME)
-	$(AL) $(ALNAME)
+y.tab.c: algebric_cc.l
+	flex algebric_cc.l
 
-lex.yy.c: $(ALNAME)
-	$(GR) $(GFLAGS) $(GRNAME)
+lex.yy.c: algebric_cc.y y.tab.c
+	yacc -d -v algebric_cc.y
 
-algebric: lex.yy.c y.tab.c y.tab.h
-	$(CC) -o $(EXECNAME) $(INCLUDE) $(CFLAGS) y.tab.c lex.yy.c -lfl
+algebric: y.tab.c lex.yy.c
+	$(CC) -o $(EXECNAME) $(INCLUDE) $(CFLAGS) y.tab.c 
 
 clean:
-	rm  *.o && rm y.tab.c && rm lex.yy.c && rm algebric
+	rm  *.o y.tab.c y.output y.tab.h lex.yy.c algebric

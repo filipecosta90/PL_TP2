@@ -16,7 +16,6 @@ ignore   .|\n
 {ignore}                        { ; }
 
 %%
-
 int yywrap(){
 return(1);
 }
