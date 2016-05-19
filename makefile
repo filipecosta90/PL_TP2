@@ -1,11 +1,11 @@
 
-CC = gcc-5
+CC = gcc
 GR = yacc
 AL = flex
 
-GRNAME = lm.y
-EXECNAME = lm
-ALNME = lm.l
+GRNAME = algebric_cc.y
+EXECNAME = algebric
+ALNME = algebric_cc.l
 
 
 LIBLDIR=
@@ -16,17 +16,16 @@ INCLUDE=
 CFLAGS= 
 GFLAGS = -d -v
 
-lex.yy.c : $(ALNAME)
+all: algebric
+
+y.tab.c: $(GRNAME)
 	$(AL) $(ALNAME)
 
-y.tab.c : $(GRNAME)
+lex.yy.c: $(ALNAME)
 	$(GR) $(GFLAGS) $(GRNAME)
 
-lm: lex.yy.c y.tab.c
-	$(CC) $(INCLUDE)  $(CFLAGS) -o $(EXECNAME) y.tab.c  
+algebric: lex.yy.c y.tab.c y.tab.h
+	$(CC) -o $(EXECNAME) $(INCLUDE) $(CFLAGS) y.tab.c lex.yy.c -lfl
 
-all: lm
-
-.PHONY: clean
 clean:
-	rm  *.o && rm y.tab.c && rm lex.yy.c && rm lm
+	rm  *.o && rm y.tab.c && rm lex.yy.c && rm algebric
