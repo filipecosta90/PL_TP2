@@ -1,0 +1,15 @@
+pushi 55
+start
+pushi 2
+pushi 3
+mul
+pushi 5
+add
+//assignement 6
+pushgp
+pushi 0
+pushg 0
+writei
+pushi 10
+writei
+stop
