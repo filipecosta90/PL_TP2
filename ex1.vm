@@ -1,0 +1,6 @@
+pushi 55
+pushi 3
+start
+pushi 10
+writei
+stop

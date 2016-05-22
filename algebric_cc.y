@@ -28,39 +28,28 @@
 %{
 #include <stdio.h>
 
+typedef enum {PL_INTEGER, PL_ARRAY, PL_MATRIX} var_type;
+
+
 typedef struct {
   char* varname;
   int value;
-} integers;
-
-typedef struct {
-  char* varname;
-  int* values;
+  var_type type;
   int size;
-} arrays;
-
-typedef struct {
-  char* varname;
-  int** values;
   int rows;
   int cols;
-} matrices;
+} datatype;
 
-integers table_ints[1000];
-arrays table_arrays[100];
-matrices table_matrices[100];
+
+datatype table_ints[1000];
 
 int index_ints = 0;
-int index_arrays = 0;
-int index_matrices = 0;
 
 void insert_int(char* varname, int val);
 void insert_array(char* varname, int size);
 void insert_matrix(char* varname, int rows, int cols);
 
-int lookup_int(char* var);
-int lookup_array(char* var, int pos);
-int lookup_matrix(char* var, int row, int col);
+int lookup(char* varname);
 
 int exists_int(char* var);
 int exists_array(char* var);
@@ -80,10 +69,6 @@ int global_pos_int(char* varname);
 %token <var>id_array
 %token <var>id_matrix
 
-/* logical */
-%token LOG_AND
-%token LOG_OR
-
 %type <qt>Arithmetic_Expression
 %type <qt>Term
 %type <qt>Factor
@@ -98,22 +83,19 @@ int global_pos_int(char* varname);
 
 %%
 
-AlgebricScript : Declarations Expressions {printf("stop\n");}
+AlgebricScript : Declarations  {printf("start\n");} Expressions {printf("stop\n");}
                ;
 
-Declarations  :  Declaration ';' Declarations 
-              |  {printf("start\n");}
+Declarations  : Declarations Declaration ';'  
+              |         
               ;
 
-Declaration  : TYPE_INT id '=' Arithmetic_Expression { insert_int($2, $4); }
-             | TYPE_INT id '[' Arithmetic_Expression ']' {  }
-             | TYPE_INT id '[' Arithmetic_Expression ']' '[' Arithmetic_Expression ']' { }
+Declaration  : TYPE_INT id  { insert_int($2, $4); }
+             | TYPE_INT id '[' num  ']' {  }
+             | TYPE_INT id '[' num  ']' '[' num  ']' { }
              ;
 
 Expressions : Assignment ';' Expressions
-            | Arithmetic_Expression ';' Expressions
-            | Relational_Expression ';' Expressions
-            | Logical_Expression ';' Expressions
             | ReadStdin ';' Expressions
             | WriteStdout ';' Expressions
             | Conditional_Expression ';' Expressions
@@ -122,7 +104,7 @@ Expressions : Assignment ';' Expressions
 /*            | FunctionInvocation Expressions */
             ;
 
-Assignment : Assig Arithmetic_Expression       { printf("store\t//takes from the stack an value v and address a, and stores v in the address a\n");}
+Assignment : id '=' Arithmetic_Expression       { printf("storen\t//takes from the stack an value v and address a, and stores v in the address a\n");}
            | id '[' Arithmetic_Expression ']'  {  }
            | id '[' Arithmetic_Expression ']' '[' Arithmetic_Expression ']'  { }
           ;
@@ -137,8 +119,8 @@ Arithmetic_Expression : Term
                       ;
 
 Term    : Factor
-        | Term '*' Factor  { $$ = $1 * $3; printf("mul\n");}
-        | Term '/' Factor  {printf("div\n");}
+        | Term '*' Factor  { printf("mul\n");}
+        | Term '/' Factor  { printf("div\n");}
         ;
 
 Factor  : num     { printf("pushi %d\n", $1); }

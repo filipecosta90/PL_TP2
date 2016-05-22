@@ -3,4 +3,5 @@ int b = 3;
 a = 2 * 3 + 5;
 b = 3 + 5;
 print a; 
+print b; 
 print 10;

@@ -1,14 +1,23 @@
 pushi 55
+pushi 3
 start
+//assignement
+pushgp	//puts on stack the value of gp
+pushi 0	//puts on stack the address of a
 pushi 2
 pushi 3
 mul
 pushi 5
 add
-//assignement 6
-pushgp
-pushi 0
-pushg 0
+store	//takes from the stack an value v and address a, and stores v in the address a
+//assignement
+pushgp	//puts on stack the value of gp
+pushi 1	//puts on stack the address of b
+pushi 3
+pushi 5
+add
+store	//takes from the stack an value v and address a, and stores v in the address a
+pushg 55
 writei
 pushi 10
 writei
