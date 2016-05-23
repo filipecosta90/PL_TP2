@@ -11,7 +11,7 @@ int                             { return (TYPE_INT); }
 print                           { return (PRINT);}
 
 
-{letter}[{letter}{digit}_]*     { yylval.var = strdup(yytext); return(id); }
+{letter}[{letter}{digit}]*     { yylval.var = strdup(yytext); return(id); }
 {digit}+                        { yylval.qt = atoi(yytext); return(num); }
 {ignore}                        { ; }
 

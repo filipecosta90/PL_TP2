@@ -30,32 +30,29 @@
 
 typedef enum {PL_INTEGER, PL_ARRAY, PL_MATRIX} var_type;
 
-
 typedef struct {
   char* varname;
-  int value;
   var_type type;
+  int value;
+  int** values;
   int size;
   int rows;
   int cols;
 } datatype;
 
+datatype var_table[100];
+int ia[101];
+int var_index = 0;
 
-datatype table_ints[1000];
-
-int index_ints = 0;
-
-void insert_int(char* varname, int val);
+void insert_int(char* varname);
 void insert_array(char* varname, int size);
 void insert_matrix(char* varname, int rows, int cols);
 
-int lookup(char* varname);
-
-int exists_int(char* var);
-int exists_array(char* var);
-int exists_matrix(char* var);
-
-int global_pos_int(char* varname);
+int lookup_int(char* varname);
+int lookup_array(char* varname, int pos);
+int lookup_matrix(char* varname, int row, int col);
+int exists_var(char* var);
+int global_pos(char* varname);
 %}
 
 %union {int qt; char* var;}
@@ -75,44 +72,39 @@ int global_pos_int(char* varname);
 
 %token PRINT
 
-%left '+' '-'
-%left '*' '/'
-%left '='
-
 %start AlgebricScript
 
 %%
 
-AlgebricScript : Declarations  {printf("start\n");} Expressions {printf("stop\n");}
+AlgebricScript : Declarations  {printf("start\n");} Instructions {printf("stop\n");}
                ;
 
-Declarations  : Declarations Declaration ';'  
-              |         
+Declarations  : Declarations Declaration ';'
+              |
               ;
 
-Declaration  : TYPE_INT id  { insert_int($2, $4); }
-             | TYPE_INT id '[' num  ']' {  }
-             | TYPE_INT id '[' num  ']' '[' num  ']' { }
+Declaration  : TYPE_INT id  { insert_int($2); }
+             | TYPE_INT id '[' num  ']' { insert_array($2, $4); }
+             | TYPE_INT id '[' num  ']''[' num  ']' { insert_matrix($2,$4,$7); }
              ;
 
-Expressions : Assignment ';' Expressions
-            | ReadStdin ';' Expressions
-            | WriteStdout ';' Expressions
-            | Conditional_Expression ';' Expressions
-            | Cycle_Expression ';' Expressions
+Instructions : Instructions Assignment ';'
+             | Instructions ReadStdin ';'
+            | Instructions WriteStdout ';' 
+            | Instructions Conditional_Expression ';' 
+            | Instructions Cycle_Expression ';' 
             |
 /*            | FunctionInvocation Expressions */
             ;
 
-Assignment : id '=' Arithmetic_Expression       { printf("storen\t//takes from the stack an value v and address a, and stores v in the address a\n");}
+Assignment : id { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
+                  printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
+                } 
+                '=' Arithmetic_Expression { printf("store\t//takes from the stack an value v and address a, and stores v in the address a\n");}
            | id '[' Arithmetic_Expression ']'  {  }
            | id '[' Arithmetic_Expression ']' '[' Arithmetic_Expression ']'  { }
           ;
 
-Assig: id '=' { printf("//assignement\n");
-           printf("pushgp\t//puts on stack the value of gp\n");
-           printf("pushi %d\t//puts on stack the address of %s\n",global_pos_int($1),$1 ); } 
-     ;
 Arithmetic_Expression : Term
                       | Arithmetic_Expression '+' Term {printf("add\n");}
                       | Arithmetic_Expression '-' Term {printf("sub\n");}
@@ -125,7 +117,7 @@ Term    : Factor
 
 Factor  : num     { printf("pushi %d\n", $1); }
         | id       { printf("pushg %d\n", lookup_int($1));}
-        | '(' Expressions ')'	{ }
+        | '(' Instructions ')'	{ }
         ;
 
 Relational_Expression :
@@ -151,68 +143,98 @@ Cycle_Expression :
 
 #include "lex.yy.c"
 
-void insert_int(char* varname, int value) {
-  table_ints[index_ints].varname = strdup(varname);
-  table_ints[index_ints].value = value;
-  index_ints++;
+void insert_int ( char* varname ) {
+  var_table[var_index].varname = strdup(varname);
+  var_table[var_index].value = 0;
+  var_table[var_index].type = PL_INTEGER;
+  var_table[var_index].size =1;
+  int old_size = ia[var_index];
+  var_index++;
+  ia[var_index] = old_size + 1;
+  printf("pushi 0\t//%s\n",varname);
 }
 
-int exists_int(char* varname) {
+void insert_array ( char* varname, int size ) {
+  var_table[var_index].varname = strdup(varname);
+  var_table[var_index].value = 0;
+  var_table[var_index].type = PL_ARRAY;
+  var_table[var_index].size =size;
+  int old_size = ia[var_index];
+  var_index++;
+  ia[var_index] = old_size + size;
+  printf("pushn %d\t//%s[%d]\n",size,varname,size);
+}
+
+void insert_matrix ( char* varname, int rows, int cols ) {
+  var_table[var_index].varname = strdup(varname);
+  var_table[var_index].value = 0;
+  var_table[var_index].type = PL_MATRIX;
+  int size = rows * cols;
+  var_table[var_index].size =size;
+  int old_size = ia[var_index];
+  var_index++;
+  ia[var_index] = old_size + size;
+  printf("pushn %d\t//%s[%d][%d] (size %d)\n",size,varname,rows,cols,size);
+}
+
+int exists_var(char* varname) {
   int i, r;
   i = 0;
-  while ((i < index_ints) && (strcmp(table_ints[i].varname, varname)!= 0)) i++;
-  if (i == index_ints) r = 0; else r = 1;
+  while (( i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)) i++;
+  if ( i == var_index ) r = 0; else r = 1;
   return r;
 }
 
-int exists_array(char* varname) {
-  int i, r;
+int global_pos(char* varname) {
+  int i, result;
   i = 0;
-  while ((i < index_arrays) && (strcmp(table_arrays[i].varname, varname)!= 0)) i++;
-  if (i == index_arrays) r = 0; else r = 1;
-  return r;
-}
-
-int exists_matrix(char* varname) {
-  int i, r;
-  i = 0;
-  while ((i < index_matrices) && (strcmp(table_matrices[i].varname, varname)!= 0)) i++;
-  if (i == index_matrices) r = 0; else r = 1;
-  return r;
-}
-
-int global_pos_int(char* varname) {
-  int i, r;
-  i = 0;
-  while( (i < index_ints ) && (strcmp(table_ints[i].varname, varname)!= 0)) i++;
-  if ( i == index_ints ) r = -1;  else r = i;
-  return r;
+  while( (i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)){ i++; }
+  if ( i == var_index ) {
+  result = -1;
+  }
+  else{ 
+  result = ia[i];
+  }
+  return result;
 }
 
 int lookup_int(char* varname) {
-  int i, r;
+   int i, result;
   i = 0;
-  while( (i < index_ints ) && (strcmp(table_ints[i].varname, varname)!= 0)) i++;
-  if ( i == index_ints ) r = 0; else r = table_ints[i].value;
-  return r;
-}
+  while( (i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)){ i++; }
+  if ( i == var_index ) {
+  result = -1;
+  }
+  else{ 
+  result = var_table[i].value;
+  }
+  return result;
+} 
 
 int lookup_array(char* varname, int pos) {
-  int i, r;
+   int i, result;
   i = 0;
-  while( (i < index_arrays ) && (strcmp(table_arrays[i].varname, varname)!= 0)) i++;
-  if ( i == index_arrays ) r = 0; else r = (table_arrays[i].values)[pos];
-  return r;
+  while( (i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)){ i++; }
+  if ( i == var_index ) {
+  result = -1;
+  }
+  else{ 
+  result = (var_table[i].values)[1][pos];
+  }
+  return result;
 }
 
 int lookup_matrix(char* varname, int row, int col) {
-  int i, r;
+   int i, result;
   i = 0;
-  while( (i < index_matrices ) && (strcmp(table_matrices[i].varname, varname)!= 0)) i++;
-  if ( i == index_matrices ) r = 0; else {
-    r = (table_matrices[i].values)[row][col];
+  while( (i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)){ i++; }
+  if ( i == var_index ) {
+  result = -1;
   }
-  return r;
+  else{ 
+  result = (var_table[i].values)[row][col];
+  }
+  return result;
 }
 
 int yyerror(char* s) {
