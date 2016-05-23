@@ -100,9 +100,24 @@ Instructions : Instructions Assignment ';'
 Assignment : id { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
                   printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
                 } 
-                '=' Arithmetic_Expression { printf("store\t//takes from the stack an value v and address a, and stores v in the address a\n");}
-           | id '[' Arithmetic_Expression ']'  {  }
-           | id '[' Arithmetic_Expression ']' '[' Arithmetic_Expression ']'  { }
+                '=' Arithmetic_Expression { printf("store 0\t//takes from the stack an value v and address a, and stores v in the address a\n");}
+           | id 
+                { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
+                  printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
+                  printf("\t//puts on stack the value of n\n");
+                } 
+                '[' Arithmetic_Expression ']'  
+               '=' Arithmetic_Expression { printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n]\n");}
+           | id  
+                { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
+                  printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
+                  printf("\t//puts on stack the value of j and k\n");
+                }
+                '[' Arithmetic_Expression ']' '[' Arithmetic_Expression ']'
+                {
+                 printf("mul \t//puts on stack the value of n, being n= j*k from a[j][k]\n");
+                }
+                '=' Arithmetic_Expression { printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");}
           ;
 
 Arithmetic_Expression : Term
