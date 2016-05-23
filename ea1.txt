@@ -4,8 +4,8 @@ int b;
 int c[10];
 a = 2 * 3 + 5;
 b = 3 + 5;
-c[7]=15;
-ddd[2][1]=24;
+ddd[2][3]=121;
 print a; 
 print b; 
-print 10;
+if( a > b ) then { print a; }
+else {}

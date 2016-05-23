@@ -3,12 +3,17 @@
 %}
 letter  [a-zA-Z]
 digit [0-9]
-ignore   .|\n
+ignore   [\ \t\r\n]
 %%
 
-[\+\-()=;/*\[\]\|\&]                { return(yytext[0]); }
+[\{\}\+\-\(\)\=\>\<\!\;\/\*\[\]\|\&]                { return(yytext[0]); }
+do                             { return (PL_DO); }
+while                             { return (PL_WHILE); }
+if                             { return (PL_IF); }
+then                             { return (PL_THEN); }
+else                             { return (PL_ELSE); }
 int                             { return (TYPE_INT); }
-print                           { return (PRINT);}
+print                           { return (PL_PRINT);}
 
 
 {letter}[{letter}{digit}]*     { yylval.var = strdup(yytext); return(id); }

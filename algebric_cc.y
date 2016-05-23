@@ -70,7 +70,9 @@ int global_pos(char* varname);
 %type <qt>Term
 %type <qt>Factor
 
-%token PRINT
+%token PL_IF PL_THEN PL_ELSE
+%token PL_DO PL_WHILE
+%token PL_PRINT
 
 %start AlgebricScript
 
@@ -88,27 +90,24 @@ Declaration  : TYPE_INT id  { insert_int($2); }
              | TYPE_INT id '[' num  ']''[' num  ']' { insert_matrix($2,$4,$7); }
              ;
 
-Instructions : Instructions Assignment ';'
-             | Instructions ReadStdin ';'
-            | Instructions WriteStdout ';' 
-            | Instructions Conditional_Expression ';' 
-            | Instructions Cycle_Expression ';' 
-            |
+Instructions : Instructions Instruction ';'
+             |
+            ;
+
+Instruction :  Assignment 
+            | ReadStdin 
+            | WriteStdout
+            | Conditional
+            | Cycle
 /*            | FunctionInvocation Expressions */
             ;
 
+
 Assignment : id { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
-                  printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
+           printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
                 } 
                 '=' Arithmetic_Expression { printf("store 0\t//takes from the stack an value v and address a, and stores v in the address a\n");}
-           | id 
-                { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
-                  printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
-                  printf("\t//puts on stack the value of n\n");
-                } 
-                '[' Arithmetic_Expression ']'  
-               '=' Arithmetic_Expression { printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n]\n");}
-           | id  
+          | id  
                 { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
                   printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
                   printf("\t//puts on stack the value of j and k\n");
@@ -118,6 +117,13 @@ Assignment : id { printf("//assignement\n"); printf("pushgp\t//puts on stack the
                  printf("mul \t//puts on stack the value of n, being n= j*k from a[j][k]\n");
                 }
                 '=' Arithmetic_Expression { printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");}
+            | id 
+                { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
+                  printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
+                  printf("\t//puts on stack the value of n\n");
+                } 
+                '[' Arithmetic_Expression ']'  
+               '=' Arithmetic_Expression { printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n]\n");}
           ;
 
 Arithmetic_Expression : Term
@@ -132,8 +138,29 @@ Term    : Factor
 
 Factor  : num     { printf("pushi %d\n", $1); }
         | id       { printf("pushg %d\n", lookup_int($1));}
-        | '(' Instructions ')'	{ }
+        | '(' Arithmetic_Expression ')'	{ }
         ;
+
+Conditional : PL_IF '(' Conditional_Expression ')' PL_THEN '{' Instructions '}' Else_Clause
+            | PL_IF '('Conditional_Expression ')' PL_THEN  Instruction ';' Else_Clause
+            ;
+
+Else_Clause : PL_ELSE '{' Instructions '}'
+            | PL_ELSE Instruction 
+  |
+;
+
+Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Conditional_Expression ')'
+      ;
+
+Conditional_Expression : Arithmetic_Expression 
+                       | Arithmetic_Expression '=''=' Arithmetic_Expression 
+                       | Arithmetic_Expression '!''=' Arithmetic_Expression 
+                       | Arithmetic_Expression '>' Arithmetic_Expression 
+                       | Arithmetic_Expression '>''=' Arithmetic_Expression 
+                       | Arithmetic_Expression '<' Arithmetic_Expression 
+                       | Arithmetic_Expression '<''=' Arithmetic_Expression 
+                       ;
 
 Relational_Expression :
                       ;
@@ -144,12 +171,9 @@ Logical_Expression :
 ReadStdin :
           ;
 
-WriteStdout : PRINT id { printf("pushg %d\n",lookup_int($2)); printf("writei\n"); }
-            | PRINT num { printf("pushi %d\n",$2); printf("writei\n"); }
+WriteStdout : PL_PRINT id { printf("pushg %d\t//print %s\n",lookup_int($2),$2); printf("writei\n"); }
+            | PL_PRINT num { printf("pushi %di\t//print %d\n",$2,$2); printf("writei\n"); }
             ;
-
-Conditional_Expression :
-                       ;
 
 Cycle_Expression :
                  ;
