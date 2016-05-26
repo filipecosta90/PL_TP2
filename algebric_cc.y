@@ -73,6 +73,7 @@ int global_pos(char* varname);
 %token PL_IF PL_THEN PL_ELSE
 %token PL_DO PL_WHILE
 %token PL_PRINT
+%token PL_READ_INT
 
 %start AlgebricScript
 
@@ -90,15 +91,15 @@ Declaration  : TYPE_INT id  { insert_int($2); }
              | TYPE_INT id '[' num  ']''[' num  ']' { insert_matrix($2,$4,$7); }
              ;
 
-Instructions : Instructions Instruction ';'
+Instructions : Instructions Instruction
              |
-            ;
+             ;
 
-Instruction :  Assignment 
-            | ReadStdin 
-            | WriteStdout
-            | Conditional
-            | Cycle
+Instruction :  Assignment ';'
+            | ReadStdin ';'
+            | WriteStdout ';'
+            | Conditional ';'
+            | Cycle ';'
 /*            | FunctionInvocation Expressions */
             ;
 
@@ -141,43 +142,41 @@ Factor  : num     { printf("pushi %d\n", $1); }
         | '(' Arithmetic_Expression ')'	{ }
         ;
 
-Conditional : PL_IF '(' Conditional_Expression ')' PL_THEN '{' Instructions '}' Else_Clause
-            | PL_IF '('Conditional_Expression ')' PL_THEN  Instruction ';' Else_Clause
+Conditional : PL_IF '(' Logical_Expression ')' PL_THEN '{' Instructions '}' Else_Clause
+            | PL_IF '('Logical_Expression ')' PL_THEN  Instruction Else_Clause
             ;
 
 Else_Clause : PL_ELSE '{' Instructions '}'
             | PL_ELSE Instruction 
-  |
-;
+            |
+            ;
 
-Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Conditional_Expression ')'
-      ;
-
-Conditional_Expression : Arithmetic_Expression 
-                       | Arithmetic_Expression '=''=' Arithmetic_Expression 
-                       | Arithmetic_Expression '!''=' Arithmetic_Expression 
-                       | Arithmetic_Expression '>' Arithmetic_Expression 
-                       | Arithmetic_Expression '>''=' Arithmetic_Expression 
-                       | Arithmetic_Expression '<' Arithmetic_Expression 
-                       | Arithmetic_Expression '<''=' Arithmetic_Expression 
-                       ;
-
-Relational_Expression :
-                      ;
-
-Logical_Expression :
+Logical_Expression : '!' Relational_Expression
+                   | Relational_Expression
+                   | Relational_Expression '|''|' Relational_Expression
+                   | Relational_Expression '&''&' Relational_Expression
                    ;
 
-ReadStdin :
+Relational_Expression :  Arithmetic_Expression
+                      | '(' Relational_Expression ')'
+                      | Arithmetic_Expression '=''=' Arithmetic_Expression 
+                      | Arithmetic_Expression '!''=' Arithmetic_Expression 
+                      | Arithmetic_Expression '>' Arithmetic_Expression 
+                      | Arithmetic_Expression '>''=' Arithmetic_Expression 
+                      | Arithmetic_Expression '<' Arithmetic_Expression 
+                      | Arithmetic_Expression '<''=' Arithmetic_Expression 
+                      ;
+
+Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Logical_Expression ')'
+      | PL_DO Instruction PL_WHILE '(' Logical_Expression ')'
+      ;
+
+ReadStdin : 
           ;
 
 WriteStdout : PL_PRINT id { printf("pushg %d\t//print %s\n",lookup_int($2),$2); printf("writei\n"); }
             | PL_PRINT num { printf("pushi %di\t//print %d\n",$2,$2); printf("writei\n"); }
             ;
-
-Cycle_Expression :
-                 ;
-
 %%
 
 #include "lex.yy.c"

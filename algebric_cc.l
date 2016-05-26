@@ -14,8 +14,9 @@ then                             { return (PL_THEN); }
 else                             { return (PL_ELSE); }
 int                             { return (TYPE_INT); }
 print                           { return (PL_PRINT);}
+read_int                        { return (PL_READ_INT);}
 
-
+^\"[^"]+\"                      { yylval.var = strdup(yytext); return(string); }
 {letter}[{letter}{digit}]*     { yylval.var = strdup(yytext); return(id); }
 {digit}+                        { yylval.qt = atoi(yytext); return(num); }
 {ignore}                        { ; }

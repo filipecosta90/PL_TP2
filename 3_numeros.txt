@@ -1,0 +1,19 @@
+int a;
+int b;
+int c;
+
+a = read_int();
+b = read_int();
+c = read_int();
+
+if ( a > b && a > c ){
+  print a;
+}
+else {
+  if ( b > a && b > c ){
+  print b;
+  }
+  else {
+  print c;
+  }
+}
