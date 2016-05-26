@@ -53,6 +53,10 @@ int lookup_array(char* varname, int pos);
 int lookup_matrix(char* varname, int row, int col);
 int exists_var(char* var);
 int global_pos(char* varname);
+
+int yylex();
+int yyerror();
+
 %}
 
 %union {int qt; char* var;}
@@ -75,7 +79,11 @@ int global_pos(char* varname);
 %token PL_PRINT
 %token PL_READ_INT
 
+%nonassoc PL_THEN
+%nonassoc PL_ELSE 
+
 %start AlgebricScript
+
 
 %%
 
@@ -87,45 +95,53 @@ Declarations  : Declarations Declaration ';'
               ;
 
 Declaration  : TYPE_INT id  { insert_int($2); }
-             | TYPE_INT id '[' num  ']' { insert_array($2, $4); }
              | TYPE_INT id '[' num  ']''[' num  ']' { insert_matrix($2,$4,$7); }
+             | TYPE_INT id '[' num  ']' { insert_array($2, $4); }
              ;
 
-Instructions : Instructions Instruction
-             |
+Instructions : Instructions Instruction 
+             | 
              ;
 
 Instruction :  Assignment ';'
             | ReadStdin ';'
             | WriteStdout ';'
-            | Conditional ';'
-            | Cycle ';'
+            | Conditional 
+            | Cycle 
 /*            | FunctionInvocation Expressions */
             ;
 
 
-Assignment : id { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
+Assignment : id 
+           { 
+           printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
            printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
                 } 
-                '=' Arithmetic_Expression { printf("store 0\t//takes from the stack an value v and address a, and stores v in the address a\n");}
+                '=' Arithmetic_Expression 
+                { 
+                printf("store 0\t//takes from the stack an value v and address a, and stores v in the address a\n");
+                }
           | id  
-                { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
-                  printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
-                  printf("\t//puts on stack the value of j and k\n");
+                { 
+                printf("//assignement\n"); 
+                printf("pushgp\t//puts on stack the value of gp\n"); 
+                printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
+                printf("\t//puts on stack the value of j and k\n");
                 }
-                '[' Arithmetic_Expression ']' '[' Arithmetic_Expression ']'
-                {
+                '[' Arithmetic_Expression ']' Dimension         
+               '=' Arithmetic_Expression  
+                { 
+                printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
+                }
+       ;
+
+Dimension : '[' Arithmetic_Expression ']'
+          {
                  printf("mul \t//puts on stack the value of n, being n= j*k from a[j][k]\n");
-                }
-                '=' Arithmetic_Expression { printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");}
-            | id 
-                { printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
-                  printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
-                  printf("\t//puts on stack the value of n\n");
-                } 
-                '[' Arithmetic_Expression ']'  
-               '=' Arithmetic_Expression { printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n]\n");}
+          }
+          |
           ;
+
 
 Arithmetic_Expression : Term
                       | Arithmetic_Expression '+' Term {printf("add\n");}
@@ -142,11 +158,11 @@ Factor  : num     { printf("pushi %d\n", $1); }
         | '(' Arithmetic_Expression ')'	{ }
         ;
 
-Conditional : PL_IF '(' Logical_Expression ')' PL_THEN '{' Instructions '}' Else_Clause
+Conditional : PL_IF '(' Logical_Expression ')' PL_THEN '{' Instructions '}' Else_Clause 
             | PL_IF '('Logical_Expression ')' PL_THEN  Instruction Else_Clause
             ;
 
-Else_Clause : PL_ELSE '{' Instructions '}'
+Else_Clause : PL_ELSE '{' Instructions '}' 
             | PL_ELSE Instruction 
             |
             ;
@@ -158,7 +174,7 @@ Logical_Expression : '!' Relational_Expression
                    ;
 
 Relational_Expression :  Arithmetic_Expression
-                      | '(' Relational_Expression ')'
+                      | '(' Relational_Expression ')' 
                       | Arithmetic_Expression '=''=' Arithmetic_Expression 
                       | Arithmetic_Expression '!''=' Arithmetic_Expression 
                       | Arithmetic_Expression '>' Arithmetic_Expression 
@@ -171,7 +187,7 @@ Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Logical_Expression ')'
       | PL_DO Instruction PL_WHILE '(' Logical_Expression ')'
       ;
 
-ReadStdin : 
+ReadStdin :
           ;
 
 WriteStdout : PL_PRINT id { printf("pushg %d\t//print %s\n",lookup_int($2),$2); printf("writei\n"); }
@@ -276,8 +292,9 @@ int lookup_matrix(char* varname, int row, int col) {
 }
 
 int yyerror(char* s) {
-  printf("Error: %s\n", s);
+          printf("Error\t (line %d): %s at %s\n", yylineno, s, yytext);
   return 1;
+
 }
 
 int main () {

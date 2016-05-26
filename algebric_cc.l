@@ -4,9 +4,12 @@
 letter  [a-zA-Z]
 digit [0-9]
 ignore   [\ \t\r\n]
+
+%option yylineno
+
 %%
 
-[\{\}\+\-\(\)\=\>\<\!\;\/\*\[\]\|\&]                { return(yytext[0]); }
+[,\{\}\+\-\(\)\=\>\<\!\;\/\*\[\]\|\&]                { return(yytext[0]); }
 do                             { return (PL_DO); }
 while                             { return (PL_WHILE); }
 if                             { return (PL_IF); }
