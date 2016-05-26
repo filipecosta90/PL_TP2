@@ -3,9 +3,9 @@ int actual;
 int somatorio;
 int i;
 
-qtos_numeros = read_int();
+qtos_numeros = read();
 do {
-  actual = read_int();
+  actual = read();
   somatorio = somatorio + actual;
   i = i+1;
 } while ( i < qtos_numeros )

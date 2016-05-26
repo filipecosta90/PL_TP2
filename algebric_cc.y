@@ -67,8 +67,6 @@ int yyerror();
 
 /* identifiers */
 %token <var>id
-%token <var>id_array
-%token <var>id_matrix
 
 %type <qt>Arithmetic_Expression
 %type <qt>Term
@@ -77,7 +75,7 @@ int yyerror();
 %token PL_IF PL_THEN PL_ELSE
 %token PL_DO PL_WHILE
 %token PL_PRINT
-%token PL_READ_INT
+%token PL_READ
 
 %nonassoc PL_THEN
 %nonassoc PL_ELSE 
@@ -104,7 +102,6 @@ Instructions : Instructions Instruction
              ;
 
 Instruction :  Assignment ';'
-            | ReadStdin ';'
             | WriteStdout ';'
             | Conditional 
             | Cycle 
@@ -117,7 +114,7 @@ Assignment : id
            printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
            printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
                 } 
-                '=' Arithmetic_Expression 
+                '=' Assignement_Value 
                 { 
                 printf("store 0\t//takes from the stack an value v and address a, and stores v in the address a\n");
                 }
@@ -129,7 +126,7 @@ Assignment : id
                 printf("\t//puts on stack the value of j and k\n");
                 }
                 '[' Arithmetic_Expression ']' Dimension         
-               '=' Arithmetic_Expression  
+               '=' Assignement_Value 
                 { 
                 printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
                 }
@@ -142,6 +139,12 @@ Dimension : '[' Arithmetic_Expression ']'
           |
           ;
 
+Assignement_Value : Arithmetic_Expression  
+                  | Read_Stdin
+                  ;
+
+Read_Stdin : PL_READ '(' ')'
+          ;
 
 Arithmetic_Expression : Term
                       | Arithmetic_Expression '+' Term {printf("add\n");}
@@ -151,6 +154,7 @@ Arithmetic_Expression : Term
 Term    : Factor
         | Term '*' Factor  { printf("mul\n");}
         | Term '/' Factor  { printf("div\n");}
+        | Term '%' Factor  { printf("// resto divisao inteira\n");}
         ;
 
 Factor  : num     { printf("pushi %d\n", $1); }
@@ -158,14 +162,18 @@ Factor  : num     { printf("pushi %d\n", $1); }
         | '(' Arithmetic_Expression ')'	{ }
         ;
 
-Conditional : PL_IF '(' Logical_Expression ')' PL_THEN '{' Instructions '}' Else_Clause 
-            | PL_IF '('Logical_Expression ')' PL_THEN  Instruction Else_Clause
+Conditional : PL_IF '(' Logical_Expressions ')' PL_THEN '{' Instructions '}' Else_Clause 
+            | PL_IF '('Logical_Expressions ')' PL_THEN  Instruction Else_Clause
             ;
 
 Else_Clause : PL_ELSE '{' Instructions '}' 
             | PL_ELSE Instruction 
             |
             ;
+
+Logical_Expressions : Logical_Expressions Logical_Expression
+                    |
+                    ;
 
 Logical_Expression : '!' Relational_Expression
                    | Relational_Expression
@@ -174,21 +182,18 @@ Logical_Expression : '!' Relational_Expression
                    ;
 
 Relational_Expression :  Arithmetic_Expression
-                      | '(' Relational_Expression ')' 
                       | Arithmetic_Expression '=''=' Arithmetic_Expression 
                       | Arithmetic_Expression '!''=' Arithmetic_Expression 
                       | Arithmetic_Expression '>' Arithmetic_Expression 
                       | Arithmetic_Expression '>''=' Arithmetic_Expression 
                       | Arithmetic_Expression '<' Arithmetic_Expression 
                       | Arithmetic_Expression '<''=' Arithmetic_Expression 
+                      | '(' Logical_Expressions ')'
                       ;
 
-Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Logical_Expression ')'
-      | PL_DO Instruction PL_WHILE '(' Logical_Expression ')'
+Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')'
+      | PL_DO Instruction PL_WHILE '(' Logical_Expressions ')'
       ;
-
-ReadStdin :
-          ;
 
 WriteStdout : PL_PRINT id { printf("pushg %d\t//print %s\n",lookup_int($2),$2); printf("writei\n"); }
             | PL_PRINT num { printf("pushi %di\t//print %d\n",$2,$2); printf("writei\n"); }

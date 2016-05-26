@@ -1,18 +1,19 @@
-int qtosnumeros;
-//int auxiliar[25];
+int qtos_numeros;
+int auxiliar[25];
 int somatorio;
 int i;
-int npares;
+int n_pares;
+int actual;
 
-qtosnumeros = read_int();
+qtos_numeros = read();
 do {
-  actual = read_int();
-  if( ( actual % 2 ) == 0 ){
-    auxiliar[npares] = actual;
-    npares = npares +1;
+  actual = read();
+  if( ( actual % 2 ) == 0 ) then {
+    auxiliar[n_pares] = actual;
+    n_pares = n_pares +1;
   }
   i = i + 1;
-} while ( i < qtosnumeros )
+} while ( i < qtos_numeros )
 
 i = 0;
 
@@ -20,7 +21,7 @@ do {
   print auxiliar[i];
   print " ";
   i = i + 1;
-} while ( i < npares )
+} while ( i < n_pares )
 print " total pares: ";
-print npares;
+print n_pares;
 

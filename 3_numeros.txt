@@ -2,15 +2,15 @@ int a;
 int b;
 int c;
 
-a = read_int();
-b = read_int();
-c = read_int();
+a = read();
+b = read();
+c = read();
 
-if ( a > b && a > c ){
+if ( a > b && a > c ) then {
   print a;
 }
 else {
-  if ( b > a && b > c ){
+  if ( b > a && b > c  ) then {
   print b;
   }
   else {
