@@ -1,0 +1,36 @@
+pushi 0
+pushi 0
+pushi 0
+
+start
+//?a
+	pushs "Introduza um inteiro: "
+	writes
+	read
+	atoi
+	storeg 0
+//?b
+	pushs "Introduza um inteiro: "
+	writes
+	read
+	atoi
+	storeg 1
+//c=b*b-4*a*b+7/2
+	pushg 1
+	pushg 1
+	mul
+	pushi 4
+	pushg 0
+	mul
+	pushg 1
+	mul
+	sub
+	pushi 7
+	pushi 2
+	div
+	add
+	storeg 2
+//!c
+	pushg 2
+	writei
+stop

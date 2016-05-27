@@ -1,0 +1,72 @@
+		pushi 0	//a
+		pushi 0	//b
+		pushi 0	//c
+start
+		pushs "a:"	//print string "a:"
+		writes
+		read
+		atoi
+		storeg 0	// store var a
+		pushs " b:"	//print string " b:"
+		writes
+		read
+		atoi
+		storeg 1	// store var b
+		pushs " c:"	//print string " c:"
+		writes
+		read
+		atoi
+		storeg 2	// store var c
+		pushs " maior: "	//print string " maior: "
+		writes
+conditional0:	 //if{
+		pushg 0
+		pushg 1
+		sup	//relational superior
+		pushg 0
+		pushg 2
+		sup	//relational superior
+		//RELATIONAL AND
+		mul
+		pushi 2
+		mod
+		jz inelse0
+inthen0:
+		pushgp
+		pushi 0
+		padd
+		pushi 0
+		loadn
+		writei
+		jump outif0
+inelse0:
+conditional1:	 //if{
+		pushg 1
+		pushg 0
+		sup	//relational superior
+		pushg 1
+		pushg 2
+		sup	//relational superior
+		//RELATIONAL AND
+		mul
+		pushi 2
+		mod
+		jz inelse1
+inthen1:
+		pushgp
+		pushi 1
+		padd
+		pushi 0
+		loadn
+		writei
+		jump outif1
+inelse1:
+		pushgp
+		pushi 2
+		padd
+		pushi 0
+		loadn
+		writei
+outif1:
+outif1:
+stop

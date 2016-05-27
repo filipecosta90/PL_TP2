@@ -43,6 +43,10 @@ typedef struct {
 datatype var_table[100];
 int ia[101];
 int var_index = 0;
+int number_cycles = 0;
+int cycle_id;
+int number_conditions = 0;
+int conditional_id;
 
 void insert_int(char* varname);
 void insert_array(char* varname, int size);
@@ -109,127 +113,187 @@ Instruction :  Assignment ';'
 
 
 Assignment : 
-             id 
-           { 
-           printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
-          printf("pushi 0\n");
-         }
-          
-           '=' Assignement_Value 
+           id 
+'=' Assignement_Value 
            {
-           printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
+           printf("\t\tstoreg %d\t// store var %s\n",global_pos($1),$1);
            }
            | id 
            { 
-           printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
-          }
-         '[' {
-         printf("\t\t\t//MATRIX OR VECTOR DIMENSION START\n");
-         } 
-                Arithmetic_Expression 
-            {
-            printf("pushi %d\t\t\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($1));
-            printf("mul\n");
-            }
+           printf("\t\tpushgp\n");
+           printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
+           printf("\t\tpadd\n");
+           }
+           '[' 
+           {
+           printf("\t\t\t//MATRIX OR VECTOR DIMENSION START\n");
+           } 
+           Arithmetic_Expression 
+           {
+           printf("\t\tpushi %d\t\t\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($1));
+           printf("\t\tmul\n");
+           }
            Second_Dimension Dimension_End
            '=' Assignement_Value 
            {
-           printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
+           printf("\t\tstoren\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
            }
-          ;
+           ;
 
 Assignement_Value : Arithmetic_Expression
                   | Read_Stdin
                   ;
 
 Second_Dimension : ','  Arithmetic_Expression 
-                 | /*empty*/ {printf("pushi 0\t//second dimension size of vector(0)\n");} 
+                 | /*empty*/ {printf("\t\tpushi 0\t//second dimension size of vector(0)\n");} 
                  ;
 
-Dimension_End : ']' {printf("sum \t//sums both dimensions\n\t\t\t//MATRIX OR   VECTOR DIMENSION END\n");}
+Dimension_End : ']' {printf("\t\tpadd \t//sums both dimensions\n\t\t\t//MATRIX OR   VECTOR DIMENSION END\n");}
               ;
 
-Read_Stdin : PL_READ '(' ')' { printf("read\natoi\n");  }
-          ;
+Read_Stdin : PL_READ '(' ')' { printf("\t\tread\n\t\tatoi\n");  }
+           ;
+
 Arithmetic_Expression : Term 
-                      | Arithmetic_Expression '+' Term { printf("add\n");}
-                      | Arithmetic_Expression '-' Term { printf("sub\n");}
+                      | Arithmetic_Expression '+' Term { printf("\t\tadd\n");}
+                      | Arithmetic_Expression '-' Term { printf("\t\tsub\n");}
                       ;
 
 Term    : Factor 
-        | Term '*' Factor  { printf("mul\n");}
-        | Term '/' Factor  { printf("div\n");}
-        | Term '%' Factor  { printf("mod\n");}
+        | Term '*' Factor  { printf("\t\tmul\n");}
+        | Term '/' Factor  { printf("\t\tdiv\n");}
+        | Term '%' Factor  { printf("\t\tmod\n");}
         ;
 
-Factor  : num     { printf("pushi %d\n", $1); }
-        | id       { printf("pushg %d\n", lookup_int($1));}
+Factor  : num     { printf("\t\tpushi %d\n", $1); }
+        | id       { printf("\t\tpushg %d\n", global_pos($1));}
         | '(' Arithmetic_Expression ')'
         ;
-
-Conditional : PL_IF '(' Logical_Expressions ')' PL_THEN '{' Instructions '}' Else_Clause 
-            | PL_IF '('Logical_Expressions ')' PL_THEN  Instruction Else_Clause
-            ;
-
-Else_Clause : PL_ELSE '{' Instructions '}' 
-            | PL_ELSE Instruction 
-            |
-            ;
 
 Logical_Expressions : Logical_Expressions Logical_Expression
                     | 
                     ;
 
-Logical_Expression : '!' Relational_Expression {printf("not\t//logical not\n");}
+Logical_Expression : '!' Relational_Expression {printf("\t\tnot\t//logical not\n");}
                    | Relational_Expression
-                   | Relational_Expression '|''|' Relational_Expression 
-                   | Relational_Expression '&''&' Relational_Expression
+                   | Logical_Expression '|''|' Relational_Expression 
+                   {
+                   printf("\t\t//RELATIONAL OR\n\t\tadd\n\t\tpushi 2\n\t\tmod\n");
+                   }
+                   | Logical_Expression '&''&' Relational_Expression
+                   {
+                   printf("\t\t//RELATIONAL AND\n\t\tmul\n\t\tpushi 2\n\t\tmod\n");
+                   }
                    ;
 
-Relational_Expression :  Arithmetic_Expression
+Relational_Expression : Arithmetic_Expression
                       | Arithmetic_Expression '=''=' Arithmetic_Expression
                       {
-                      printf("equal\t//relational equal\n");
+                      printf("\t\tequal\t//relational equal\n");
                       }
                       | Arithmetic_Expression '!''=' Arithmetic_Expression 
                       {
-                      printf("equal\n");
-                      printf("not\t//relation not equal\n");
+                      printf("\t\tequal\n");
+                      printf("\t\tnot\t//relation not equal\n");
                       }
                       | Arithmetic_Expression '>' Arithmetic_Expression 
                       {
-                      printf("sup\t//relational superior\n");
+                      printf("\t\tsup\t//relational superior\n");
                       }
                       | Arithmetic_Expression '>''=' Arithmetic_Expression 
                       {
-                      printf("supeq\t//relational superior or equal\n");
+                      printf("\t\tsupeq\t//relational superior or equal\n");
                       }
                       | Arithmetic_Expression '<' Arithmetic_Expression 
                       {
-                      printf("inf\t//relational inferior\n");
+                      printf("\t\tinf\t//relational inferior\n");
                       }
                       | Arithmetic_Expression '<''=' Arithmetic_Expression 
                       {
-                      printf("infeq\t//relational inferior or equal\n");
+                      printf("\t\tinfeq\t//relational inferior or equal\n");
                       }
                       | '(' Logical_Expressions ')'
                       ;
 
-Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')' 
-      | PL_DO Instruction PL_WHILE '(' Logical_Expressions ')'
+Conditional : 
+            If_Starter
+            PL_THEN '{' Instructions '}' 
+            {
+            printf("\t\tjump outif%d\n",conditional_id); 
+            printf("inelse%d:\n",conditional_id);
+            }
+            Else_Clause 
+            | 
+            If_Starter
+            PL_THEN  Instruction 
+            {
+            printf("\t\tjump outif%d\n",conditional_id); 
+            printf("inelse%d:\n",conditional_id);
+            }
+            Else_Clause 
+            ;
+
+If_Starter :
+     {
+     conditional_id = number_conditions; 
+     number_conditions++; 
+     printf("conditional%d:\t //if{\n",conditional_id);
+     }
+            PL_IF 
+            '(' Logical_Expressions ')' 
+            {
+            printf("\t\tjz inelse%d\n",conditional_id); 
+            printf("inthen%d:\n",conditional_id);
+            }
+            ;  
+
+Else_Clause : PL_ELSE 
+            '{' Instructions '}' 
+             {
+            printf("outif%d:\n",conditional_id);
+            }
+            | PL_ELSE 
+            Instruction 
+            {
+            printf("outif%d:\n",conditional_id);
+            }
+            | /*empty*/
+             {
+            printf("outif%d:\n",conditional_id);
+            }
+           
+           ;
+
+Cycle : PL_DO 
+      {cycle_id = number_cycles; number_cycles++; printf("cycle%d:\t//do{\n",cycle_id);}
+      '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')' 
+      {printf("\t\tjz cycle%d\t//}while()\n",cycle_id);}
+      | PL_DO 
+      {
+      cycle_id = number_cycles; number_cycles++; 
+      printf("cycle%d:\t//do{\n",cycle_id);
+      }
+      Instruction PL_WHILE '(' Logical_Expressions ')' 
+      {
+      printf("\t\tjz cycle%d\t//}while()\n",cycle_id);
+      }
       ;
 
 WriteStdout : PL_PRINT id 
             {
-            printf("pushi %d\n",global_pos($2));
-            printf("pushi 0\n");
+            printf("\t\tpushgp\n");
+            printf("\t\tpushi %d\n",global_pos($2));
+            printf("\t\tpadd\n");
+            printf("\t\tpushi 0\n");
             }
             {
-            printf("loadn\nwritei\n");
+            printf("\t\tloadn\n\t\twritei\n");
             }
             | PL_PRINT id 
             { 
-            printf("pushi %d\t//puts on stack the address of %s\n",global_pos($2),$2 ); 
+            printf("\t\tpushgp\n");
+            printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($2),$2 ); 
+            printf("\t\tpadd\n");
             }
             '[' 
             {
@@ -242,17 +306,17 @@ WriteStdout : PL_PRINT id
             }
            Second_Dimension Dimension_End
            {
-            printf("loadn\nwritei\n");
+            printf("\t\tloadn\n\t\twritei\n");
            }
            | PL_PRINT num 
             { 
-            printf("pushi %di\t//print num %d\n",$2,$2); 
-            printf("writei\n"); 
+            printf("\t\tpushi %di\t//print num %d\n",$2,$2); 
+            printf("\t\twritei\n"); 
             }
             | PL_PRINT string 
             { 
-            printf("pushs %s\t//print string %s\n",$2,$2); 
-            printf("writes\n"); 
+            printf("\t\tpushs %s\t//print string %s\n",$2,$2); 
+            printf("\t\twrites\n"); 
             }
             ;
 %%
@@ -267,7 +331,7 @@ void insert_int ( char* varname ) {
   int old_size = ia[var_index];
   var_index++;
   ia[var_index] = old_size + 1;
-  printf("pushi 0\t//%s\n",varname);
+  printf("\t\tpushi 0\t//%s\n",varname);
 }
 
 void insert_array ( char* varname, int size ) {
@@ -278,7 +342,7 @@ void insert_array ( char* varname, int size ) {
   int old_size = ia[var_index];
   var_index++;
   ia[var_index] = old_size + size;
-  printf("pushn %d\t//%s[%d]\n",size,varname,size);
+  printf("\t\tpushn %d\t//%s[%d]\n",size,varname,size);
 }
 
 void insert_matrix ( char* varname, int rows, int cols ) {
@@ -292,7 +356,7 @@ void insert_matrix ( char* varname, int rows, int cols ) {
   int old_size = ia[var_index];
   var_index++;
   ia[var_index] = old_size + size;
-  printf("pushn %d\t//%s[%d][%d] (size %d)\n",size,varname,rows,cols,size);
+  printf("\t\tpushn %d\t//%s[%d][%d] (size %d)\n",size,varname,rows,cols,size);
 }
 
 int exists_var(char* varname) {

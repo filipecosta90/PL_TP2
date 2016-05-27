@@ -1,0 +1,96 @@
+pushi 0	//qtos_numeros
+pushn 50	//auxiliar[2][25] (size 50)
+pushn 50	//matrix[5][10] (size 50)
+pushi 0	//somatorio
+pushi 0	//i
+pushi 0	//n_pares
+pushi 0	//actual
+start
+pushs "quantos numeros a ler?: "	//print string "quantos numeros a ler?: "
+writes
+pushi 0	//puts on stack the address of qtos_numeros
+pushi 0
+read
+atoi
+storen	//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]
+cycle0:	//do{
+pushs " insira numero: "	//print string " insira numero: "
+writes
+pushi 104	//puts on stack the address of actual
+pushi 0
+read
+atoi
+storen	//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]
+conditional0:	 //if{
+pushg 0
+pushi 2
+mod
+pushi 0
+equal	//relational equal
+jz inelse0
+inthen0:
+pushi 1	//puts on stack the address of auxiliar
+			//MATRIX OR VECTOR DIMENSION START
+pushi 2
+pushi 25				//pushes column size of vector or matrix
+mul
+pushg 0
+sum 	//sums both dimensions
+			//MATRIX OR   VECTOR DIMENSION END
+pushg 0
+storen	//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]
+pushi 103	//puts on stack the address of n_pares
+pushi 0
+pushg 0
+pushi 1
+add
+storen	//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]
+jump outif0
+inelse0:
+outif0:
+pushi 102	//puts on stack the address of i
+pushi 0
+pushg 0
+pushi 1
+add
+storen	//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]
+pushg 0
+pushg 0
+sup	//relational inferior or equal
+jz cycle0	//}while()
+pushi 102	//puts on stack the address of i
+pushi 0
+pushi 0
+storen	//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]
+pushs " ###LISTA DE PARES "	//print string " ###LISTA DE PARES "
+writes
+cycle1:	//do{
+pushi 1	//puts on stack the address of auxiliar
+			//MATRIX OR VECTOR DIMENSION START
+pushi 2
+pushi 25				//pushes column size of vector or matrix
+mul
+pushg 0
+sum 	//sums both dimensions
+			//MATRIX OR   VECTOR DIMENSION END
+loadn
+writei
+pushs " "	//print string " "
+writes
+pushi 102	//puts on stack the address of i
+pushi 0
+pushg 0
+pushi 1
+add
+storen	//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]
+pushg 0
+pushg 0
+supeq	//relational inferior
+jz cycle1	//}while()
+pushs " total pares: "	//print string " total pares: "
+writes
+pushi 103
+pushi 0
+loadn
+writei
+stop

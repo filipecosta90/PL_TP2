@@ -1,0 +1,17 @@
+int y;
+int x;
+
+print "x: ";
+x = read();
+print "y: ";
+y = read();
+
+print "maior: ";
+if (x > y ) then {
+print " x:";
+print x;
+}
+else {
+print " y:";
+print y;
+}
