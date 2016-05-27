@@ -126,7 +126,7 @@ Assignment :
            }
            '[' 
            {
-           printf("\t\t\t//MATRIX OR VECTOR DIMENSION START\n");
+              printf("\t\t\t\t\t\t// +++ Matrix or Vector Dimension Start +++\n");
            } 
            Arithmetic_Expression 
            {
@@ -136,7 +136,7 @@ Assignment :
            Second_Dimension Dimension_End
            '=' Assignement_Value 
            {
-           printf("\t\tstoren\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
+           printf("\t\tstoren\n");
            }
            ;
 
@@ -145,13 +145,21 @@ Assignement_Value : Arithmetic_Expression
                   ;
 
 Second_Dimension : ','  Arithmetic_Expression 
-                 | /*empty*/ {printf("\t\tpushi 0\t//second dimension size of vector(0)\n");} 
+                 | /*empty*/ {printf("\t\tpushi 0\t\t//second dimension size of vector(0)\n");} 
                  ;
 
-Dimension_End : ']' {printf("\t\tpadd \t//sums both dimensions\n\t\t\t//MATRIX OR   VECTOR DIMENSION END\n");}
+Dimension_End : ']' 
+              {
+              printf("\t\tadd\t\t//sums both dimensions\n");
+              printf("\t\t\t\t\t\t// --- Matrix or Vector Dimension End ---\n");
+              }
               ;
 
-Read_Stdin : PL_READ '(' ')' { printf("\t\tread\n\t\tatoi\n");  }
+Read_Stdin : PL_READ '(' ')' 
+           { 
+           printf("\t\tread\n");
+           printf("\t\tatoi\n");  
+           }
            ;
 
 Arithmetic_Expression : Term 
@@ -166,7 +174,7 @@ Term    : Factor
         ;
 
 Factor  : num     { printf("\t\tpushi %d\n", $1); }
-        | id       { printf("\t\tpushg %d\n", global_pos($1));}
+        | id      { printf("\t\tpushg %d\n", global_pos($1));}
         | '(' Arithmetic_Expression ')'
         ;
 
@@ -174,15 +182,24 @@ Logical_Expressions : Logical_Expressions Logical_Expression
                     | 
                     ;
 
-Logical_Expression : '!' Relational_Expression {printf("\t\tnot\t//logical not\n");}
+Logical_Expression : '!' Relational_Expression {printf("\t\tnot\t\t//logical not\n");}
                    | Relational_Expression
                    | Logical_Expression '|''|' Relational_Expression 
                    {
-                   printf("\t\t//RELATIONAL OR\n\t\tadd\n\t\tpushi 2\n\t\tmod\n");
+
+              printf("\t\t\t\t\t\t// +++ Relational OR BEGIN +++\n");
+                   printf("\t\tadd\n");
+                   printf("\t\tpushi 2\n");
+                   printf("\t\tmod\n");
+              printf("\t\t\t\t\t\t// --- Relational OR BEGIN ---\n");
                    }
                    | Logical_Expression '&''&' Relational_Expression
                    {
-                   printf("\t\t//RELATIONAL AND\n\t\tmul\n\t\tpushi 2\n\t\tmod\n");
+              printf("\t\t\t\t\t\t// +++ Relational AND BEGIN +++\n");
+                   printf("\t\tmul\n");
+                   printf("\t\tpushi 2\n");
+                   printf("\t\tmod\n");
+              printf("\t\t\t\t\t\t// --- Relational AND   END ---\n");
                    }
                    ;
 
@@ -223,6 +240,9 @@ Conditional :
             printf("inelse%d:\n",conditional_id);
             }
             Else_Clause 
+      {
+     printf("\t\t\t\t\t\t// --- CONDITIONAL IF END ---\n");
+     }
             | 
             If_Starter
             PL_THEN  Instruction 
@@ -231,13 +251,17 @@ Conditional :
             printf("inelse%d:\n",conditional_id);
             }
             Else_Clause 
-            ;
+     {
+     printf("\t\t\t\t\t\t// --- CONDITIONAL IF END ---\n");
+     }
+     ;
 
 If_Starter :
      {
      conditional_id = number_conditions; 
      number_conditions++; 
-     printf("conditional%d:\t //if{\n",conditional_id);
+     printf("\t\t\t\t\t\t// +++ CONDITIONAL IF BEGIN +++\n");
+     printf("conditional%d:\n",conditional_id);
      }
             PL_IF 
             '(' Logical_Expressions ')' 
@@ -265,17 +289,30 @@ Else_Clause : PL_ELSE
            ;
 
 Cycle : PL_DO 
-      {cycle_id = number_cycles; number_cycles++; printf("cycle%d:\t//do{\n",cycle_id);}
+      {
+      cycle_id = number_cycles; 
+      number_cycles++; 
+     printf("\t\t\t\t\t\t// +++ CICLE DO BEGIN +++\n");
+      printf("cycle%d:\t//do\n",cycle_id);
+      }
       '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')' 
-      {printf("\t\tjz cycle%d\t//}while()\n",cycle_id);}
+      {
+      printf("\t\tnot\n");
+      printf("\t\tjz cycle%d\t//while\n",cycle_id);
+     printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
+      }
       | PL_DO 
       {
-      cycle_id = number_cycles; number_cycles++; 
-      printf("cycle%d:\t//do{\n",cycle_id);
+     printf("\t\t\t\t\t\t// +++ CICLE DO BEGIN +++\n");
+      cycle_id = number_cycles; 
+      number_cycles++; 
+      printf("cycle%d:\t//do\n",cycle_id);
       }
       Instruction PL_WHILE '(' Logical_Expressions ')' 
       {
-      printf("\t\tjz cycle%d\t//}while()\n",cycle_id);
+      printf("\t\tnot\n");
+      printf("\t\tjz cycle%d\t//while\n",cycle_id);
+     printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
       }
       ;
 
@@ -297,11 +334,11 @@ WriteStdout : PL_PRINT id
             }
             '[' 
             {
-            printf("\t\t\t//MATRIX OR VECTOR DIMENSION START\n");
+              printf("\t\t\t\t\t\t// +++ Matrix or Vector Dimension Start +++\n");
             } 
             Arithmetic_Expression 
             {
-            printf("pushi %d\t\t\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($2));
+            printf("pushi %d\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($2));
             printf("mul\n");
             }
            Second_Dimension Dimension_End

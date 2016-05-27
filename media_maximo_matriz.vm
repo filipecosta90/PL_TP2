@@ -1,0 +1,47 @@
+		pushn 6	//matrix[2][3] (size 6)
+		pushi 0	//coluna_actual
+		pushi 0	//linha_actual
+start
+						// +++ CICLE DO BEGIN +++
+cycle0:	//do
+		pushs "insira M( "	//print string "insira M( "
+		writes
+		pushgp
+		pushi 7
+		padd
+		pushi 0
+		loadn
+		writei
+		pushs " , "	//print string " , "
+		writes
+		pushgp
+		pushi 6
+		padd
+		pushi 0
+		loadn
+		writei
+		pushs " ): "	//print string " ): "
+		writes
+		pushgp
+		pushi 0	//puts on stack the address of matrix
+		padd
+						// +++ Matrix or Vector Dimension Start +++
+		pushi 1
+		pushi 3				//pushes column size of vector or matrix
+		mul
+		pushi 2
+		padd		//sums both dimensions
+						// --- Matrix or Vector Dimension End ---
+		read
+		atoi
+		storen
+		pushg 7
+		pushi 1
+		add
+		storeg 7	// store var linha_actual
+		pushg 7
+		pushi 2
+		infeq	//relational inferior or equal
+		jz cycle0	//while
+						// --- CICLE DO END ---
+stop

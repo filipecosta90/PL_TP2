@@ -1,0 +1,20 @@
+		pushi 0	//i
+		pushi 0	//limit
+start
+		pushi 4
+		storeg 1	// store var limit
+						// +++ CICLE DO BEGIN +++
+cycle0:	//do
+		pushgp
+		pushi 0
+		padd
+		pushi 0
+		loadn
+		writei
+		pushg 0
+		pushg 1
+		inf	//relational inferior
+		not
+		jz cycle0	//while
+						// --- CICLE DO END ---
+stop

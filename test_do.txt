@@ -1,0 +1,9 @@
+int i;
+int limit;
+
+limit = 4;
+
+do { 
+  print i;
+} while (i < limit )
+

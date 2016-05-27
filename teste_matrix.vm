@@ -1,0 +1,78 @@
+		pushn 12	//matrix[3][4] (size 12)
+		pushi 0	//i
+start
+		pushgp
+		pushi 0	//puts on stack the address of matrix
+		padd
+						// +++ Matrix or Vector Dimension Start +++
+		pushi 2
+		pushi 4				//pushes column size of vector or matrix
+		mul
+		pushi 1
+		add		//sums both dimensions
+						// --- Matrix or Vector Dimension End ---
+		pushi 15
+		storen
+		pushgp
+		pushi 0	//puts on stack the address of matrix
+		padd
+						// +++ Matrix or Vector Dimension Start +++
+		pushi 1
+		pushi 4				//pushes column size of vector or matrix
+		mul
+		pushi 1
+		add		//sums both dimensions
+						// --- Matrix or Vector Dimension End ---
+		pushi 7
+		storen
+		pushs "1st line "	//print string "1st line "
+		writes
+		pushgp
+		pushi 0	//puts on stack the address of matrix
+		padd
+						// +++ Matrix or Vector Dimension Start +++
+		pushg 12
+pushi 4		//pushes column size of vector or matrix
+mul
+		pushi 1
+		add		//sums both dimensions
+						// --- Matrix or Vector Dimension End ---
+		loadn
+		writei
+		pushg 12
+		pushi 1
+		add
+		storeg 12	// store var i
+		pushs " 2nd line "	//print string " 2nd line "
+		writes
+		pushgp
+		pushi 0	//puts on stack the address of matrix
+		padd
+						// +++ Matrix or Vector Dimension Start +++
+		pushg 12
+pushi 4		//pushes column size of vector or matrix
+mul
+		pushi 1
+		add		//sums both dimensions
+						// --- Matrix or Vector Dimension End ---
+		loadn
+		writei
+		pushs " 3rd line "	//print string " 3rd line "
+		writes
+		pushg 12
+		pushi 1
+		add
+		storeg 12	// store var i
+		pushgp
+		pushi 0	//puts on stack the address of matrix
+		padd
+						// +++ Matrix or Vector Dimension Start +++
+		pushg 12
+pushi 4		//pushes column size of vector or matrix
+mul
+		pushi 1
+		add		//sums both dimensions
+						// --- Matrix or Vector Dimension End ---
+		loadn
+		writei
+stop
