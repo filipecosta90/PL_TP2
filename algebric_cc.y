@@ -70,6 +70,7 @@ int yyerror();
 
 %type <qt>Arithmetic_Expression
 %type <qt>Term
+%type <qt>Dimension
 %type <qt>Factor
 
 %token PL_IF PL_THEN PL_ELSE
@@ -111,55 +112,49 @@ Instruction :  Assignment ';'
 
 Assignment : id 
            { 
-           printf("//assignement\n"); printf("pushgp\t//puts on stack the value of gp\n"); 
+           printf("//assignement\n"); 
+           printf("pushgp\t//puts on stack the value of gp\n"); 
            printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
-                } 
-                '=' Assignement_Value 
-                { 
-                printf("store 0\t//takes from the stack an value v and address a, and stores v in the address a\n");
-                }
-          | id  
-                { 
-                printf("//assignement\n"); 
-                printf("pushgp\t//puts on stack the value of gp\n"); 
-                printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 );
-                printf("\t//puts on stack the value of j and k\n");
-                }
-                '[' Arithmetic_Expression ']' Dimension         
-               '=' Assignement_Value 
-                { 
-                printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
-                }
-       ;
+           } 
+           Dimension '=' Assignement_Value 
+           {
+           printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
+           }
+           ;
 
-Dimension : '[' Arithmetic_Expression ']'
+
+Dimension : 
+          
+         { printf("//calculating distance from array start\n"); }
+          Dimension  '[' Arithmetic_Expression ']' 
           {
-                 printf("mul \t//puts on stack the value of n, being n= j*k from a[j][k]\n");
+          printf("\nmul\npushi %d\nadd\n",$4);
+          printf("//end of array distance calculation");
           }
-          |
+          | { printf("pushi 0\n"); $$ = 0; }
           ;
 
 Assignement_Value : Arithmetic_Expression  
                   | Read_Stdin
                   ;
 
-Read_Stdin : PL_READ '(' ')'
+Read_Stdin : PL_READ '(' ')' { printf("read\natoi\n");  }
           ;
 
-Arithmetic_Expression : Term
-                      | Arithmetic_Expression '+' Term {printf("add\n");}
-                      | Arithmetic_Expression '-' Term {printf("sub\n");}
+Arithmetic_Expression : Term { $$ = $1; }
+                      | Arithmetic_Expression '+' Term { $$ = $1 + $3; printf("add\n");}
+                      | Arithmetic_Expression '-' Term { $$ = $1 - $3; printf("sub\n");}
                       ;
 
-Term    : Factor
-        | Term '*' Factor  { printf("mul\n");}
-        | Term '/' Factor  { printf("div\n");}
-        | Term '%' Factor  { printf("// resto divisao inteira\n");}
+Term    : Factor { $$ = $1; }
+        | Term '*' Factor  { $$ = $1 * $3; printf("mul\n");}
+        | Term '/' Factor  { $$ = $1 / $3; printf("div\n");}
+        | Term '%' Factor  { $$ = $1 % $3; printf("mod\n");}
         ;
 
-Factor  : num     { printf("pushi %d\n", $1); }
-        | id       { printf("pushg %d\n", lookup_int($1));}
-        | '(' Arithmetic_Expression ')'	{ }
+Factor  : num     { $$ = $1; printf("pushi %d\n", $1); }
+        | id       { $$ = lookup_int($1); printf("pushg %d\n", lookup_int($1));}
+        | '(' Arithmetic_Expression ')'	{ $$ = $2;  }
         ;
 
 Conditional : PL_IF '(' Logical_Expressions ')' PL_THEN '{' Instructions '}' Else_Clause 
@@ -172,31 +167,66 @@ Else_Clause : PL_ELSE '{' Instructions '}'
             ;
 
 Logical_Expressions : Logical_Expressions Logical_Expression
-                    |
+                    | 
                     ;
 
-Logical_Expression : '!' Relational_Expression
+Logical_Expression : '!' Relational_Expression {printf("not\t//logical not\n");}
                    | Relational_Expression
-                   | Relational_Expression '|''|' Relational_Expression
+                   | Relational_Expression '|''|' Relational_Expression 
                    | Relational_Expression '&''&' Relational_Expression
                    ;
 
 Relational_Expression :  Arithmetic_Expression
-                      | Arithmetic_Expression '=''=' Arithmetic_Expression 
+                      | Arithmetic_Expression '=''=' Arithmetic_Expression
+                      {
+                      printf("equal\t//relational equal\n");
+                      }
                       | Arithmetic_Expression '!''=' Arithmetic_Expression 
+                      {
+                      printf("equal\n");
+                      printf("not\t//relation not equal\n");
+                      }
                       | Arithmetic_Expression '>' Arithmetic_Expression 
+                      {
+                      printf("sup\t//relational superior\n");
+                      }
                       | Arithmetic_Expression '>''=' Arithmetic_Expression 
+                      {
+                      printf("supeq\t//relational superior or equal\n");
+                      }
                       | Arithmetic_Expression '<' Arithmetic_Expression 
+                      {
+                      printf("inf\t//relational inferior\n");
+                      }
                       | Arithmetic_Expression '<''=' Arithmetic_Expression 
+                      {
+                      printf("infeq\t//relational inferior or equal\n");
+                      }
                       | '(' Logical_Expressions ')'
                       ;
 
-Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')'
+Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')' 
       | PL_DO Instruction PL_WHILE '(' Logical_Expressions ')'
       ;
 
-WriteStdout : PL_PRINT id { printf("pushg %d\t//print %s\n",lookup_int($2),$2); printf("writei\n"); }
-            | PL_PRINT num { printf("pushi %di\t//print %d\n",$2,$2); printf("writei\n"); }
+WriteStdout : PL_PRINT id 
+            {
+            printf("pushi %d\n",global_pos($2));  
+            }
+            Dimension
+            {
+            printf("loadn\nwritei\n");
+            }
+            | PL_PRINT num 
+            { 
+            printf("pushi %di\t//print num %d\n",$2,$2); 
+            printf("writei\n"); 
+            }
+            | PL_PRINT string 
+            { 
+            printf("pushs %s\t//print string %s\n",$2,$2); 
+            printf("writes\n"); 
+            }
             ;
 %%
 
