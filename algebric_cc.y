@@ -76,9 +76,7 @@ int yyerror();
 %token PL_PRINT 
 %token PL_READ
 
-%type <qt> Arithmetic_Expression
 
-%nonassoc INNER_MATRIX
 %nonassoc PL_THEN
 %nonassoc PL_ELSE 
 
@@ -94,7 +92,7 @@ Declarations  : Declarations Declaration ';'
               ;
 
 Declaration  : TYPE_INT id  { insert_int($2); }
-             | TYPE_INT id '[' num  INNER_MATRIX num  ']' { insert_matrix($2,$4,$6); }
+             | TYPE_INT id '[' num  ',' num  ']' { insert_matrix($2,$4,$6); }
              | TYPE_INT id '[' num  ']' { insert_array($2, $4); }
              ;
 
@@ -111,60 +109,48 @@ Instruction :  Assignment ';'
 
 
 Assignment : 
-            id 
+             id 
            { 
-           printf("//Integer assignement\n"); 
-           printf("pushgp\t//puts on stack the value of gp\n"); 
            printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
-           printf("pushi 0\n");
-           }
+          printf("pushi 0\n");
+         }
+          
            '=' Assignement_Value 
            {
            printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
            }
-            | id
-            {
-           printf("//Array assignement\n"); 
+           | id 
+           { 
            printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
-            }
-           '[' Arithmetic_Expression ']'
+          }
+         '[' {
+         printf("\t\t\t//MATRIX OR VECTOR DIMENSION START\n");
+         } 
+                Arithmetic_Expression 
             {
-            printf("loadn\nwritei\n");
+            printf("pushi %d\t\t\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($1));
+            printf("mul\n");
             }
-           '=' Assignement_Value 
-           {
-           printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
-           }
-           | id
-             {
-             printf("//Matrix assignement\n"); 
-             printf("pushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
-             }
-           '[' Arithmetic_Expression INNER_MATRIX 
-           {
-           printf("pushi %d\nmul\n", get_matrix_ncols($1)); 
-           }
-           Second_Dimension
-            {
-            printf("add\nloadn\nwritei\n");
-            }
+           Second_Dimension Dimension_End
            '=' Assignement_Value 
            {
            printf("storen\t//takes from the stack an value v an integer n and address a, and stores v in the address a[n], with n=j*k from a[j][k]\n");
            }
           ;
-
-Second_Dimension: Arithmetic_Expression ']'
-               ;
-
 
 Assignement_Value : Arithmetic_Expression
                   | Read_Stdin
                   ;
 
+Second_Dimension : ','  Arithmetic_Expression 
+                 | /*empty*/ {printf("pushi 0\t//second dimension size of vector(0)\n");} 
+                 ;
+
+Dimension_End : ']' {printf("sum \t//sums both dimensions\n\t\t\t//MATRIX OR   VECTOR DIMENSION END\n");}
+              ;
+
 Read_Stdin : PL_READ '(' ')' { printf("read\natoi\n");  }
           ;
-
 Arithmetic_Expression : Term 
                       | Arithmetic_Expression '+' Term { printf("add\n");}
                       | Arithmetic_Expression '-' Term { printf("sub\n");}
@@ -233,33 +219,32 @@ Cycle : PL_DO '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')'
       | PL_DO Instruction PL_WHILE '(' Logical_Expressions ')'
       ;
 
-WriteStdout : {printf("/////////\n// WRITE\n /////////\n");} PL_PRINT id 
+WriteStdout : PL_PRINT id 
             {
-            printf("pushi %d\n",global_pos($3));  
+            printf("pushi %d\n",global_pos($2));
             printf("pushi 0\n");
+            }
+            {
             printf("loadn\nwritei\n");
             }
-            |  {printf("/////////\n// WRITE VECTOR\n /////////\n");} PL_PRINT id 
-            {
-            printf("pushi %d\n",global_pos($3));  
+            | PL_PRINT id 
+            { 
+            printf("pushi %d\t//puts on stack the address of %s\n",global_pos($2),$2 ); 
             }
-           '[' Arithmetic_Expression ']'
+            '[' 
             {
-            printf("add\nloadn\nwritei\n");
-            }
-            |  {printf("/////////\n// WRITE MATRIX \n /////////\n");} PL_PRINT id 
+            printf("\t\t\t//MATRIX OR VECTOR DIMENSION START\n");
+            } 
+            Arithmetic_Expression 
             {
-            printf("pushi %d\n",global_pos($3));  
+            printf("pushi %d\t\t\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($2));
+            printf("mul\n");
             }
-           '[' Arithmetic_Expression INNER_MATRIX 
+           Second_Dimension Dimension_End
            {
-           printf("pushi %d\nmul\n", get_matrix_ncols($3)); 
+            printf("loadn\nwritei\n");
            }
-           Second_Dimension
-            {
-            printf("add\nloadn\nwritei\n");
-            }
-        | PL_PRINT num 
+           | PL_PRINT num 
             { 
             printf("pushi %di\t//print num %d\n",$2,$2); 
             printf("writei\n"); 
@@ -300,6 +285,8 @@ void insert_matrix ( char* varname, int rows, int cols ) {
   var_table[var_index].varname = strdup(varname);
   var_table[var_index].value = 0;
   var_table[var_index].type = PL_MATRIX;
+  var_table[var_index].rows = rows;
+  var_table[var_index].cols = cols;
   int size = rows * cols;
   var_table[var_index].size =size;
   int old_size = ia[var_index];
