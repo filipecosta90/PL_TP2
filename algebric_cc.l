@@ -10,6 +10,7 @@ ignore   [\ \t\r\n]
 %%
 
 [\%\,\{\}\+\-\(\)\=\>\<\!\;\/\*\[\]\|\&\_]                { return(yytext[0]); }
+\]\[                           { return (INNER_MATRIX);}
 do                             { return (PL_DO); }
 while                             { return (PL_WHILE); }
 if                             { return (PL_IF); }

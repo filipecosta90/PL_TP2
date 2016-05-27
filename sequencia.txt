@@ -1,5 +1,6 @@
 int qtos_numeros;
 int auxiliar[25];
+int matrix[5][10];
 int somatorio;
 int i;
 int n_pares;
