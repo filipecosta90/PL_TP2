@@ -15,8 +15,6 @@ do {
   print ": ";
   actual = read();
   if( ( actual % 2 ) == 0 ) then {
-    print "encontrei par ";
-    print actual;
     auxiliar[n_pares] = actual;
     n_pares = n_pares +1;
   }
@@ -25,7 +23,7 @@ do {
 
 i = 0;
 
-  print " ###LISTA DE PARES ";
+print " ###LISTA DE PARES ";
 do {
   print auxiliar[i];
   print " ";
