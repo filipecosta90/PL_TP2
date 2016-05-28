@@ -12,9 +12,14 @@ cycle0:	//do
 		loadn
 		writei
 		pushg 0
+		pushi 1
+		add
+		storeg 0	// store var i
+		pushg 0
 		pushg 1
 		inf	//relational inferior
-		not
-		jz cycle0	//while
+		jz endcycle0	//while
+		jump cycle0
+endcycle0:
 						// --- CICLE DO END ---
 stop

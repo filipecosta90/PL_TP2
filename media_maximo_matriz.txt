@@ -1,13 +1,19 @@
 int matrix[2,3];
 int coluna_actual;
 int linha_actual;
+int valor_actual;
 
 do {
-  print "insira M( ";
+  do{
+ print "insira M( ";
   print linha_actual;
   print " , ";
   print coluna_actual;
   print " ): ";
-  matrix[1,2] = read();
+  valor_actual = read();
+  coluna_actual = coluna_actual + 1;
+  } while( coluna_actual < 3 )
+  coluna_actual = 0;
   linha_actual = linha_actual +1;
-} while ( linha_actual <= 2 )
+} while ( linha_actual < 2 )
+

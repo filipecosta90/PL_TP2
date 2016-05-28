@@ -44,7 +44,8 @@ datatype var_table[100];
 int ia[101];
 int var_index = 0;
 int number_cycles = 0;
-int cycle_id;
+int closed_cycles = 0;
+int closing_cycles_order[10];
 int number_conditions = 0;
 int conditional_id;
 
@@ -52,6 +53,8 @@ void insert_int(char* varname);
 void insert_array(char* varname, int size);
 void insert_matrix(char* varname, int rows, int cols);
 
+int open_cycle();
+int close_cycle();
 int lookup_int(char* varname);
 int lookup_array(char* varname, int pos);
 int get_matrix_ncols(char* varname);
@@ -290,29 +293,31 @@ Else_Clause : PL_ELSE
 
 Cycle : PL_DO 
       {
-      cycle_id = number_cycles; 
-      number_cycles++; 
-     printf("\t\t\t\t\t\t// +++ CICLE DO BEGIN +++\n");
+      int cycle_id = open_cycle();
+      printf("\t\t\t\t\t\t// +++ CICLE DO BEGIN +++\n");
       printf("cycle%d:\t//do\n",cycle_id);
       }
       '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')' 
       {
-      printf("\t\tnot\n");
-      printf("\t\tjz cycle%d\t//while\n",cycle_id);
-     printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
+      int cycle_closed = close_cycle();
+    printf("\t\tjz endcycle%d\t//while\n",cycle_closed);
+    printf("\t\tjump cycle%d\n",cycle_closed);
+    printf("endcycle%d:\n",cycle_closed);
+    printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
       }
       | PL_DO 
       {
      printf("\t\t\t\t\t\t// +++ CICLE DO BEGIN +++\n");
-      cycle_id = number_cycles; 
-      number_cycles++; 
+      int cycle_id = open_cycle(cycle_id);
       printf("cycle%d:\t//do\n",cycle_id);
       }
       Instruction PL_WHILE '(' Logical_Expressions ')' 
       {
-      printf("\t\tnot\n");
-      printf("\t\tjz cycle%d\t//while\n",cycle_id);
-     printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
+      int cycle_closed = close_cycle();
+     printf("\t\tjz endcycle%d\t//while\n",cycle_closed);
+    printf("\t\tjump cycle%d\n",cycle_closed);
+    printf("endcycle%d:\n",cycle_closed);
+printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
       }
       ;
 
@@ -359,6 +364,18 @@ WriteStdout : PL_PRINT id
 %%
 
 #include "lex.yy.c"
+
+int open_cycle(){
+  int cycle = number_cycles;
+  closing_cycles_order[number_cycles] = cycle;
+  number_cycles++;
+  return cycle;
+}
+
+int close_cycle(){
+  closed_cycles++;
+  return number_cycles-closed_cycles;
+}
 
 void insert_int ( char* varname ) {
   var_table[var_index].varname = strdup(varname);
