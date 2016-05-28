@@ -13,7 +13,7 @@ cycle0:	//do
 		pushs "insira numero("	//print string "insira numero("
 		writes
 		pushgp
-		pushi 3
+		pushi 3	//puts on stack the address of i
 		padd
 		pushi 0
 		loadn
@@ -41,7 +41,7 @@ endcycle0:
 		pushs " somatorio :"	//print string " somatorio :"
 		writes
 		pushgp
-		pushi 2
+		pushi 2	//puts on stack the address of somatorio
 		padd
 		pushi 0
 		loadn
