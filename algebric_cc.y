@@ -40,15 +40,19 @@ typedef struct {
   int cols;
 } datatype;
 
-datatype var_table[100];
-int ia[101];
+datatype var_table[1000];
+int ia[1001];
 int var_index = 0;
 int opened_cycles = 0;
 int number_cycles = 0;
 int closed_cycles = 0;
-int closing_cycles_order[10];
+int closing_cycles_order[100];
 int number_conditions = 0;
-int conditional_id;
+int opened_conditionals = 0;
+int closed_conditionals = 0;
+int closing_conditionals_order[100];
+int number_conditionals = 0;
+
 
 void insert_int(char* varname);
 void insert_array(char* varname, int size);
@@ -56,6 +60,9 @@ void insert_matrix(char* varname, int rows, int cols);
 
 int open_cycle();
 int close_cycle();
+int open_conditional();
+int close_conditional();
+int current_conditional();
 int lookup_int(char* varname);
 int lookup_array(char* varname, int pos);
 int get_matrix_ncols(char* varname);
@@ -246,6 +253,7 @@ Conditional :
             If_Starter
             PL_THEN '{' Instructions '}' 
             {
+    int conditional_id = current_conditional();
             printf("\t\tjump outif%d\n",conditional_id); 
             printf("inelse%d:\n",conditional_id);
             }
@@ -257,6 +265,7 @@ Conditional :
             If_Starter
             PL_THEN  Instruction 
             {
+            int conditional_id = current_conditional();
             printf("\t\tjump outif%d\n",conditional_id); 
             printf("inelse%d:\n",conditional_id);
             }
@@ -268,14 +277,14 @@ Conditional :
 
 If_Starter :
            {
-     conditional_id = number_conditions; 
-     number_conditions++; 
+    int conditional_id = open_conditional();
      printf("\t\t\t\t\t\t// +++ CONDITIONAL IF BEGIN +++\n");
      printf("conditional%d:\n",conditional_id);
      }
             PL_IF 
             '(' Logical_Expressions ')' 
             {
+            int conditional_id = current_conditional();
             printf("\t\tjz inelse%d\n",conditional_id); 
             printf("inthen%d:\n",conditional_id);
             }
@@ -284,16 +293,19 @@ If_Starter :
 Else_Clause : PL_ELSE 
             '{' Instructions '}' 
              {
-            printf("outif%d:\n",conditional_id);
+      int conditional_closed = close_conditional();
+            printf("outif%d:\n",conditional_closed);
             }
             | PL_ELSE 
             Instruction 
             {
-            printf("outif%d:\n",conditional_id);
+      int conditional_closed = close_conditional();
+            printf("outif%d:\n",conditional_closed);
             }
             | /*empty*/
              {
-            printf("outif%d:\n",conditional_id);
+      int conditional_closed = close_conditional();
+            printf("outif%d:\n",conditional_closed);
             }
 
 ;
@@ -314,8 +326,8 @@ Cycle : PL_DO
       }
       | PL_DO 
       {
+      int cycle_id = open_cycle();
      printf("\t\t\t\t\t\t// +++ CICLE DO BEGIN +++\n");
-      int cycle_id = open_cycle(cycle_id);
       printf("cycle%d:\t//do\n",cycle_id);
       }
       Instruction PL_WHILE '(' Logical_Expressions ')' 
@@ -393,6 +405,38 @@ int close_cycle(){
   }
   else {
   return closing_cycles_order[number_cycles-1];
+  }
+}
+
+int open_conditional(){
+  int conditional = number_conditionals;
+  closing_conditionals_order[number_conditionals] = conditional;
+  number_conditionals++;
+  opened_conditionals = number_conditionals - closed_conditionals;
+  return conditional;
+}
+
+int current_conditional(){
+  closed_conditionals++;
+  int conditional_to_close = number_conditionals - closed_conditionals;
+  closed_conditionals--;
+  if ( opened_conditionals > 1 ){
+  return closing_conditionals_order[conditional_to_close];
+  }
+  else {
+  return closing_conditionals_order[number_conditionals-1];
+  }
+}
+
+
+int close_conditional(){
+  closed_conditionals++;
+  int conditional_to_close = number_conditionals - closed_conditionals;
+  if ( opened_conditionals > 1 ){
+  return closing_conditionals_order[conditional_to_close];
+  }
+  else {
+  return closing_conditionals_order[number_conditionals-1];
   }
 }
 

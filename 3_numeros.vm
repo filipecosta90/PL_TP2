@@ -23,10 +23,10 @@ start
 conditional0:
 		pushg 0
 		pushg 1
-		sup	//relational superior
+		supeq	//relational superior or equal
 		pushg 0
 		pushg 2
-		sup	//relational superior
+		supeq	//relational superior or equal
 						// +++ Relational AND BEGIN +++
 		mul
 		pushi 2
@@ -35,7 +35,7 @@ conditional0:
 		jz inelse0
 inthen0:
 		pushgp
-		pushi 0
+		pushi 0	//puts on stack the address of a
 		padd
 		pushi 0
 		loadn
@@ -49,7 +49,7 @@ conditional1:
 		sup	//relational superior
 		pushg 1
 		pushg 2
-		sup	//relational superior
+		supeq	//relational superior or equal
 						// +++ Relational AND BEGIN +++
 		mul
 		pushi 2
@@ -58,21 +58,40 @@ conditional1:
 		jz inelse1
 inthen1:
 		pushgp
-		pushi 1
+		pushi 1	//puts on stack the address of b
 		padd
 		pushi 0
 		loadn
 		writei
 		jump outif1
 inelse1:
-		pushgp
+						// +++ CONDITIONAL IF BEGIN +++
+conditional2:
+		pushg 2
+		pushg 0
+		sup	//relational superior
+		pushg 2
+		pushg 1
+		sup	//relational superior
+						// +++ Relational AND BEGIN +++
+		mul
 		pushi 2
+		mod
+						// --- Relational AND   END ---
+		jz inelse2
+inthen2:
+		pushgp
+		pushi 2	//puts on stack the address of c
 		padd
 		pushi 0
 		loadn
 		writei
-outif1:
+		jump outif2
+inelse2:
+outif2:
 						// --- CONDITIONAL IF END ---
 outif1:
+						// --- CONDITIONAL IF END ---
+outif0:
 						// --- CONDITIONAL IF END ---
 stop

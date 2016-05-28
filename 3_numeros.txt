@@ -10,14 +10,16 @@ print " c:";
 c = read();
 
 print" maior: ";
-if ( a > b && a > c ) then {
+if ( a >= b && a >= c ) then {
   print a;
 }
 else {
-  if ( b > a && b > c  ) then {
-  print b;
+  if ( b > a && b >= c  ) then {
+    print b;
   }
   else {
-  print c;
+    if (c > a && c > b ) then {
+      print c;
+    }
   }
 }
