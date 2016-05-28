@@ -1,9 +1,9 @@
+////// Exemplo array crescente
 		pushi 0	//qtos_numeros
 		pushn 25	//auxiliar[25]
 		pushi 0	//i
 		pushi 0	//actual
 		pushi 0	//minimo
-		pushi 0	//maximo_absoluto
 		pushi 0	//localizacao_minimo
 		pushi 0	//aux_troca
 		pushi 0	//pivot
@@ -48,19 +48,6 @@ cycle0:	//do
 						// --- Matrix or Vector Dimension End ---
 		pushg 27
 		storen
-						// +++ CONDITIONAL IF BEGIN +++
-conditional0:
-		pushg 27
-		pushg 29
-		sup	//relational superior
-		jz inelse0
-inthen0:
-		pushg 29
-		storeg 27	// store var actual
-		jump outif0
-inelse0:
-outif0:
-						// --- CONDITIONAL IF END ---
 		pushg 26
 		pushi 1
 		add
@@ -87,41 +74,41 @@ cycle1:	//do
 		loadn 
 		storeg 28	// store var minimo
 		pushg 26
-		storeg 32	// store var pivot
+		storeg 31	// store var pivot
 		pushg 26
-		storeg 30	// store var localizacao_minimo
+		storeg 29	// store var localizacao_minimo
 						// +++ CICLE DO BEGIN +++
 cycle2:	//do
 		pushgp
 		pushi 1	//puts on stack the address of auxiliar
 		padd
 						// +++ Matrix or Vector Dimension Start +++
-		pushg 32
+		pushg 31
 		pushi 0		//second dimension size of vector(0)
 		add		//sums both dimensions
 						// --- Matrix or Vector Dimension End ---
 		loadn 
 		storeg 27	// store var actual
 						// +++ CONDITIONAL IF BEGIN +++
-conditional1:
+conditional0:
 		pushg 27
 		pushg 28
 		inf	//relational inferior
-		jz inelse1
-inthen1:
+		jz inelse0
+inthen0:
 		pushg 27
 		storeg 28	// store var minimo
-		pushg 32
-		storeg 30	// store var localizacao_minimo
-		jump outif1
-inelse1:
-outif1:
+		pushg 31
+		storeg 29	// store var localizacao_minimo
+		jump outif0
+inelse0:
+outif0:
 						// --- CONDITIONAL IF END ---
-		pushg 32
+		pushg 31
 		pushi 1
 		add
-		storeg 32	// store var pivot
-		pushg 32
+		storeg 31	// store var pivot
+		pushg 31
 		pushg 0
 		inf	//relational inferior
 		jz endcycle2	//while
@@ -129,8 +116,8 @@ outif1:
 endcycle2:
 						// --- CICLE DO END ---
 						// +++ CONDITIONAL IF BEGIN +++
-conditional2:
-		pushg 30
+conditional1:
+		pushg 29
 		pushg 26
 						// +++ Logical NOT EQUAL BEGIN +++
 		equal
@@ -139,23 +126,23 @@ conditional2:
 		pushi 2
 		mod
 						// --- Logical NOT EQUAL END ---
-		jz inelse2
-inthen2:
+		jz inelse1
+inthen1:
 		pushgp
 		pushi 1	//puts on stack the address of auxiliar
 		padd
 						// +++ Matrix or Vector Dimension Start +++
-		pushg 30
+		pushg 29
 		pushi 0		//second dimension size of vector(0)
 		add		//sums both dimensions
 						// --- Matrix or Vector Dimension End ---
 		loadn 
-		storeg 31	// store var aux_troca
+		storeg 30	// store var aux_troca
 		pushgp
 		pushi 1	//puts on stack the address of auxiliar
 		padd
 						// +++ Matrix or Vector Dimension Start +++
-		pushg 30
+		pushg 29
 		pushi 0		//second dimension size of vector(0)
 		add		//sums both dimensions
 						// --- Matrix or Vector Dimension End ---
@@ -177,11 +164,11 @@ inthen2:
 		pushi 0		//second dimension size of vector(0)
 		add		//sums both dimensions
 						// --- Matrix or Vector Dimension End ---
-		pushg 31
+		pushg 30
 		storen
-		jump outif2
-inelse2:
-outif2:
+		jump outif1
+inelse1:
+outif1:
 						// --- CONDITIONAL IF END ---
 		pushg 26
 		pushi 1

@@ -23,6 +23,7 @@ read                            { return (PL_READ);}
 {letter}({letter}|{digit}|\_)*     { yylval.var = strdup(yytext); return(id); }
 {digit}+                        { yylval.qt = atoi(yytext); return(num); }
 \"[^"]+\"                      { yylval.var = strdup(yytext); return(string); }
+\/\/[^\n]*                      { printf("%s\n",yytext);  }
 {ignore}                        { ; }
 
 %%

@@ -1,3 +1,6 @@
+////// Exemplo array crescente
+
+
 int qtos_numeros;
 int auxiliar[25];
 int i;
