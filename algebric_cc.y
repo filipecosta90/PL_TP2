@@ -43,6 +43,7 @@ typedef struct {
 datatype var_table[100];
 int ia[101];
 int var_index = 0;
+int opened_cycles = 0;
 int number_cycles = 0;
 int closed_cycles = 0;
 int closing_cycles_order[10];
@@ -61,7 +62,7 @@ int get_matrix_ncols(char* varname);
 int lookup_matrix(char* varname, int row, int col);
 int exists_var(char* var);
 int global_pos(char* varname);
-
+int is_vector(char* varname);
 int yylex();
 int yyerror();
 
@@ -125,7 +126,6 @@ Assignment :
            { 
            printf("\t\tpushgp\n");
            printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
-           printf("\t\tpadd\n");
            }
            '[' 
            {
@@ -133,10 +133,17 @@ Assignment :
            } 
            Arithmetic_Expression 
            {
+           if ( is_vector($1) ){
+           }
+           else {
            printf("\t\tpushi %d\t\t\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($1));
            printf("\t\tmul\n");
            }
+           }
            Second_Dimension Dimension_End
+           {
+           printf("\t\tpadd\n");
+           }
            '=' Assignement_Value 
            {
            printf("\t\tstoren\n");
@@ -190,7 +197,7 @@ Logical_Expression : '!' Relational_Expression {printf("\t\tnot\t\t//logical not
                    | Logical_Expression '|''|' Relational_Expression 
                    {
 
-              printf("\t\t\t\t\t\t// +++ Relational OR BEGIN +++\n");
+printf("\t\t\t\t\t\t// +++ Relational OR BEGIN +++\n");
                    printf("\t\tadd\n");
                    printf("\t\tpushi 2\n");
                    printf("\t\tmod\n");
@@ -260,7 +267,7 @@ Conditional :
      ;
 
 If_Starter :
-     {
+           {
      conditional_id = number_conditions; 
      number_conditions++; 
      printf("\t\t\t\t\t\t// +++ CONDITIONAL IF BEGIN +++\n");
@@ -288,8 +295,8 @@ Else_Clause : PL_ELSE
              {
             printf("outif%d:\n",conditional_id);
             }
-           
-           ;
+
+;
 
 Cycle : PL_DO 
       {
@@ -300,10 +307,10 @@ Cycle : PL_DO
       '{' Instructions '}' PL_WHILE '(' Logical_Expressions ')' 
       {
       int cycle_closed = close_cycle();
-    printf("\t\tjz endcycle%d\t//while\n",cycle_closed);
-    printf("\t\tjump cycle%d\n",cycle_closed);
-    printf("endcycle%d:\n",cycle_closed);
-    printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
+      printf("\t\tjz endcycle%d\t//while\n",cycle_closed);
+      printf("\t\tjump cycle%d\n",cycle_closed);
+      printf("endcycle%d:\n",cycle_closed);
+      printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
       }
       | PL_DO 
       {
@@ -324,7 +331,7 @@ printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
 WriteStdout : PL_PRINT id 
             {
             printf("\t\tpushgp\n");
-            printf("\t\tpushi %d\n",global_pos($2));
+            printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($2),$2 ); 
             printf("\t\tpadd\n");
             printf("\t\tpushi 0\n");
             }
@@ -341,11 +348,16 @@ WriteStdout : PL_PRINT id
             {
               printf("\t\t\t\t\t\t// +++ Matrix or Vector Dimension Start +++\n");
             } 
-            Arithmetic_Expression 
-            {
-            printf("pushi %d\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($2));
-            printf("mul\n");
-            }
+           Arithmetic_Expression 
+           {
+           if ( is_vector($2) ){
+              printf("\t\t\t\t\t\t//since its a vector nothing more to do here\n");
+           }
+           else {
+           printf("\t\tpushi %d\t\t\t\t//pushes column size of  matrix\n",get_matrix_ncols($2));
+           printf("\t\tmul\n");
+           }
+           }
            Second_Dimension Dimension_End
            {
             printf("\t\tloadn\n\t\twritei\n");
@@ -369,12 +381,19 @@ int open_cycle(){
   int cycle = number_cycles;
   closing_cycles_order[number_cycles] = cycle;
   number_cycles++;
+  opened_cycles = number_cycles - closed_cycles;
   return cycle;
 }
 
 int close_cycle(){
   closed_cycles++;
-  return number_cycles-closed_cycles;
+  int cycle_to_close = number_cycles - closed_cycles;
+  if ( opened_cycles > 1 ){
+  return closing_cycles_order[cycle_to_close];
+  }
+  else {
+  return closing_cycles_order[number_cycles-1];
+  }
 }
 
 void insert_int ( char* varname ) {
@@ -393,6 +412,7 @@ void insert_array ( char* varname, int size ) {
   var_table[var_index].value = 0;
   var_table[var_index].type = PL_ARRAY;
   var_table[var_index].size =size;
+  var_table[var_index].cols = size;
   int old_size = ia[var_index];
   var_index++;
   ia[var_index] = old_size + size;
@@ -418,6 +438,24 @@ int exists_var(char* varname) {
   i = 0;
   while (( i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)) i++;
   if ( i == var_index ) r = 0; else r = 1;
+  return r;
+}
+
+int is_vector(char* varname) {
+  int i, r;
+  i = 0;
+  while (( i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)) i++;
+  if ( i == var_index ) { 
+  r = 0;
+  } 
+  else { 
+    if( var_table[i].type == PL_ARRAY ){
+    r = 1;
+  }
+  else{
+  r = 0;
+  }
+  }
   return r;
 }
 
