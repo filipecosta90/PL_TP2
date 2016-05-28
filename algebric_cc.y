@@ -43,16 +43,18 @@ typedef struct {
 datatype var_table[1000];
 int ia[1001];
 int var_index = 0;
-int opened_cycles = 0;
-int number_cycles = 0;
-int closed_cycles = 0;
+
 int closing_cycles_order[100];
-int number_conditions = 0;
-int opened_conditionals = 0;
-int closed_conditionals = 0;
 int closing_conditionals_order[100];
+
+int opened_cycles = 0;
+int opened_conditionals = 0;
+
+int number_cycles = 0;
 int number_conditionals = 0;
 
+int cycle_position_to_close = 0;
+int conditional_position_to_close = 0;
 
 void insert_int(char* varname);
 void insert_array(char* varname, int size);
@@ -192,6 +194,28 @@ Term    : Factor
 
 Factor  : num     { printf("\t\tpushi %d\n", $1); }
         | id      { printf("\t\tpushg %d\n", global_pos($1));}
+           | id 
+           { 
+           printf("\t\tpushgp\n");
+           printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
+           }
+           '[' 
+           {
+              printf("\t\t\t\t\t\t// +++ Matrix or Vector Dimension Start +++\n");
+           } 
+           Arithmetic_Expression 
+           {
+           if ( is_vector($1) ){
+           }
+           else {
+           printf("\t\tpushi %d\t\t\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($1));
+           printf("\t\tmul\n");
+           }
+           }
+           Second_Dimension Dimension_End
+           {
+           printf("\t\tpadd\n");
+           }
         | '(' Arithmetic_Expression ')'
         ;
 
@@ -391,53 +415,36 @@ WriteStdout : PL_PRINT id
 
 int open_cycle(){
   int cycle = number_cycles;
-  closing_cycles_order[number_cycles] = cycle;
+  closing_cycles_order[cycle_position_to_close+1] = cycle;
   number_cycles++;
-  opened_cycles = number_cycles - closed_cycles;
+  cycle_position_to_close++;
   return cycle;
 }
 
 int close_cycle(){
-  closed_cycles++;
-  int cycle_to_close = number_cycles - closed_cycles;
-  if ( opened_cycles > 1 ){
-  return closing_cycles_order[cycle_to_close];
-  }
-  else {
-  return closing_cycles_order[number_cycles-1];
-  }
+  int cycle_to_close = closing_cycles_order[cycle_position_to_close];
+  cycle_position_to_close--;
+return cycle_to_close;
 }
 
 int open_conditional(){
   int conditional = number_conditionals;
-  closing_conditionals_order[number_conditionals] = conditional;
+  closing_conditionals_order[conditional_position_to_close+1] = conditional;
   number_conditionals++;
-  opened_conditionals = number_conditionals - closed_conditionals;
+  conditional_position_to_close++;
   return conditional;
 }
 
 int current_conditional(){
-  closed_conditionals++;
-  int conditional_to_close = number_conditionals - closed_conditionals;
-  closed_conditionals--;
-  if ( opened_conditionals > 1 ){
-  return closing_conditionals_order[conditional_to_close];
-  }
-  else {
-  return closing_conditionals_order[number_conditionals-1];
-  }
+  int actual_conditional = closing_conditionals_order[conditional_position_to_close];
+  return actual_conditional;
 }
 
 
 int close_conditional(){
-  closed_conditionals++;
-  int conditional_to_close = number_conditionals - closed_conditionals;
-  if ( opened_conditionals > 1 ){
-  return closing_conditionals_order[conditional_to_close];
-  }
-  else {
-  return closing_conditionals_order[number_conditionals-1];
-  }
+  int conditional_to_close = closing_conditionals_order[conditional_position_to_close];
+  conditional_position_to_close--;
+  return conditional_to_close;
 }
 
 void insert_int ( char* varname ) {

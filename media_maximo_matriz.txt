@@ -17,6 +17,9 @@ do {
     valor_actual = read();
     if ( valor_actual > maximo ) then {
     maximo = valor_actual;
+    do { 
+      print "a"; 
+    } while ( 1 )
     }
     numeros_lidos = numeros_lidos + 1;
     somatorio = somatorio + valor_actual;
@@ -36,3 +39,8 @@ print media;
 
 print "maximo: ";
 print maximo;
+
+
+do {
+  print "a";
+} while ( 2 )
