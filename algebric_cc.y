@@ -131,15 +131,24 @@ Assignment :
            {
            printf("\t\tstoreg %d\t// store var %s\n",global_pos($1),$1);
            }
-           | id 
+           | Vectors
+           '=' Assignement_Value 
+           {
+           printf("\t\tstoren\n");
+           }
+           ;
+
+Assignement_Value : Arithmetic_Expression
+                  | Read_Stdin
+                  ;
+Vectors : id
            { 
            printf("\t\tpushgp\n");
            printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
+           printf("\t\tpadd\n");
+           printf("\t\t\t\t\t\t// +++ Matrix or Vector Dimension Start +++\n");
            }
            '[' 
-           {
-              printf("\t\t\t\t\t\t// +++ Matrix or Vector Dimension Start +++\n");
-           } 
            Arithmetic_Expression 
            {
            if ( is_vector($1) ){
@@ -150,18 +159,7 @@ Assignment :
            }
            }
            Second_Dimension Dimension_End
-           {
-           printf("\t\tpadd\n");
-           }
-           '=' Assignement_Value 
-           {
-           printf("\t\tstoren\n");
-           }
-           ;
-
-Assignement_Value : Arithmetic_Expression
-                  | Read_Stdin
-                  ;
+           ; 
 
 Second_Dimension : ','  Arithmetic_Expression 
                  | /*empty*/ {printf("\t\tpushi 0\t\t//second dimension size of vector(0)\n");} 
@@ -194,28 +192,7 @@ Term    : Factor
 
 Factor  : num     { printf("\t\tpushi %d\n", $1); }
         | id      { printf("\t\tpushg %d\n", global_pos($1));}
-           | id 
-           { 
-           printf("\t\tpushgp\n");
-           printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
-           }
-           '[' 
-           {
-              printf("\t\t\t\t\t\t// +++ Matrix or Vector Dimension Start +++\n");
-           } 
-           Arithmetic_Expression 
-           {
-           if ( is_vector($1) ){
-           }
-           else {
-           printf("\t\tpushi %d\t\t\t\t//pushes column size of vector or matrix\n",get_matrix_ncols($1));
-           printf("\t\tmul\n");
-           }
-           }
-           Second_Dimension Dimension_End
-           {
-           printf("\t\tpadd\n");
-           }
+        | Vectors { printf("\t\tloadn \n");}
         | '(' Arithmetic_Expression ')'
         ;
 
@@ -223,24 +200,31 @@ Logical_Expressions : Logical_Expressions Logical_Expression
                     | 
                     ;
 
-Logical_Expression : '!' Relational_Expression {printf("\t\tnot\t\t//logical not\n");}
-                   | Relational_Expression
-                   | Logical_Expression '|''|' Relational_Expression 
+Logical_Expression : '!' Relational_Expression 
                    {
-
-printf("\t\t\t\t\t\t// +++ Relational OR BEGIN +++\n");
+                   printf("\t\t\t\t\t\t// +++ Relational NOT BEGIN +++\n");
+                   printf("\t\tpushi 1\n");
                    printf("\t\tadd\n");
                    printf("\t\tpushi 2\n");
                    printf("\t\tmod\n");
-              printf("\t\t\t\t\t\t// --- Relational OR BEGIN ---\n");
+                   printf("\t\t\t\t\t\t// --- Relational NOT END ---\n");
+                   }
+                   | Relational_Expression
+                   | Logical_Expression '|''|' Relational_Expression 
+                   {
+                   printf("\t\t\t\t\t\t// +++ Relational OR BEGIN +++\n");
+                   printf("\t\tadd\n");
+                   printf("\t\tpushi 2\n");
+                   printf("\t\tmod\n");
+                   printf("\t\t\t\t\t\t// --- Relational OR END ---\n");
                    }
                    | Logical_Expression '&''&' Relational_Expression
                    {
-              printf("\t\t\t\t\t\t// +++ Relational AND BEGIN +++\n");
+                   printf("\t\t\t\t\t\t// +++ Relational AND BEGIN +++\n");
                    printf("\t\tmul\n");
                    printf("\t\tpushi 2\n");
                    printf("\t\tmod\n");
-              printf("\t\t\t\t\t\t// --- Relational AND   END ---\n");
+                   printf("\t\t\t\t\t\t// --- Relational AND END ---\n");
                    }
                    ;
 
@@ -251,8 +235,13 @@ Relational_Expression : Arithmetic_Expression
                       }
                       | Arithmetic_Expression '!''=' Arithmetic_Expression 
                       {
-                      printf("\t\tequal\n");
-                      printf("\t\tnot\t//relation not equal\n");
+                   printf("\t\t\t\t\t\t// +++ Logical NOT EQUAL BEGIN +++\n");
+                   printf("\t\tequal\n");
+                   printf("\t\tpushi 1\n");
+                   printf("\t\tadd\n");
+                   printf("\t\tpushi 2\n");
+                   printf("\t\tmod\n");
+                   printf("\t\t\t\t\t\t// --- Logical NOT EQUAL END ---\n");
                       }
                       | Arithmetic_Expression '>' Arithmetic_Expression 
                       {
@@ -370,40 +359,18 @@ WriteStdout : PL_PRINT id
             printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($2),$2 ); 
             printf("\t\tpadd\n");
             printf("\t\tpushi 0\n");
+            printf("\t\tloadn\n\t\twritei\n");
             }
+            | PL_PRINT Vectors
             {
             printf("\t\tloadn\n\t\twritei\n");
             }
-            | PL_PRINT id 
-            { 
-            printf("\t\tpushgp\n");
-            printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($2),$2 ); 
-            printf("\t\tpadd\n");
-            }
-            '[' 
-            {
-              printf("\t\t\t\t\t\t// +++ Matrix or Vector Dimension Start +++\n");
-            } 
-           Arithmetic_Expression 
-           {
-           if ( is_vector($2) ){
-              printf("\t\t\t\t\t\t//since its a vector nothing more to do here\n");
-           }
-           else {
-           printf("\t\tpushi %d\t\t\t\t//pushes column size of  matrix\n",get_matrix_ncols($2));
-           printf("\t\tmul\n");
-           }
-           }
-           Second_Dimension Dimension_End
-           {
-            printf("\t\tloadn\n\t\twritei\n");
-           }
-           | PL_PRINT num 
+            | PL_PRINT num 
             { 
             printf("\t\tpushi %di\t//print num %d\n",$2,$2); 
             printf("\t\twritei\n"); 
             }
-            | PL_PRINT string 
+            | PL_PRINT string
             { 
             printf("\t\tpushs %s\t//print string %s\n",$2,$2); 
             printf("\t\twrites\n"); 
