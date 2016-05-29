@@ -10,4 +10,12 @@ echo "producing examples"
 ./algebric < examples_algebra/funcao.txt > examples_vm/funcao.vm
 ./algebric < examples_algebra/teste_ifs.txt > examples_vm/teste_ifs.vm
 
+echo "error examples"
+echo "file variavel_nao_declarada"
+./algebric < examples_algebra/variavel_nao_declarada.txt > examples_vm/variavel_nao_declarada.vm
+echo "file variavel_re_declarada"
+./algebric < examples_algebra/variavel_re_declarada.txt > examples_vm/variavel_re_declarada.vm
+echo "file erro_sintatico"
+./algebric < examples_algebra/erro_sintatico.txt > examples_vm/erro_sintatico.vm
+
 echo "done"

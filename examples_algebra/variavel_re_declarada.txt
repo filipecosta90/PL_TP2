@@ -1,0 +1,5 @@
+int a;
+int b[10];
+int b[5]
+
+print "nao devera aparecer esta mensagem";

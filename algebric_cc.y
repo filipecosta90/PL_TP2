@@ -70,11 +70,14 @@ int lookup_int(char* varname);
 int lookup_array(char* varname, int pos);
 int get_matrix_ncols(char* varname);
 int lookup_matrix(char* varname, int row, int col);
-int exists_var(char* var);
+int exists_var(char* varname, var_type type);
 int global_pos(char* varname);
 int is_vector(char* varname);
 int yylex();
 int yyerror();
+void compile_error( char* message);
+void assert_no_redeclared_var( char* varname ,var_type type);
+void assert_declared_var( char* varname, var_type type);
 
 %}
 
@@ -116,14 +119,27 @@ Function_Declarations : Function_Declarations Function_Declaration
                       |
                       ;
 
-Declaration  : TYPE_INT id  { insert_int($2); }
-             | TYPE_INT id '[' num  ',' num  ']' { insert_matrix($2,$4,$6); }
-             | TYPE_INT id '[' num  ']' { insert_array($2, $4); }
+Declaration  : TYPE_INT id  
+             { 
+             assert_no_redeclared_var($2,PL_INTEGER);
+             insert_int($2); 
+             }
+             | TYPE_INT id '[' num  ',' num  ']' 
+             { 
+             assert_no_redeclared_var($2,PL_MATRIX);
+             insert_matrix($2,$4,$6); 
+             }
+             | TYPE_INT id '[' num  ']' 
+             { 
+             assert_no_redeclared_var($2,PL_ARRAY);
+             insert_array($2, $4); 
+             }
              ;
 
 
 Function_Declaration : TYPE_FUNCTION id '('')' '{'
-             {
+                     {
+             assert_no_redeclared_var($2,PL_FUNCTION);
              printf("\t\t\t\t\t\t// +++ Function Declaration Start +++\n");
              insert_function($2);
              printf("\t\tjump endfunction%s\n",$2);
@@ -142,6 +158,7 @@ Function_Declaration : TYPE_FUNCTION id '('')' '{'
 
 Function_Invocation : PL_CALL id '(' ')' 
                     { 
+                    assert_declared_var($2,PL_FUNCTION);
                     printf("\t\tpusha startfunction%s\n",$2);
                     printf("\t\tcall\n");
                     printf("\t\tpushg %d\t// pushes returned value of  %s\n",global_pos($2),$2);
@@ -166,6 +183,7 @@ Assignment :
            id 
 '=' Assignement_Value 
            {
+           assert_declared_var($1, PL_INTEGER );
            printf("\t\tstoreg %d\t// store var %s\n",global_pos($1),$1);
            }
            | Vectors
@@ -180,7 +198,13 @@ Assignement_Value : Arithmetic_Expression
                   | Function_Invocation
                   ;
 Vectors : id
-           { 
+        { 
+           if ( is_vector($1) ){
+           assert_declared_var($1,PL_ARRAY);
+           }
+           else{
+           assert_declared_var($1,PL_MATRIX);
+           }
            printf("\t\tpushgp\n");
            printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($1),$1 ); 
            printf("\t\tpadd\n");
@@ -229,7 +253,11 @@ Term    : Factor
         ;
 
 Factor  : num     { printf("\t\tpushi %d\n", $1); }
-        | id      { printf("\t\tpushg %d\n", global_pos($1));}
+        | id      
+        {
+        assert_declared_var($1, PL_INTEGER);
+        printf("\t\tpushg %d\n", global_pos($1));
+        }
         | Vectors { printf("\t\tloadn \n");}
         | '(' Arithmetic_Expression ')'
         ;
@@ -394,6 +422,7 @@ printf("\t\t\t\t\t\t// --- CICLE DO END ---\n");
 WriteStdout : PL_PRINT id 
             {
             printf("\t\tpushgp\n");
+            assert_declared_var($2, PL_INTEGER);
             printf("\t\tpushi %d\t//puts on stack the address of %s\n",global_pos($2),$2 ); 
             printf("\t\tpadd\n");
             printf("\t\tpushi 0\n");
@@ -417,6 +446,7 @@ WriteStdout : PL_PRINT id
 %%
 
 #include "lex.yy.c"
+
 
 int open_cycle(){
   int cycle = number_cycles;
@@ -444,7 +474,6 @@ int current_conditional(){
   int actual_conditional = closing_conditionals_order[conditional_position_to_close];
   return actual_conditional;
 }
-
 
 int close_conditional(){
   int conditional_to_close = closing_conditionals_order[conditional_position_to_close];
@@ -502,11 +531,21 @@ void insert_function ( char* function_name ) {
   printf("\t\tpushi 0\t\t// space for fucntion %s returned value\n", function_name);
 }
 
-int exists_var(char* varname) {
+int exists_var(char* varname, var_type type) {
   int i, r;
   i = 0;
-  while (( i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)) i++;
-  if ( i == var_index ) r = 0; else r = 1;
+  while (( i < var_index ) && (strcmp(var_table[i].varname, varname)!= 0)) {
+  i++;
+  }
+
+if ( i == var_index ) { 
+  r = 0;
+  } 
+  else {
+  if (type == var_table[i].type) {
+  r = 1;
+  }
+  }
   return r;
 }
 
@@ -527,7 +566,6 @@ int is_vector(char* varname) {
   }
   return r;
 }
-
 
 int global_pos(char* varname) {
   int i, result;
@@ -581,6 +619,22 @@ int get_matrix_ncols(char* varname){
   return result;
 }
 
+void compile_error( char* message){
+              yyerror(message);
+         exit(0);
+}
+void assert_no_redeclared_var( char* varname ,var_type type){
+            if ( exists_var(varname, type) ){
+            compile_error("re-declaring VAR"); 
+            }
+}
+
+void assert_declared_var(char* varname, var_type type){
+            if ( !exists_var(varname, type) ){
+            compile_error("accessing non declared VAR"); 
+            }
+}
+
 int lookup_matrix(char* varname, int row, int col) {
    int i, result;
   i = 0;
@@ -595,9 +649,15 @@ int lookup_matrix(char* varname, int row, int col) {
 }
 
 int yyerror(char* s) {
-          printf("Error\t (line %d): %s at %s\n", yylineno, s, yytext);
+  if (strlen(yytext)>1){
+printf("\t\terr \"Error (input file line %d): %s at %s\"\n", yylineno, s, yytext);
+  fprintf(stderr,"Error\t (line %d): %s at %s\n", yylineno, s, yytext);
+  }
+  else {
+printf("\t\terr \"Error (input file line %d): %s\"\n", yylineno, s);
+  fprintf(stderr,"Error\t (line %d): %s\n", yylineno, s);
+  }
   return 1;
-
 }
 
 int main () {
