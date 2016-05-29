@@ -1,0 +1,35 @@
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 1.                                                                   
+// lidos 3 numeros, escrever o maior deles 
+
+int a;
+int b;
+int c;
+
+print "a:";
+a = read();
+print " b:";
+b = read();
+print " c:";
+c = read();
+
+print" maior: ";
+if ( a >= b && a >= c ) then {
+  print a;
+}
+else {
+  if ( b > a && b >= c  ) then {
+    print b;
+  }
+  else {
+    // esta condicao era desnecessaria 
+    // mas desta forma provamos o correcto aninhamento de condicionais
+    if (c > a && c > b ) then {
+      print c;
+    }
+  }
+}

@@ -1,3 +1,10 @@
+// Universidade do Minho, Dpto Informatica
+// UC Processamento de Linguagens 
+// Maio 2016, Filipe Oliveira
+//
+// Trabalho pratico 2
+// Exemplo 3 
+// Contar e imprimir os numeros pares de uma sequencia de N numeros dados
 		pushi 0	//qtos_numeros
 		pushn 25	//auxiliar[25]
 		pushi 0	//i
@@ -45,12 +52,12 @@ conditional0:
 inthen0:
 		pushgp
 		pushi 1	//puts on stack the address of auxiliar
+		padd
 						// +++ Matrix or Vector Dimension Start +++
 		pushg 27
 		pushi 0		//second dimension size of vector(0)
 		add		//sums both dimensions
 						// --- Matrix or Vector Dimension End ---
-		padd
 		pushg 28
 		storen
 		pushg 27
@@ -83,7 +90,6 @@ cycle1:	//do
 		padd
 						// +++ Matrix or Vector Dimension Start +++
 		pushg 26
-						//since its a vector nothing more to do here
 		pushi 0		//second dimension size of vector(0)
 		add		//sums both dimensions
 						// --- Matrix or Vector Dimension End ---

@@ -1,5 +1,12 @@
-////// Exemplo array crescente
-
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 4.                                                                   
+// ler e armazenar os elementos de um vector de comprimento N
+// imprimir os valores por ordem crescente apos fazer a ordenacao do array
+// por trocas directas
 
 int qtos_numeros;
 int auxiliar[25];
@@ -10,6 +17,9 @@ int localizacao_minimo;
 int aux_troca;
 int pivot;
 
+////////////
+// Inicializacao
+////////////
 i = 0;
 print "quantos numeros a ler?: ";
 qtos_numeros = read();
@@ -25,6 +35,10 @@ do {
 } while ( i < qtos_numeros )
 
 i = 0;
+
+////////////
+// Ordenacao
+////////////
 
 do {
   minimo = auxiliar[i];
@@ -47,6 +61,11 @@ do {
 
   i = i +1;
 } while ( i < qtos_numeros )
+
+
+////////////
+// Impressao
+////////////
 
 i = 0;
 print " #LISTA ORDENADA ";

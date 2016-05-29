@@ -1,3 +1,11 @@
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 5.                                                                   
+// ler e armazenar os elementos de uma matriz NxM 
+// calcular e imprimir a media e maximo dessa matriz
 		pushn 6	//matrix[2][3] (size 6)
 		pushi 0	//coluna_actual
 		pushi 0	//linha_actual

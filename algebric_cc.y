@@ -84,6 +84,7 @@ int yyerror();
 %token <var>string
 
 %token TYPE_INT
+%token TYPE_FUNCTION
 %token INNER_MATRIX
 
 /* identifiers */
@@ -92,6 +93,8 @@ int yyerror();
 %token PL_DO PL_WHILE
 %token PL_PRINT 
 %token PL_READ
+%token PL_CALL
+%token PL_RETURN
 
 
 %nonassoc PL_THEN
@@ -101,17 +104,50 @@ int yyerror();
 
 %%
 
-AlgebricScript : Declarations  {printf("start\n");} Instructions {printf("stop\n");}
+AlgebricScript : Declarations Function_Declarations {printf("start\n");} Instructions {printf("stop\n");}
                ;
 
 Declarations  : Declarations Declaration ';'
               |
               ;
 
+Function_Declarations : Function_Declarations Function_Declaration 
+                      |
+                      ;
+
 Declaration  : TYPE_INT id  { insert_int($2); }
              | TYPE_INT id '[' num  ',' num  ']' { insert_matrix($2,$4,$6); }
              | TYPE_INT id '[' num  ']' { insert_array($2, $4); }
              ;
+
+
+Function_Declaration : TYPE_FUNCTION id '('')' '{'
+             {
+             printf("\t\t\t\t\t\t// +++ Function Declaration Start +++\n");
+             printf("\t\tpushi 0\t//stores space for argument to be returned\n");
+             printf("\t\tjump endfunction%s\n",$2);
+             printf("startfunction%s:\n",$2);
+             printf("\t\tnop\t\t// no operation\n");
+             }
+             Instructions Return_Statement 
+             '}'
+             {
+             printf("\t\treturn\n");
+             printf("endfunction%s:\n",$2);
+             printf("\t\t\t\t\t\t// --- Function Declaration End ---\n");
+             }
+             ;
+
+Function_Invocation : PL_CALL id '(' ')' 
+                    { 
+                    printf("\t\tpusha startfunction%s\n",$2);
+                    printf("\t\tcall\n");
+                    }
+                    ;
+
+Return_Statement : PL_RETURN 
+                 Arithmetic_Expression';'
+                 ;
 
 Instructions : Instructions Instruction 
              |
@@ -121,9 +157,7 @@ Instruction :  Assignment ';'
             | WriteStdout ';'
             | Conditional 
             | Cycle 
-/*            | FunctionInvocation Expressions */
             ;
-
 
 Assignment : 
            id 
@@ -140,6 +174,7 @@ Assignment :
 
 Assignement_Value : Arithmetic_Expression
                   | Read_Stdin
+                  | Function_Invocation
                   ;
 Vectors : id
            { 

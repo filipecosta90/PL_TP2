@@ -1,3 +1,11 @@
+// Universidade do Minho, Dpto Informatica
+// UC Processamento de Linguagens 
+// Maio 2016, Filipe Oliveira
+//
+// Trabalho pratico 2
+// Exemplo 3 
+// Contar e imprimir os numeros pares de uma sequencia de N numeros dados
+
 int qtos_numeros;
 int auxiliar[25];
 int i;

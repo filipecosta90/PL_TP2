@@ -1,4 +1,12 @@
-////// Exemplo array crescente
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 4.                                                                   
+// ler e armazenar os elementos de um vector de comprimento N
+// imprimir os valores por ordem crescente apos fazer a ordenacao do array
+// por trocas directas
 		pushi 0	//qtos_numeros
 		pushn 25	//auxiliar[25]
 		pushi 0	//i
@@ -7,6 +15,9 @@
 		pushi 0	//localizacao_minimo
 		pushi 0	//aux_troca
 		pushi 0	//pivot
+////////////
+// Inicializacao
+////////////
 start
 		pushi 0
 		storeg 26	// store var i
@@ -61,6 +72,9 @@ endcycle0:
 						// --- CICLE DO END ---
 		pushi 0
 		storeg 26	// store var i
+////////////
+// Ordenacao
+////////////
 						// +++ CICLE DO BEGIN +++
 cycle1:	//do
 		pushgp
@@ -181,6 +195,9 @@ outif1:
 		jump cycle1
 endcycle1:
 						// --- CICLE DO END ---
+////////////
+// Impressao
+////////////
 		pushi 0
 		storeg 26	// store var i
 		pushs " #LISTA ORDENADA "	//print string " #LISTA ORDENADA "

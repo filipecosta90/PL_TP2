@@ -1,3 +1,10 @@
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 2.                                                                   
+// Ler N (valor dado) numeros e calcular e imprimir o seu somatorio
 		pushi 0	//qtos_numeros
 		pushi 0	//actual
 		pushi 0	//somatorio

@@ -1,0 +1,27 @@
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 7.                                                                   
+// testa a ordem correcta de execucao de porcoes de codigo 
+
+if ( 1 ) then {
+  print "primeiro ";
+  if ( 1 ) then {
+    print "segundo ";
+    if ( 0 ) then {
+      print "nao deve imprimir ";
+    }
+    else {
+      print "terceiro ";
+    }
+    print "quarto ";
+  }
+  else {
+    print "nao deve imprimir ";
+  }
+  print "quinto ";
+}
+print "sexto";
+

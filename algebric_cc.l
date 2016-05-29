@@ -17,8 +17,11 @@ if                             { return (PL_IF); }
 then                             { return (PL_THEN); }
 else                             { return (PL_ELSE); }
 int                             { return (TYPE_INT); }
+declare                             { return (TYPE_FUNCTION); }
 print                           { return (PL_PRINT);}
 read                            { return (PL_READ);}
+call                            { return (PL_CALL);}
+return                            { return (PL_RETURN);}
 
 {letter}({letter}|{digit}|\_)*     { yylval.var = strdup(yytext); return(id); }
 {digit}+                        { yylval.qt = atoi(yytext); return(num); }
