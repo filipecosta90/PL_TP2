@@ -28,7 +28,7 @@
 %{
 #include <stdio.h>
 
-typedef enum {PL_INTEGER, PL_ARRAY, PL_MATRIX} var_type;
+typedef enum {PL_INTEGER, PL_ARRAY, PL_MATRIX, PL_FUNCTION} var_type;
 
 typedef struct {
   char* varname;
@@ -59,6 +59,7 @@ int conditional_position_to_close = 0;
 void insert_int(char* varname);
 void insert_array(char* varname, int size);
 void insert_matrix(char* varname, int rows, int cols);
+void insert_function ( char* function_name );
 
 int open_cycle();
 int close_cycle();
@@ -124,7 +125,7 @@ Declaration  : TYPE_INT id  { insert_int($2); }
 Function_Declaration : TYPE_FUNCTION id '('')' '{'
              {
              printf("\t\t\t\t\t\t// +++ Function Declaration Start +++\n");
-             printf("\t\tpushi 0\t//stores space for argument to be returned\n");
+             insert_function($2);
              printf("\t\tjump endfunction%s\n",$2);
              printf("startfunction%s:\n",$2);
              printf("\t\tnop\t\t// no operation\n");
@@ -132,6 +133,7 @@ Function_Declaration : TYPE_FUNCTION id '('')' '{'
              Instructions Return_Statement 
              '}'
              {
+             printf("\t\tstoreg %d\t// store returned value of  %s\n",global_pos($2),$2);
              printf("\t\treturn\n");
              printf("endfunction%s:\n",$2);
              printf("\t\t\t\t\t\t// --- Function Declaration End ---\n");
@@ -142,6 +144,7 @@ Function_Invocation : PL_CALL id '(' ')'
                     { 
                     printf("\t\tpusha startfunction%s\n",$2);
                     printf("\t\tcall\n");
+                    printf("\t\tpushg %d\t// pushes returned value of  %s\n",global_pos($2),$2);
                     }
                     ;
 
@@ -486,6 +489,19 @@ void insert_matrix ( char* varname, int rows, int cols ) {
   printf("\t\tpushn %d\t//%s[%d][%d] (size %d)\n",size,varname,rows,cols,size);
 }
 
+void insert_function ( char* function_name ) {
+  var_table[var_index].varname = strdup( function_name );
+  var_table[var_index].value = -1;
+  var_table[var_index].type = PL_FUNCTION;
+  var_table[var_index].rows = -1;
+  var_table[var_index].cols = -1;
+  var_table[var_index].size =-1;
+  int old_size = ia[var_index];
+  var_index++;
+  ia[var_index] = old_size + 1;
+  printf("\t\tpushi 0\t\t// space for fucntion %s returned value\n", function_name);
+}
+
 int exists_var(char* varname) {
   int i, r;
   i = 0;
@@ -511,6 +527,7 @@ int is_vector(char* varname) {
   }
   return r;
 }
+
 
 int global_pos(char* varname) {
   int i, result;
