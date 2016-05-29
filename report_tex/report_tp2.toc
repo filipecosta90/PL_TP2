@@ -1,47 +1,12 @@
 \select@language {portuges}
 \contentsline {chapter}{\numberline {1}Introdu\c c\~ao}{2}
-\contentsline {chapter}{\numberline {2}Filtro de Texto com o Flex para ler uma ontologia descrita em OWL}{4}
+\contentsline {chapter}{\numberline {2}Concep\c c\~ao da Linguagem Algebra}{4}
 \contentsline {section}{\numberline {2.1}Concep\c c\~ao/desenho da Resolu\c c\~ao}{4}
-\contentsline {section}{\numberline {2.2}Padr\~oes de frases a encontrar, atrav\'es de ER}{4}
-\contentsline {subsection}{\numberline {2.2.1}Comuta\c c\~ao de contextos em Flex atrav\'es de start conditions}{5}
-\contentsline {subsection}{\numberline {2.2.2}Express\~oes Regulares e ac\c c\~oes resultantes}{5}
-\contentsline {section}{\numberline {2.3}Codifica\c c\~ao e Testes}{7}
-\contentsline {subsection}{\numberline {2.3.1}Estruturas de Dados e bibliotecas utilizadas}{7}
-\contentsline {subsection}{\numberline {2.3.2}M\'etodos Adicionais}{7}
-\contentsline {subsection}{\numberline {2.3.3}Main}{8}
-\contentsline {section}{\numberline {2.4}Testes realizados e Resultados}{8}
-\contentsline {subsection}{\numberline {2.4.1}Shell Script}{8}
-\contentsline {subsection}{\numberline {2.4.2}Ficheiro Exemplo de input no formato OWL}{8}
-\contentsline {subsection}{\numberline {2.4.3}Grafo exemplo resultante}{10}
-\contentsline {chapter}{\numberline {3}Normalizador de ficheiros BibTeX}{11}
-\contentsline {section}{\numberline {3.1}Concep\c c\~ao/desenho da Resolu\c c\~ao}{11}
-\contentsline {section}{\numberline {3.2}al\IeC {\'\i }nea a) ficheiro bib\_norm\_1.l }{11}
-\contentsline {subsection}{\numberline {3.2.1}Padr\~oes de frases a encontrar, atrav\'es de ER}{11}
-\contentsline {subsubsection}{Express\~oes Regulares e ac\c c\~oes resultantes}{11}
-\contentsline {subsection}{\numberline {3.2.2}Codifica\c c\~ao }{12}
-\contentsline {subsubsection}{Estruturas de Dados e bibliotecas utilizadas}{12}
-\contentsline {subsubsection}{M\'etodos Adicionais}{12}
-\contentsline {subsubsection}{Main}{13}
-\contentsline {section}{\numberline {3.3}al\IeC {\'\i }nea b) ficheiro bib\_norm\_2.l }{13}
-\contentsline {subsection}{\numberline {3.3.1}Padr\~oes de frases a encontrar, atrav\'es de ER}{13}
-\contentsline {subsubsection}{Comuta\c c\~ao de contextos em Flex atrav\'es de start conditions}{13}
-\contentsline {subsection}{\numberline {3.3.2}Codifica\c c\~ao }{16}
-\contentsline {subsubsection}{Estruturas de Dados e bibliotecas utilizadas}{16}
-\contentsline {subsubsection}{M\'etodos Adicionais}{16}
-\contentsline {subsubsection}{Main}{17}
-\contentsline {section}{\numberline {3.4}al\IeC {\'\i }nea c) ficheiro bib\_norm\_3.l }{18}
-\contentsline {subsection}{\numberline {3.4.1}Padr\~oes de frases a encontrar, atrav\'es de ER}{18}
-\contentsline {subsubsection}{Comuta\c c\~ao de contextos em Flex atrav\'es de start conditions}{18}
-\contentsline {subsection}{\numberline {3.4.2}Codifica\c c\~ao }{19}
-\contentsline {subsubsection}{Estruturas de Dados e bibliotecas utilizadas}{19}
-\contentsline {subsubsection}{M\'etodos Adicionais}{20}
-\contentsline {subsubsection}{Main}{21}
-\contentsline {section}{\numberline {3.5}Testes realizados e Resultados}{21}
-\contentsline {subsubsection}{Shell Script}{21}
-\contentsline {subsubsection}{P\'agina HTML exemplo resultante da al\IeC {\'\i }nea 2a }{23}
-\contentsline {subsubsection}{Grafo exemplo resultante da al\IeC {\'\i }nea 2c}{23}
-\contentsline {chapter}{\numberline {4}Conclus\~ao}{24}
-\contentsline {chapter}{\numberline {A}C\'odigo do Programa da al\IeC {\'\i }nea 1a}{25}
-\contentsline {chapter}{\numberline {B}C\'odigo do Programa da al\IeC {\'\i }nea 2a}{28}
-\contentsline {chapter}{\numberline {C}C\'odigo do Programa da al\IeC {\'\i }nea 2b}{30}
-\contentsline {chapter}{\numberline {D}C\'odigo do Programa da al\IeC {\'\i }nea 3a}{35}
+\contentsline {subsection}{\numberline {2.1.1}Uma introdu\c c\~ao \`as vari\'aveis}{4}
+\contentsline {subsubsection}{Express\~oes Regulares e ac\c c\~oes resultantes}{5}
+\contentsline {subsubsection}{Produ\c c\~oes da GIC}{5}
+\contentsline {chapter}{\numberline {3}Conclus\~ao}{6}
+\contentsline {chapter}{\numberline {A}C\'odigo do Programa da al\IeC {\'\i }nea 1a}{7}
+\contentsline {chapter}{\numberline {B}C\'odigo do Programa da al\IeC {\'\i }nea 2a}{8}
+\contentsline {chapter}{\numberline {C}C\'odigo do Programa da al\IeC {\'\i }nea 2b}{9}
+\contentsline {chapter}{\numberline {D}C\'odigo do Programa da al\IeC {\'\i }nea 3a}{10}

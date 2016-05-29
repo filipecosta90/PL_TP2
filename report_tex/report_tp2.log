@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  29 MAY 2016 02:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  30 MAY 2016 00:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -79,6 +79,12 @@ File: listings.cfg 2014/09/06 1.5e listings configuration
 ))
 Package: listings 2014/09/06 1.5e (Carsten Heinz)
 
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+))
 (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
@@ -118,22 +124,25 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks19
 \@floatcapt=\box29
 )
-No file report_tp2.aux.
+(./report_tp2.aux)
 \openout1 = `report_tp2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 118.
+LaTeX Font Info:    ... okay on input line 118.
 \c@lstlisting=\count99
+
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count100
@@ -196,799 +205,102 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 45.
+(Font)              <17.28> on input line 120.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 45.
+(Font)              <12> on input line 120.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 45.
+(Font)              <8> on input line 120.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 45.
+(Font)              <6> on input line 120.
 
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-No file report_tp2.toc.
+(./report_tp2.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+)
 \tf@toc=\write3
 \openout3 = `report_tp2.toc'.
 
-[1
+ [1
 
 ]
 Cap\'{\i }tulo 1.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 56.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 131.
+
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 56.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 56.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 56.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 131.
+ [2
 
-
-./report_tp2.tex:59: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.59 ...o por definir uma linguagem de programa^^X
-                                                  ção imperativa simples, qu...
-
-? 
-
-./report_tp2.tex:61: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.61     \item declarar e manusear vari^^S
-                                          áveis at^^Sómicas do tipo inteiro,...
-
-? 
-
-./report_tp2.tex:61: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.61 ...tem declarar e manusear vari^^Sáveis at^^S
-                                                  ómicas do tipo inteiro, co...
-
-? 
-
-./report_tp2.tex:61: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.61 ...is se podem realizar as habituais opera^^X
-                                                  ções
-? 
-
-./report_tp2.tex:62: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.62 aritm^^S
-             éticas, relacionais e l^^Sógicas.
-? 
-
-./report_tp2.tex:62: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.62 aritm^^Séticas, relacionais e l^^S
-                                       ógicas.
-? 
-
-./report_tp2.tex:63: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.63     \item declarar e manusear vari^^S
-                                          áveis estruturadas do tipo array (...
-
-? 
-
-./report_tp2.tex:63: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.63 ... 1 ou 2 dimensões) de inteiros, em rela^^X
-                                                  ção aos quais  é apenas pe...
-
-? 
-
-./report_tp2.tex:63: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.63 ...o aos quais  é apenas permitida a opera^^X
-                                                  ção de indexa^^Xção. Aos a...
-
-? 
-
-./report_tp2.tex:63: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.63 ...penas permitida a opera^^Xção de indexa^^X
-                                                  ção. Aos arrays de duas di...
-
-? 
-
-./report_tp2.tex:64: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.64     \item efetuar instru^^X
-                                ções algor^^S^^Pítmicas b^^Sásicas como a at...
-
-? 
-
-./report_tp2.tex:64: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.64     \item efetuar instru^^Xções algor^^S
-                                             ^^Pítmicas b^^Sásicas como a at...
-
-? 
-
-./report_tp2.tex:64: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.64     \item efetuar instru^^Xções algor^^S^^P
-                                                ítmicas b^^Sásicas como a at...
-
-? 
-
-./report_tp2.tex:64: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.64 ...tuar instru^^Xções algor^^S^^Pítmicas b^^S
-                                                  ásicas como a atribui^^Xçã...
-
-? 
-
-./report_tp2.tex:64: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.64 ...^^S^^Pítmicas b^^Sásicas como a atribui^^X
-                                                  ção de expressões a vari^^...
-
-? 
-
-./report_tp2.tex:64: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.64 ...mo a atribui^^Xção de expressões a vari^^S
-                                                  áveis.
-? 
-
-./report_tp2.tex:65: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.65 \item^^O
-              ler do standard input e escrever no standard output.
-? 
-
-./report_tp2.tex:66: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 \item ^^O
-               efetuar instru^^Xções para controlo do fluxo de execu^^Xção -...
-
-? 
-
-./report_tp2.tex:66: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 \item ^^O efetuar instru^^X
-                                ções para controlo do fluxo de execu^^Xção -...
-
-? 
-
-./report_tp2.tex:66: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 ...^^Xções para controlo do fluxo de execu^^X
-                                                  ção -- condicional e c^^S^...
-
-? 
-
-./report_tp2.tex:66: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 ...fluxo de execu^^Xção -- condicional e c^^S
-                                                  ^^Píclica -- que possam se...
-
-? 
-
-./report_tp2.tex:66: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.66 ...xo de execu^^Xção -- condicional e c^^S^^P
-                                                  íclica -- que possam ser a...
-
-? 
-
-./report_tp2.tex:67: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.67 ...mas que possam retornar um resultado at^^S
-                                                  ómico.
-? 
-
-./report_tp2.tex:73: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.73 O compilador de Algebra irá gerar pseudo-c^^S
-                                                  ódigo, Assembly da M^^Sáqu...
-
-? 
-
-./report_tp2.tex:73: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.73 ...á gerar pseudo-c^^Sódigo, Assembly da M^^S
-                                                  áquina Virtual VM cuja doc...
-
-? 
-
-./report_tp2.tex:73: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.73 ...da M^^Sáquina Virtual VM cuja documenta^^X
-                                                  ção completa
-? 
-
-./report_tp2.tex:74: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.74 est^^S
-           á disponibilizada em anexo.\par
-? 
-
-./report_tp2.tex:76: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76 ...programas-fonte diversos e respectivo c^^S
-                                                  ódigo produzido), que tent...
-
-? 
-[2
-
-]
-
-./report_tp2.tex:78: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.78 \item^^O
-              lidos 3 n^^Súmeros, escrever o maior deles.
-? 
-
-./report_tp2.tex:78: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.78 \item^^O lidos 3 n^^S
-                          úmeros, escrever o maior deles.
-? 
-
-./report_tp2.tex:79: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.79 ^^O
-         \item ler N (valor dado) números e calcular e imprimir o seu somató...
-
-? 
-
-./report_tp2.tex:80: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.80 ^^O
-         \item contar e imprimir os n^^Súmeros pares de uma sequência de N n...
-
-? 
-
-./report_tp2.tex:80: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.80 ^^O \item contar e imprimir os n^^S
-                                        úmeros pares de uma sequência de N n...
-
-? 
-
-./report_tp2.tex:80: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.80 ...^^Súmeros pares de uma sequência de N n^^S
-                                                  úmeros dados.
-? 
-
-./report_tp2.tex:81: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.81 ^^O
-         \item ler e armazenar os elementos de um vetor de comprimento N, im...
-
-? 
-
-./report_tp2.tex:81: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.81 ...imido os valores por ordem crescente ap^^S
-                                                  ós fazer
-? 
-
-./report_tp2.tex:82: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.82 a ordena^^X
-                ção do array por trocas diretas.
-? 
-
-./report_tp2.tex:83: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.83 ^^O
-         \item ler e armazenar os elementos de uma matriz NxM, calculando e ...
-
-? 
-
-./report_tp2.tex:83: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.83 ... calculando e imprimindo de seguida a m^^S
-                                                  édia e m^^Sáximo dessa mat...
-
-? 
-
-./report_tp2.tex:83: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.83 ... e imprimindo de seguida a m^^Sédia e m^^S
-                                                  áximo dessa matriz.
-? 
-
-./report_tp2.tex:84: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.84 ^^O
-        \item  invocar e usar num programa  uma fun^^Xção.
-? 
-
-./report_tp2.tex:84: Package inputenc Error: Keyboard character used is undefin
-ed
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.84 ...m  invocar e usar num programa  uma fun^^X
-                                                  ção.
-? 
-[3]
+] [3]
 Cap\'{\i }tulo 2.
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
 [4
 
 ]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 168.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 212.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 224.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 168.
- [5] [6]
-
-LaTeX Warning: Reference `1er' on page 7 undefined on input line 259.
-
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 265.
-[7]
-
-LaTeX Warning: Reference `completo1a' on page 8 undefined on input line 299.
-
-
-LaTeX Warning: Reference `completo1a' on page 8 undefined on input line 299.
-
-
-LaTeX Warning: Reference `fig:ex1' on page 8 undefined on input line 302.
-
-[8] [9] <PNG/ex1.png, id=46, 1092.08pt x 1355.0625pt>
-File: PNG/ex1.png Graphic file (type png)
- <use PNG/ex1.png>
-Package pdftex.def Info: PNG/ex1.png used on input line 414.
-(pdftex.def)             Requested size: 256.0748pt x 317.73672pt.
-
-[10 <./PNG/ex1.png>]
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 224.
+ [5]
 Cap\'{\i }tulo 3.
-
-./report_tp2.tex:432: Package inputenc Error: Keyboard character used is undefi
-ned
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.432 ...Desenvolva uma ferramenta de normaliza^^X
-                                                  ção (sempre que um campo e...
-
-? 
-
-./report_tp2.tex:432: Package inputenc Error: Keyboard character used is undefi
-ned
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.432 ...rmaliza^^Xção (sempre que um campo est^^S
-                                                  á entre aspas, trocar para...
-
-? 
-
-./report_tp2.tex:432: Package inputenc Error: Keyboard character used is undefi
-ned
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.432 ...or por linha e colocando sempre no iní^^S
-                                                  ^^Pcio os campos autor e t...
-
-? 
-
-./report_tp2.tex:432: Package inputenc Error: Keyboard character used is undefi
-ned
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.432 ...por linha e colocando sempre no iní^^S^^P
-                                                  cio os campos autor e t^^S...
-
-? 
-
-./report_tp2.tex:432: Package inputenc Error: Keyboard character used is undefi
-ned
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.432 ...re no iní^^S^^Pcio os campos autor e t^^S
-                                                  ^^Pítulo.
-? 
-
-./report_tp2.tex:432: Package inputenc Error: Keyboard character used is undefi
-ned
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.432 ...no iní^^S^^Pcio os campos autor e t^^S^^P
-                                                  ítulo.
-? 
-
-./report_tp2.tex:434: Package inputenc Error: Keyboard character used is undefi
-ned
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.434 ...or em causa, recorrendo uma vez mais à^^R
-                                                   linguagem Dot do GraphViz2.
-? 
-[11
-
-]
-
-LaTeX Warning: Reference `1er' on page 12 undefined on input line 503.
-
-[12]
-
-LaTeX Warning: Reference `completo2a' on page 13 undefined on input line 526.
-
-
-LaTeX Warning: Reference `completo2a' on page 13 undefined on input line 526.
-
-[13] [14] [15]
-
-LaTeX Warning: Reference `1er' on page 16 undefined on input line 742.
-
-[16] [17]
-
-LaTeX Warning: Reference `completo2b' on page 18 undefined on input line 811.
-
-
-LaTeX Warning: Reference `completo2a' on page 18 undefined on input line 811.
-
-[18] [19]
-
-LaTeX Warning: Reference `1er' on page 20 undefined on input line 948.
-
-[20]
-
-LaTeX Warning: Reference `completo2c' on page 21 undefined on input line 1006.
-
-
-LaTeX Warning: Reference `completo2c' on page 21 undefined on input line 1006.
-
-
-LaTeX Warning: Reference `fig:ex2c' on page 21 undefined on input line 1016.
-
-
-LaTeX Warning: Reference `fig:ex2a' on page 21 undefined on input line 1017.
-
-[21] <PNG/ex2a.png, id=87, 1236.62pt x 1069.9975pt>
-File: PNG/ex2a.png Graphic file (type png)
- <use PNG/ex2a.png>
-Package pdftex.def Info: PNG/ex2a.png used on input line 1072.
-(pdftex.def)             Requested size: 256.0748pt x 221.57135pt.
- [22]
-<PNG/ex2c.png, id=91, 2409.0pt x 218.8175pt>
-File: PNG/ex2c.png Graphic file (type png)
- <use PNG/ex2c.png>
-Package pdftex.def Info: PNG/ex2c.png used on input line 1080.
-(pdftex.def)             Requested size: 512.1496pt x 46.52063pt.
- [23 <./PNG/ex2a.png> <./PNG/ex2c.png>]
-Cap\'{\i }tulo 4.
-[24
+[6
 
 ]
 Ap\^endice A.
-(./owl_graph.l [25
+[7
 
-] [26]) [27]
+]
 Ap\^endice B.
-(./bib_norm_1.l [28
+[8
 
-]) [29]
+]
 Ap\^endice C.
-(./bib_norm_2.l [30
+[9
 
-] [31] [32] [33]) [34]
+]
 Ap\^endice D.
-(./bib_norm_3.l [35
+[10
 
-] [36]) [37] (./report_tp2.aux)
-
-LaTeX Warning: There were undefined references.
-
+] (./report_tp2.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 3854 strings out of 493089
- 52724 string characters out of 6134842
- 255040 words of memory out of 5000000
- 7282 multiletter control sequences out of 15000+600000
- 11109 words of font info for 39 fonts, out of 8000000 for 9000
+ 4192 strings out of 493089
+ 60627 string characters out of 6134842
+ 231254 words of memory out of 5000000
+ 7631 multiletter control sequences out of 15000+600000
+ 10339 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,6n,32p,496b,1614s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,6n,32p,649b,1604s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
-r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report_tp2.pdf (38 pages, 556647 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on report_tp2.pdf (11 pages, 149415 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 124 compressed objects within 2 object streams
+ 88 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
