@@ -8,5 +8,5 @@ void insert_function ( char* function_name ) {
     int old_size = ia[var_index];
     var_index++;
     ia[var_index] = old_size + 1;
-    printf("\t\tpushi 0\t\t// space for fucntion %s returned value\n", function_name);
+    printf("\t\tpushi 0\t\t// space for function %s returned value\n", function_name);
 }

@@ -28,8 +28,8 @@
     numbersep=5pt,
     breaklines=true,
     frame=tB,
-   % mathescape=true
-   escapeinside={(*@}{@*)}
+    % mathescape=true
+      escapeinside={(*@}{@*)}
 }
 
 %%                                                       -*- LaTeX -*-
@@ -428,11 +428,11 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \subsubsection{Operações sobre inteiros}
 
   \begin{table}[H]
-    \label{table:operacoes_inteiros}
-\centering
+  \label{table:operacoes_inteiros}
+  \centering
   \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
-  
-  
+
+
   \hline
   Instrução & Argumentos & Descrição
   \\ \hline \hline
@@ -481,8 +481,8 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \subsubsection{Operações sobre endereços}
 
   \begin{table}[H]
-    \label{table:operacoes_enderecos}
-\centering
+  \label{table:operacoes_enderecos}
+  \centering
   \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
   Instrução & Argumentos & Descrição
@@ -499,8 +499,8 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \subsubsection{Igualdade}
 
   \begin{table}[H]
-    \label{table:igualdade}
-\centering
+  \label{table:igualdade}
+  \centering
   \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
   Instrução & Argumentos & Descrição
@@ -519,15 +519,15 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \subsubsection{Conversões}
 
 
- \begin{table}[H]
-    \label{table:conversoes}
-\centering
+  \begin{table}[H]
+  \label{table:conversoes}
+  \centering
   \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
   Instrução & Argumentos & Descrição
   \\ \hline \hline
-  
-  
+
+
   ATOI   &   & retira da pilha o endereço duma string e empilha a sua conversão
   em inteiro. Tal falha quando a string não representa um inteiro.
   \\ \hline 
@@ -539,9 +539,9 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
 
   \subsubsection{Manipular dados}
 
- \begin{table}[H]
-    \label{table:manipular_dados}
-\centering
+  \begin{table}[H]
+  \label{table:manipular_dados}
+  \centering
   \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
   Instrução & Argumentos & Descrição
@@ -579,8 +579,8 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
   \subsubsection{Input-Output}
 
   \begin{table}[H]
-    \label{table:input}
-\centering
+  \label{table:input}
+  \centering
   \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
   Instrução & Argumentos & Descrição
@@ -589,7 +589,7 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
   \\ \hline 
   WRITES  &  &  retira um endereço de uma string da pilha e imprime a string correspondente
   na saída standard
-    \\ \hline 
+  \\ \hline 
   READ  &  &  lê uma string do teclado (concluída por um "$\backslash$n") e arquiva esta
   string (sem o "$\backslash$n") na heap e coloca (empilha) o endereço na pilha..
   \\ \hline 
@@ -598,9 +598,9 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
 
   \subsubsection{Operações de controlo}
 
- \begin{table}[H]
-    \label{table:controlo}
-\centering
+  \begin{table}[H]
+  \label{table:controlo}
+  \centering
   \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
   Instrução & Argumentos & Descrição
@@ -612,7 +612,7 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
   JZ & label etiqueta &  retira da pilha um valor. Se este for nulo então é atribuido
   ao registo pc o endereço correspondente à label, incrementa
   simplesmente pc de 1, caso contrário.
-    \\ \hline 
+  \\ \hline 
 
   PUSHA & label etiqueta &  empilha o endereço de programa correspondente a etiqueta
   label
@@ -631,9 +631,9 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
 
   \subsubsection{Inicialização e fim}
 
- \begin{table}[H]
-    \label{table:inicializacao}
-\centering
+  \begin{table}[H]
+  \label{table:inicializacao}
+  \centering
   \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
   Instrução &  Argumentos & Descrição
@@ -653,72 +653,244 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
 
   \subsubsection{Operações necessárias e não presentes em instruções da VM}
 
-Existem operações lógicas e relacionais que não estão disponíveis na VM, nomeadamente:
+  Existem operações lógicas e relacionais que não estão disponíveis na VM, nomeadamente:
 
-\begin{itemize}
-\item Negação Lógica
-\item OR Lógico
-\item AND Lógico
-\item NOT EQUAL Lógico
-\end{itemize}
+  \begin{itemize}
+  \item Negação Lógica
+  \item OR Lógico
+  \item AND Lógico
+  \item NOT EQUAL Lógico
+  \end{itemize}
 
-No entanto recorrendo a instruções presentes nas tabelas \ref{table:operacoes_inteiros} e \ref{table:manipular_dados}, referentes a operações sobre inteiros e a manipulação de dados, conseguimos obter o comportamento lógico dessas mesmas operações.\par 
-Relativamente às instruções de controlo de fluxo seria útil a presença da instrução \textbf{jnz} 
-que deveria retirar da pilha um valor e se esse fosse não nulo então seria atribuído  ao registo pc o endereço correspondente à label. No entanto esta lacuna é também contornável como veremos nas secções seguintes do relatório.
+  No entanto recorrendo a instruções presentes nas tabelas \ref{table:operacoes_inteiros} e \ref{table:manipular_dados}, referentes a operações sobre inteiros e a manipulação de dados, conseguimos obter o comportamento lógico dessas mesmas operações.\par 
+  Relativamente às instruções de controlo de fluxo seria útil a presença da instrução \textbf{jnz} 
+  que deveria retirar da pilha um valor e se esse fosse não nulo então seria atribuído  ao registo pc o endereço correspondente à label. No entanto esta lacuna é também contornável como veremos nas secções seguintes do relatório.
 
 
   \chapter{Geração de Código Máquina -- de Produções a Assembly }
 
 
-Especificadas as instruções disponíveis na máquina virtual, assim como a sua forma de funcionamento, resta-nos incluir nas produções da gramática independente de contexto a geração de código máquina correspondente. 
+  Especificadas as instruções disponíveis na máquina virtual, assim como a sua forma de funcionamento, resta-nos incluir nas produções da gramática independente de contexto a geração de código máquina correspondente. 
 
-\section{Métodos e variáveis auxiliares à geração de código máquina}
-Por forma a implementar correctamente as funcionalidades propostas, é necessário o conhecimento de alguns dados gerais do programa a ser analisado. \par 
-Relativamente às variáveis necessitamos de possuir informação relativamente ao seu tipo (se é inteiro atómico, array, matriz ou função), tamanho total ocupado, dimensões (quando aplicável), 	e posição relativamente ao global pointer.\par 
-Ora tal informação é guardada no array de estruturas var\_table, que possui capacidade para armazenar dados relativos a 1000 variáveis. O array \textbf{ia[x]}\footnote{Tal solução foi pensada tendo por base forma de representação de matrizes esparsas CSR, daí advindo o nome da variável.} permite de forma rápida saber qual o tamanho total ocupado pela variável presente no índice x da var\_table.\par
- É mantido também estado sobre o número de condicionais e ciclos abertos e declarados até ao momento.\par
- De seguida apresentam-se todas a variáveis auxiliares assim como a assinatura das funções às quais se recorre para implementar todas as funcionalidades.
- 
-   \lstinputlisting[language=C]{yacc/algebric_code.y} %input de um ficheiro
+  \section{Métodos e variáveis auxiliares à geração de código máquina}
+  Por forma a implementar correctamente as funcionalidades propostas, é necessário o conhecimento de alguns dados gerais do programa a ser analisado. \par 
+  Relativamente às variáveis necessitamos de possuir informação relativamente ao seu tipo (se é inteiro atómico, array, matriz ou função), tamanho total ocupado, dimensões (quando aplicável), 	e posição relativamente ao global pointer.\par 
+  Ora tal informação é guardada no array de estruturas var\_table, que possui capacidade para armazenar dados relativos a 1000 variáveis. O array \textbf{ia[x]}\footnote{Tal solução foi pensada tendo por base forma de representação de matrizes esparsas CSR, daí advindo o nome da variável.} permite de forma rápida saber qual o tamanho total ocupado pela variável presente no índice x da var\_table.\par
+  É mantido também estado sobre o número de condicionais e ciclos abertos e declarados até ao momento.\par
+  De seguida apresentam-se todas a variáveis auxiliares assim como a assinatura das funções às quais se recorre para implementar todas as funcionalidades.
 
-À medida que formos recorrendo às funções auxiliares iremos apresentar o respectivo código C.
+  \lstinputlisting[language=C]{yacc/algebric_code.y} %input de um ficheiro
 
-\section{Geração de código máquina nas produções}
+  À medida que formos recorrendo às funções auxiliares iremos apresentar o respectivo código C.
 
-\subsection{Início e término do programa}
-Comecemos pela inclusão das instruções \textbf{START} e \textbf{STOP}. Estas iniciam e param a máquina virtual. Assim sendo, as mesmas serão incluídas na produção:
+  \section{Geração de código máquina nas produções}
+
+  \subsection{Início e término do programa}
+  Comecemos pela inclusão das instruções \textbf{START} e \textbf{STOP}. Estas iniciam e param a máquina virtual. Assim sendo, as mesmas serão incluídas na produção:
 
   \lstinputlisting[language=Yacc]{yacc/yacc_6_start_stop.y} %input de um ficheiro
 
-Sendo o seguinte código associado à produção:
+  Sendo o seguinte código associado à produção:
 
   \lstinputlisting[language=Yacc]{yacc/yacc_6_start_stop_code.y} %input de um ficheiro
 
-\subsection{Declarações de variáveis}
-Sempre que são reconhecidas as produções de declarações de variáveis é necessário alocar o espaço correspondente às mesmas na stack. Ora, assim sendo, o conjunto de instruções de código máquina que permitirão a correcta declaração de variáveis será incluído nas produções:
-\lstinputlisting[language=Yacc]{yacc/yacc_7_declaracao.y} %input de um ficheiro
+  \subsection{Declarações de variáveis}
+  Sempre que são reconhecidas as produções de declarações de variáveis é necessário alocar o espaço correspondente às mesmas na stack. Ora, assim sendo, o conjunto de instruções de código máquina que permitirão a correcta declaração de variáveis será incluído nas produções:
+  \lstinputlisting[language=Yacc]{yacc/yacc_7_declaration.y} %input de um ficheiro
 
-Sendo o seguinte código associado à produção:
-\lstinputlisting[language=Yacc]{yacc/yacc_7_declaracao_code.y} %input de um ficheiro
+  Sendo o seguinte código associado à produção:
+  \lstinputlisting[language=Yacc]{yacc/yacc_7_declaration_code.y} %input de um ficheiro
+
+  Ora, o código C adicionado às produções recorre a 5 métodos auxiliares ainda não definidos. De seguida apresentam-se os mesmos:
+  \subsubsection{Método auxiliar: void assert\_no\_redeclared\_var( char* varname ,var\_type type);}
+  \label{assert_no_redeclared}
+  \lstinputlisting[language=C]{yacc/assert_no_redeclared_var.c} %input de um ficheiro
+
+  \subsubsection{Método auxiliar: void compile\_error( char* message);}
+  \label{compile_error}
+  \lstinputlisting[language=C]{yacc/compile_error.c} %input de um ficheiro
+
+  \subsubsection{Método auxiliar: void insert\_int(char* varname);}
+  \label{insert_int}
+  \lstinputlisting[language=C]{yacc/insert_int.c} %input de um ficheiro
+
+  \subsubsection{Método auxiliar: void insert\_array(char* varname, int size);}
+  \label{insert_array}
+  \lstinputlisting[language=C]{yacc/insert_array.c} %input de um ficheiro
+
+  \subsubsection{Método auxiliar: void insert\_matrix(char* varname, int rows, int cols);}
+  \label{insert_matrix}
+  \lstinputlisting[language=C]{yacc/insert_matrix.c} %input de um ficheiro
+
+
+  \subsection{Declarações de subprogramas}
+  Sempre que são reconhecidas as produções de declarações de subprogramas é necessário alocar o espaço correspondente ao valor inteiro atómico a retornar na stack na stack.\par  Relativamente à invocação de funções é necessário também incluir os código máquina e \textbf{CALL} e \textbf{RETURN}, sendo necessária correcta marcação das zonas do código máquina produzido através de labels. \par 
+  É garantida a não execução do código da função através da inclusão de um salto para o fim da função antes do conjunto de instruções pertencentes à mesma. \par 
+  Ora, assim sendo, o conjunto de instruções de código máquina que permitirão a correcta declaração e invocação de subprogramas será incluído nas produções:
+  \lstinputlisting[language=Yacc]{yacc/yacc_8_function_declaration.y} %input de um ficheiro
+
+  Sendo o seguinte código associado à produção:
+  \lstinputlisting[language=Yacc]{yacc/yacc_8_function_declaration_code.y} %input de um ficheiro
+
+  Denote que foi adicionada instrução \textbf{NOP} após a label do subprograma dado que a máquina virtual "saltava" a instrução seguinte à label sem a correr. Desta forma garantimos a correcta implementação da funcionalidade. \par 
+  Ora, o código C adicionado às produções recorre a 2 métodos auxiliares ainda não definidos. De seguida apresentam-se os mesmos:
+  \subsubsection{Método auxiliar: void insert\_function ( char* function\_name );}
+  \label{insert_function}
+  \lstinputlisting[language=C]{yacc/insert_function.c} %input de um ficheiro
+
+  \subsubsection{Método auxiliar: void assert\_declared\_var( char* varname, var\_type type);}
+  \label{assert_declared}
+  \lstinputlisting[language=C]{yacc/assert_declared_var.c} %input de um ficheiro
+
+  \subsection{Atribuição de valores a variáveis}
+  Sempre que são reconhecidas as produções de atribuição de valores a variáveis é necessário 
+  incluir os código máquina responsáveis por tais operações. Ora, a não terminal \textbf{Assignement}
+  dá origem a duas produções, sendo estas a atribuição de valores a variáveis do tipo inteiro atómico, e a atribuição de variáveis do tipo array ou matriz.\par 
+  Denote que o não terminal  \textbf{Assignement\_Value}
+  dá origem a três produções, cada uma representando uma atribuição de "origem" distinta. Pela análise das produções, podemos retirar que as atribuições poderão ser de valores lidos do standard input, de valores retornados por funções ou do resultado de expressões aritméticas.\par 
+  O conjunto de instruções de código máquina que permitirão a correcta atribuição de valores a variáveis será incluído nas produções:
+  \lstinputlisting[language=Yacc]{yacc/yacc_9_assignement.y} %input de um ficheiro
+
+  Sendo o seguinte código associado à produção:
+  \lstinputlisting[language=Yacc]{yacc/yacc_9_assignement_code.y} %input de um ficheiro
+
+  Aprofundemos a nossa análise aos não terminais \textbf{Arithmetic\_Expression} e \textbf{Read\_Stdin}, dado que já analisamos anteriormente o não terminal \textbf{Function\_Invocation}.
+
+
+  \subsubsection{Análise às produções do não terminal Arithmetic\_Expression }
+
+  Sempre que são reconhecidas as produções que reflectem expressões aritméticas é necessário  incluir os código máquina responsáveis por tais operações. \par 
+  Desta forma, o conjunto de instruções de código máquina que permitirão a correcta atribuição de valores a variáveis será incluído nas produções:
+  \lstinputlisting[language=Yacc]{yacc/yacc_11_arithmetic_expression.y} %input de um ficheiro
+
+  Sendo o seguinte código associado à produção:
+  \lstinputlisting[language=Yacc]{yacc/yacc_11_arithmetic_expression_code.y} %input de um ficheiro
+
+  Como pode constatar pela produção \textbf{Factor : Vectors ;} é necessário analisarmos também o não terminal Vectors dado que é o responsável por gerar código máquina para aceder a valores do tipo array ou matriz. Analisemos de seguida esse não terminal.
+  \subsubsection{Análise às produções do  não terminal Vectors }
+
+  Sempre que são reconhecidas as produções que reflectem a utilização de variáveis do tipo array ou matriz  é necessário  incluir os código máquina responsáveis por aceder aos valores das mesmas. \par 
+  Antes de procedermos à especificação do acesso às posições do gp[n] que contêm os dados relativos às matrizes e arrays, devemos explicitar a forma com esses mesmos dados são armazenados.\par 
+
+  Considere o exemplo de declaração de uma matriz de tamanho 2x4:
+  \lstinputlisting[language=C]{exemplos/8_matriz.c} %input de um ficheiro
+
+  O dados da matriz são declarados de forma "row-wise" (linha a linha), sendo que, quando pretendemos aceder por exemplo ao elemento localizado na 2ª linha 4ª coluna, com "zero indexing", estaremos a aceder à posição matriz\_exemplo[1,3], sendo que a posição de memória correspondente é dada por 1(linha do elemento) * nº de colunas + 3 (coluna do elemento).\par 
+  Por forma a facilitar a compreensão da localização relativa ao gp, o mesmo exemplo foi transformado em ilustrações:
+
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.2\columnwidth]{PNG/matriz-00.png}
+  \caption{Declaração da variável do tipo matriz de tamanho 2x4 pela linha de código : int matriz\_exemplo[2,4]; }
+  \label{fig:ex1}
+  \end{figure}
+
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.2\columnwidth]{PNG/matriz-01.png}
+  \caption{Atribuição do valor 5 à posição da matriz (1ª linha, 2ª coluna) pela linha de código : matriz\_exemplo[0,1] = 5; }
+  \label{fig:ex1}
+  \end{figure}
+
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.2\columnwidth]{PNG/matriz-02.png}
+  \caption{Atribuição do valor 10  à posição da matriz (2ª linha, 4ª coluna) pela linha de código : matriz\_exemplo[1,3] = 10; }
+  \label{fig:ex1}
+  \end{figure}
+
+  O acesso à memória pode ser descrito pelo seguinte esquema:
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.2\columnwidth]{PNG/matriz-03.png}
+  \caption{Ilustração do acesso à memória -- "row wise"}
+  \label{fig:ex1}
+  \end{figure}
+
+
+  Agora com este conhecimento relativo à forma como os dados estão posicionados podemos analisar o conjuto de produções responsáveis por traduzir esta forma de acesso em instruções de código máquina:
+  \lstinputlisting[language=Yacc]{yacc/yacc_17_vectors.y} %input de um ficheiro
+
+  Sendo o seguinte código associado à produção:
+  \lstinputlisting[language=Yacc]{yacc/yacc_17_vectors_code.y} %input de um ficheiro
+
+  Ora, o código C adicionado às produções recorre a 2 métodos auxiliares ainda não definidos. De seguida apresentam-se os mesmos:
+  \subsubsection{Método auxiliar: int global\_pos(char* varname);}
+  \label{global_pos}
+  \lstinputlisting[language=C]{yacc/global_pos.c} %input de um ficheiro
+
+  \subsubsection{Método auxiliar: int is\_vector(char* varname);}
+  \label{is_vector}
+  \lstinputlisting[language=C]{yacc/is_vector.c} %input de um ficheiro
+
+  \subsubsection{Método auxiliar: int get\_matrix\_ncols(char* varname);}
+  \label{get_matrix_nclos}
+  \lstinputlisting[language=C]{yacc/get_matrix_nclos.c} %input de um ficheiro
+
+  Podemos, em jeito de validação confirmar que o comportamento descrito é mesmo o verificado na execução da máquina virtual:
+
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=1\columnwidth]{PNG/vm_8_matriz.png}
+  \caption{Confirmação do modo de registo em stack das variáveis do tipo matriz -- "row wise"}
+
+  \label{fig:ex1}
+  \end{figure}
+
+  \subsubsection{Análise às produções do  não terminal Read\_Stdin }
+
+  Sempre que são reconhecidas as produções que reflectem leitura do standard input é necessário  incluir os código máquina responsáveis por tal operação. \par 
+  Tal como foi descrito anteriormente, a leitura do standard input é apenas permitida aquando da associação do valor lido a uma variável.\par 
+  O conjunto de instruções de código máquina que permitirão a correcta atribuição de valores a variáveis provenientes do standard input será dado pelas seguintes produções:
+  \lstinputlisting[language=Yacc]{yacc/yacc_10_read_stdin.y} %input de um ficheiro
+
+  Sendo o seguinte código associado à produção:
+  \lstinputlisting[language=Yacc]{yacc/yacc_10_read_stdin_code.y} %input de um ficheiro
+
+  \subsection{Análise às produções do não terminal Logical\_Expression }
+  \label{logical_expression}
+  Sempre que são reconhecidas as produções que reflectem expressões lógicas é necessário incluir os código máquina responsáveis por tais operações. \par 
+  As expressões lógicas e relacionais serão de extrema importância nas produções que envolvam condicionais e ciclos. Debruçar-nos-emos sobre essas instruções nas seções seguintes deste relatório.\par 
+  Desta forma, o conjunto de instruções de código máquina que permitirão a correcta produção de valores lógicos 1 (verdade) e 0 (falso) serão incluídas nas produções:
+  \lstinputlisting[language=Yacc]{yacc/yacc_12_logical_expression.y} %input de um ficheiro
+
+  Sendo o seguinte código associado à produção:
+  \lstinputlisting[language=Yacc]{yacc/yacc_12_logical_expression_code.y} %input de um ficheiro
+
+  Denote que tal como havia sido descrito anteriormente foi necessário proceder à inclusão de instruções de código máquina que conjugadas tenham o comportamento lógico da negação, OR e AND.\par 
+  Nas produções aqui apresentados é introduzido um outro não terminal -- \textbf{Relational\_Expression}. Iremos analisar as produções com este relacionadas de seguida.
+
+
+  \subsection{Análise às produções do não terminal Relational\_Expression }
+
+  Sempre que são reconhecidas as produções que reflectem expressões relacionais é necessário incluir os código máquina responsáveis por tais operações. \par 
+  Desta forma, o conjunto de instruções de código máquina que permitirão a correcta produção de valores lógicos 1 (verdade) e 0 (falso) com base em relações serão incluídas nas produções:
+  \lstinputlisting[language=Yacc]{yacc/yacc_13_relational_expression.y} %input de um ficheiro
+
+  Sendo o seguinte código associado à produção:
+  \lstinputlisting[language=Yacc]{yacc/yacc_13_relational_expression_code.y} %input de um ficheiro
+
+  No seguimento do sucedido na seção \ref{logical_expression} foi também para este tipo de produções necessário proceder à inclusão de instruções de código máquina que conjugadas tenham o comportamento lógico da negação de igualdade. Para os restantes operadores relacionais existiam instruções relacionais directamente presentes na linguagem máquina.\par 
 
 
 
 
+  \chapter{ Testes às funcionalidades da Algebra}
+
+  // cycle functions
+  \subsubsection{Método auxiliar: int open\_cycle();}
+  \subsubsection{Método auxiliar: int close\_cycle();}
+
+  // conditional functions
+  \subsubsection{Método auxiliar: int open\_conditional();}
+  \subsubsection{Método auxiliar: int close\_conditional();}
+  \subsubsection{Método auxiliar: int current\_conditional();}
+
+  // error checking / handling functions
+  \subsubsection{Método auxiliar: int exists\_var(char* varname, var\_type type);}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-\chapter{ Testes às funcionalidades da Algebra}
 
 
   \chapter{Conclusão}
