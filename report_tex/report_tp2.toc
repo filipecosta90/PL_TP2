@@ -5,8 +5,16 @@
 \contentsline {subsection}{\numberline {2.1.1}Uma introdu\c c\~ao \`as vari\'aveis}{4}
 \contentsline {subsubsection}{Express\~oes Regulares e ac\c c\~oes resultantes}{5}
 \contentsline {subsubsection}{Produ\c c\~oes da GIC}{5}
-\contentsline {chapter}{\numberline {3}Conclus\~ao}{6}
-\contentsline {chapter}{\numberline {A}C\'odigo do Programa da al\IeC {\'\i }nea 1a}{7}
-\contentsline {chapter}{\numberline {B}C\'odigo do Programa da al\IeC {\'\i }nea 2a}{8}
-\contentsline {chapter}{\numberline {C}C\'odigo do Programa da al\IeC {\'\i }nea 2b}{9}
-\contentsline {chapter}{\numberline {D}C\'odigo do Programa da al\IeC {\'\i }nea 3a}{10}
+\contentsline {subsection}{\numberline {2.1.2}Uma introdu\c c\~ao \`as instru\c c\~oes}{6}
+\contentsline {subsubsection}{Express\~oes Regulares e ac\c c\~oes resultantes}{7}
+\contentsline {subsubsection}{Produ\c c\~oes da GIC}{7}
+\contentsline {subsection}{\numberline {2.1.3}Uma introdu\c c\~ao \`as instru\c c\~oes condicionais e c\IeC {\'\i }clicas}{9}
+\contentsline {subsubsection}{Instru\c c\~oes condicionais}{9}
+\contentsline {subsubsection}{Instru\c c\~oes c\IeC {\'\i }clicas}{10}
+\contentsline {subsubsection}{Express\~oes Regulares e ac\c c\~oes resultantes}{10}
+\contentsline {subsubsection}{Produ\c c\~oes da GIC}{11}
+\contentsline {chapter}{\numberline {3}Conclus\~ao}{14}
+\contentsline {chapter}{\numberline {A}C\'odigo do Programa da al\IeC {\'\i }nea 1a}{15}
+\contentsline {chapter}{\numberline {B}C\'odigo do Programa da al\IeC {\'\i }nea 2a}{16}
+\contentsline {chapter}{\numberline {C}C\'odigo do Programa da al\IeC {\'\i }nea 2b}{17}
+\contentsline {chapter}{\numberline {D}C\'odigo do Programa da al\IeC {\'\i }nea 3a}{18}

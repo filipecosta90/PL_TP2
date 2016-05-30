@@ -9,9 +9,9 @@
 \usepackage{url}
 \usepackage{listings}
 \lstset{
-keepspaces=true,  
-tabsize=2,
-basicstyle=\footnotesize,
+  keepspaces=true,  
+    tabsize=2,
+    basicstyle=\footnotesize,
     numbers=left,
     numberstyle=\tiny,
     numbersep=5pt,
@@ -24,16 +24,16 @@ basicstyle=\footnotesize,
 
 \lstdefinestyle{customc}{
   belowcaptionskip=1\baselineskip,
-  breaklines=true,
-  frame=L,
-  xleftmargin=\parindent,
-  language=C,
-  showstringspaces=false,
-  basicstyle=\footnotesize\ttfamily,
-  keywordstyle=\bfseries\color{green!40!black},
-  commentstyle=\itshape\color{purple!40!black},
-  identifierstyle=\color{blue},
-  stringstyle=\color{orange},
+    breaklines=true,
+    frame=L,
+    xleftmargin=\parindent,
+    language=C,
+    showstringspaces=false,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{orange},
 }
 
 
@@ -43,18 +43,18 @@ basicstyle=\footnotesize,
 
 %% Yacc
 \lstdefinelanguage[]{Yacc}%
-  {otherkeywords=%
-    {\%left,
-      \%nonassoc,\%prec,\%right,
-      \%start,\%token,\%type,\%union,
-      \%\%,\%\{,\%\},|,:,
-      \$\$,\$1,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9
-    },%
-    keywords={\%seeREADME},%
+{otherkeywords=%
+  {\%left,
+    \%nonassoc,\%prec,\%right,
+    \%start,\%token,\%type,\%union,
+    \%\%,\%\{,\%\},|,:,
+    \$\$,\$1,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9
+  },%
+  keywords={\%seeREADME},%
     morecomment=[n]{/*}{*/},%
     morestring=[b]{"},%
     sensitive=true
-  }[keywords,comments,strings]%
+}[keywords,comments,strings]%
 
 
 %% Yacc: Bison
@@ -62,25 +62,25 @@ basicstyle=\footnotesize,
 %% Listings does not support ``moreotherkeywords'', so we cannot
 %% simply inherit.  To bad for code duplication.
 \lstdefinelanguage[Bison]{Yacc}%
-  {otherkeywords=%
-    {\%binary,\%debug,\%default-prec,\%define,\%defines,\%destructor,
-      \%dprec,\%error-verbose,\%expect,\%expect-rr,\%file-prefix,
-      \%fixed-output-files,\%initial-action,\%glr-parser,
-      \%language,\%left,
-      \%lex-param,\%locations,\%merge,\%name-prefix,\%no-default-prec,
-      \%no-lines,\%nonassoc,\%nondeterministic-parser,\%nterm,\%output,
-      \%parse-param,\%prec,\%printer,\%pure-parser,\%right,\%skeleton,
-      \%start,\%term,\%token,\%token-table,\%type,\%union,\%verbose,\%yacc,
-      \%\%,\%\{,\%\},|,:,
-      \$\$,\$1,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9,
-      @\$,@1,@2,@3,@4,@5,@6,@7,@8,@9
-    },%
-    keywords={\%seeREADME},%
+{otherkeywords=%
+  {\%binary,\%debug,\%default-prec,\%define,\%defines,\%destructor,
+    \%dprec,\%error-verbose,\%expect,\%expect-rr,\%file-prefix,
+    \%fixed-output-files,\%initial-action,\%glr-parser,
+    \%language,\%left,
+    \%lex-param,\%locations,\%merge,\%name-prefix,\%no-default-prec,
+    \%no-lines,\%nonassoc,\%nondeterministic-parser,\%nterm,\%output,
+    \%parse-param,\%prec,\%printer,\%pure-parser,\%right,\%skeleton,
+    \%start,\%term,\%token,\%token-table,\%type,\%union,\%verbose,\%yacc,
+    \%\%,\%\{,\%\},|,:,
+    \$\$,\$1,\$2,\$3,\$4,\$5,\$6,\$7,\$8,\$9,
+    @\$,@1,@2,@3,@4,@5,@6,@7,@8,@9
+  },%
+  keywords={\%seeREADME},%
     morecomment=[n]{/*}{*/},%
     morecomment=[s]{//},%
     morestring=[b]{"},%
     sensitive=true
-  }[keywords,comments,strings]%
+}[keywords,comments,strings]%
 
 \lstdefinelanguage{Bison}[Bison]{Yacc}{}
 
@@ -159,122 +159,206 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \end{itemize} 
 
 
-\chapter{Concepção da Linguagem Algebra}
-\label{concepcao}
+  \chapter{Concepção da Linguagem Algebra}
+  \label{concepcao}
 
-\section{Concepção/desenho da Resolução}
-
-
-Comecemos por descrever as funcionalidades da linguagem Algebra. Tal como descrito anteriormente a Algebra permitirá:
-\begin{itemize}
-
-\item declarar e manusear variáveis atómicas do tipo inteiro, com os quais se podem realizar as habituais operações
-aritméticas, relacionais e lógicas.
-\item declarar e manusear variáveis estruturadas do tipo array (a 1 ou 2 dimensões) de inteiros, em relação aos quais  é apenas permitida a operação de indexação. Aos arrays de duas dimensões, por se tratar de uma linguagem algébrica, chamaremos matrizes, dada a fácil associação a este tipo de variável à sua definição análoga da álgebra linear.
-\item efetuar instruções algorítmicas básicas como a atribuição de expressões a variáveis.
-\item ler do standard input e escrever no standard output.
-\item  efetuar instruções para controlo do fluxo de execução -- condicional e cíclica -- que possam ser aninhadas.
-\item definir e invocar subprogramas sem parâmetros mas que possam retornar um resultado atómico.
-
-\end{itemize} 
-
-\subsection{Uma introdução às variáveis}
-Temos então que as variáveis poderão ser de 3 tipos: inteiros simples, arrays de inteiros, e matrizes de inteiros. Dessa premissa sabemos à partida que o código gerado para a nossa máquina virtual terá que suportar o tipo de variável inteiro. Sabemos ainda que aos tipos de dados mais complexos (arrays e matrizes) apenas é permita a realização de operações de indexação. \par
-Na nossa linguagem de programação por questões de estruturação e percepção, teremos como premissa que as variáveis deverão ser declaradas no início do programa, não podendo haver re-declarações, nem utilizações sem declaração prévia. Não será permitida a declaração e associação de um valor inteiro na mesma instrução(à lá C). Achamos essa solução pouco elegante. 
-Assim, todas as variáveis terão o valor zero após a declaração.\par
-Podemos então aceitar como exemplo as declarações do tipo:
-\begin{lstlisting}
-int a;
-int auxiliar_1;
-int array_1d[10];
-int exemplo_2d[40,2];
-\end{lstlisting}
-
-Dado que toda a porção de código de alto nível julgamos essencial a possibilidade de existência de comentários. Atente no exemplo anterior agora com comentários que facilitam a percepção:
-\begin{lstlisting}
-// variaveis do tipo inteiro
-int a;
-int auxiliar_1;
-// arrays de inteiros
-int array_1d[10];
-// matrizes
-int exemplo_2d[40,2];
-\end{lstlisting}
-
-Tal como poderá confirmar pela última declaração do exemplo anterior a declaração do tamanho das matrizes é feita da seguinte forma: \textbf{ nome\_variavel[nºlinhas,nºcolunas]}. \par 
-A forma de armazenamento e acesso às variáveis será posteriormente discutida nas secções seguintes deste relatório. Neste momento temos especial interesse na especificação da estrutura correcta de programas da nossa linguagem.
-
-\subsubsection{Expressões Regulares e acções resultantes}
-
-Podemos desde já enumerar as expressões regulares necessárias à produção dos tokens que permitam à GIC o agrupamento dos tokens em produções:
-
-\begin{lstlisting}
-%{
-
-%}
-
-letter    [a-zA-Z]
-digit     [0-9]
-ignore    [\ \t\r\n]
-
-%option yylineno
-
-%%
-
-[\%\,\{\}\+\-\(\)\=\>\<\!\;\/\*\[\]\|\&\_]      { return(yytext[0]); }
-int                                             { return (TYPE_INT); }
-
-{letter}({letter}|{digit}|\_)*                  { yylval.var = strdup(yytext); return(id); }
-{digit}+                                        { yylval.qt = atoi(yytext); return(num); }
-\"[^"]+\"                                       { yylval.var = strdup(yytext); return(string); }
-\/\/[^\n]*                                      { printf("%s\n",yytext);  }
-{ignore}                                        { ; }
-
-%%
-
-int yywrap(){
-  return(1);
-}
-\end{lstlisting}
-
-Como é perceptível pela expressão regular correspondente, vulgo \lstinline${letter}({letter}|{digit}|\_)*$, as variáveis do tipo inteiro terão sempre de ser iniciadas por uma letra (maiúscula ou minúscula), sendo que como segundo caracter poderão ter um número, letra, ou \_.\par Um olhar mais atento às expressão regulares definidas até ao momento permitem-nos identificar um outro tipo de token -- \textbf{string}, até ao momento não apresentado. Denote que na nossa linguagem não é permitido realizar operações sobre strings (como concatenação ou comparação), apenas será permitir escrever as mesmas no standard output.\par Nas secções futuras iremos abordar o tipo string de uma forma mais aprofundada.
-
-\subsubsection{Produções da GIC}
+  \section{Concepção/desenho da Resolução}
 
 
+  Comecemos por descrever as funcionalidades da linguagem Algebra. Tal como descrito anteriormente a Algebra permitirá:
+  \begin{itemize}
 
-    \chapter{Conclusão} \label{concl}
+  \item declarar e manusear variáveis atómicas do tipo inteiro, com os quais se podem realizar as habituais operações aritméticas, relacionais e lógicas.
+  \item declarar e manusear variáveis estruturadas do tipo array (a 1 ou 2 dimensões) de inteiros, em relação aos quais  é apenas permitida a operação de indexação. Aos arrays de duas dimensões, por se tratar de uma linguagem algébrica, chamaremos matrizes, dada a fácil associação a este tipo de variável à sua definição análoga da álgebra linear.
+  \item efetuar instruções algorítmicas básicas como a atribuição de expressões a variáveis.
+  \item ler do standard input e escrever no standard output.
+  \item  efetuar instruções para controlo do fluxo de execução -- condicional e cíclica -- que possam ser aninhadas.
+  \item definir e invocar subprogramas sem parâmetros mas que possam retornar um resultado atómico.
 
-    Relativamente ao estado final do projecto acredito que foram cumpridos todos os requisitos, sendo que o segundo exercício foi sem dúvida o mais desafiante dada a enorme quantidade de dados e o tipo de dados em si a serem analisados. Reconhecer por si só quais as sequências de caracteres  válidas foi um desafio.\par Naturalmente que a partir da alínea 2.2.b a alínea 2.2.c foi de extrema facilidade, uma vez que todo o trabalho de análise já estava realizado. \par 
-      Foi ainda tido em conta a possiblidade de recuperar de erros de leitura na alínea 2.2.b o que facilitou o input correct de dados e posterior tratamento.
-      O recurso à biblioteca Glib, recomendada pelo professor José João num aula laboratorial permitiu-me ambientar ainda mais com código desenvolvido por terceiros  e sua correcta análise e integração nos meus projectos.\par 
-      Faço um balanço positivo do trabalho prático, pois, apesar de ser extremamente "time consuming" retirei muito conhecimento no que da análise de dados e processamento de linguagens diz respeito.
+  \end{itemize} 
 
-      \appendix
-      \chapter{Código do Programa da alínea 1a}
-    \label{completo1a}
-   % \lstinputlisting{owl_graph.l} %input de um ficheiro
+  \subsection{Uma introdução às variáveis}
+  Temos então que as variáveis poderão ser de 3 tipos: inteiros simples, arrays de inteiros, e matrizes de inteiros. Dessa premissa sabemos à partida que o código gerado para a nossa máquina virtual terá que suportar o tipo de variável inteiro. Sabemos ainda que aos tipos de dados mais complexos (arrays e matrizes) apenas é permita a realização de operações de indexação. \par
+  Na nossa linguagem de programação por questões de estruturação e percepção, teremos como premissa que as variáveis deverão ser declaradas no início do programa, não podendo haver re-declarações, nem utilizações sem declaração prévia. Não será permitida a declaração e associação de um valor inteiro na mesma instrução(à lá C). Achamos essa solução pouco elegante. 
+  Assim, todas as variáveis terão o valor zero após a declaração.\par
+  Podemos então aceitar como exemplo as declarações do tipo:
 
-      \newpage
-      \chapter{Código do Programa da alínea 2a}
-    \label{completo2a}
-%    \lstinputlisting{bib_norm_1.l} %input de um ficheiro
+  \lstinputlisting[language=C]{exemplos/1_variaveis.c} %input de um ficheiro
 
-      \newpage
-      \chapter{Código do Programa da alínea 2b}
-    \label{completo2b}
+  Dado que toda a porção de código de alto nível julgamos essencial a possibilidade de existência de comentários. Atente no exemplo anterior agora com comentários que facilitam a percepção:
+
+  \lstinputlisting[language=C]{exemplos/2_variaveis.c} %input de um ficheiro
+
+
+  Tal como poderá confirmar pela última declaração do exemplo anterior a declaração do tamanho das matrizes é feita da seguinte forma: \textbf{ nome\_variavel[nºlinhas,nºcolunas]}. \par 
+  A forma de armazenamento e acesso às variáveis será posteriormente discutida nas secções seguintes deste relatório. Neste momento temos especial interesse na especificação da estrutura correcta de programas da nossa linguagem.
+
+  \subsubsection{Expressões Regulares e acções resultantes}
+  \label{flex1}
+  Podemos desde já enumerar as expressões regulares necessárias à produção dos tokens que permitam à GIC o agrupamento dos tokens em produções:
+
+  \lstinputlisting[language=Yacc]{flex/flex_1_variaveis.l} %input de um ficheiro
+
+  Como é perceptível pela expressão regular correspondente, vulgo \lstinline${letter}({letter}|{digit}|\_)*$, as variáveis do tipo inteiro terão sempre de ser iniciadas por uma letra (maiúscula ou minúscula), sendo que como segundo caracter poderão ter um número, letra, ou \_.\par 
+
+  \subsubsection{Produções da GIC}
+  \label{yacc1}
+  Com os tokens produzidos pelo parser, podemos iniciar a definição da gramática independente de contexto, resultando nas seguintes produções:
+
+  \lstinputlisting[language=Yacc]{yacc/yacc_1_variaveis.y} %input de um ficheiro
+
+
+  \subsection{Uma introdução às instruções}
+  \label{introducao_instrucoes}
+
+  Da necessidade de realizar operações aritméticas, relacionais e lógicas sobre as variáveis do tipo inteiro atómicas, assim como da necessidade de realizar instruções algorítmicas básicas como a atribuição de expressões a variáveis, surgem as \textbf{instruções} na nossa linguagem \textbf{\textit{Algebra}}.\par 
+  Consideramos que qualquer que seja a operação a ser realizada, o seu resultado terá que ser sempre atribuído a alguma variável. \par 
+  Podemos desde já enumerar os tipos de operações permitidas na nossa linguagem, associando também o operador utilizador para representar as mesmas:
+  \begin{itemize}
+  \item Aritmética
+  \begin{itemize}
+  \item Adição : '+'
+  \item Subtração : '-'
+  \item Multiplicação inteira : '*'
+  \item Divisão Inteira : '/'
+  \item Resto da Divisão Inteira : '%'
+  \end{itemize}
+  \item Relaccional
+  \begin{itemize}
+  \item Igualdade : '=''='
+  \item Diferença : '!''='
+  \item Superioridade : '$>$'
+  \item Superioridade ou Igualdade : '$>$''='
+  \item Inferioridade : '$<$'
+  \item Inferioridade ou Igualdade : '$<$''='
+  \end{itemize}
+  \item Lógica
+  \begin{itemize}
+  \item Negação Lógica : '!'
+  \item OR Lógico : '$|$''$|$'
+  \item AND Lógico : '\&\&'
+  \end{itemize}
+  \end{itemize}
+
+  Podemos então aceitar como exemplo de input válido o seguinte código:
+
+  \lstinputlisting[language=C]{exemplos/3_instrucoes.c} %input de um ficheiro
+
+  Como poderá constatar pelas linhas 7 e 8, e tal como é requerido já será possível realizar operações de atribuição. \par 
+
+  \subsubsection{Expressões Regulares e acções resultantes}
+  Relativamente às expressões regulares necessárias para proceder correctamente ao parsing não é necessário alterar os ficheiro Flex presente na seção \ref{flex1}, uma vez que a expressão regular 
+  \lstinline$[\%\,\{\}\+\-\(\)\=\>\<\!\;\/\*\[\]\|\&\_]$ já engloba todos os símbolos necessárias até à fase actual.
+
+  \subsubsection{Produções da GIC}
+  \label{yacc2}
+  Tomando por base o ficheiro Yacc presente na seção \ref{yacc1}, podemos proceder à adição de produções por forma a reconhecer as estruturas de programa válidas até ao momento.
+
+  \lstinputlisting[language=Yacc]{yacc/yacc_2_instrucoes.y} %input de um ficheiro
+
+  As produções relativas às expressões lógicas e relacionais terão especial importância na adição da capacidade de inclusão de instruções para controlo do fluxo de execução -- condicional e cíclica -- que possam ser aninhadas, na nossa linguagem \textbf{\textit{Algebra}}, que passaremos de seguida e especificar.
+
+  \subsection{Uma introdução às instruções condicionais e cíclicas}
+  \label{introducao_condicionais}
+
+  \subsubsection{Instruções condicionais}
+  Por forma à \textbf{\textit{Algebra}} ter utilidade real, é necessária a inclusão de instruções que permitam mudar o fluxo de execução. Necessitamos portanto de incluir a possibilidade de declarar instruções condicionais na nossa linguagem. \par 
+  Para criarmos uma estrutura condicional, deveremos recorrer a expressões do tipo: 
+  \begin{center}
+  \textbf{if} ( Expressão Lógica )\par  \textbf{then}  [\{Instruções\}$|$Instrução] \par \textbf{else} [\{Instruções\}$|$Instrução$|$/*empty*/]\par 
+  \end{center}
+
+  Pela análise do esquema anterior sabemos que o bloco de código \textbf{else} [\{Instruções\}$|$Instrução$|$/*empty*/] é opcional, sendo que, em caso de os fluxos de execução representarem apenas uma instrução na nossa linguagem \textbf{\textit{Algebra}} não existe a necessidade de inclusão de parêntesis entre os diferentes fluxos.\par 
+  Tal como requerido, deverá ser também possível o aninhamento de instruções condicionais.\par 
+  Podemos então aceitar como exemplo de input válido o seguinte código:
+  \lstinputlisting[language=C]{exemplos/4_condicional.c} %input de um ficheiro
+
+  \subsubsection{Instruções cíclicas}
+
+  Uma instrução cíclica irá permitir ao programador executar um determinado bloco de código um determinado número de vezes, de acordo com uma condição lógica.\par 
+  Para criarmos uma estrutura cíclica, deveremos recorrer a expressões do tipo: 
+  \begin{center}
+  \textbf{do}   [\{Instruções\}$|$Instrução]\par 
+  \textbf{while} ( Expressão Lógica )\par\par 
+  \end{center}
+  Pela análise do esquema anterior sabemos que em caso de o fluxo de execução representar apenas uma instrução na nossa linguagem \textbf{\textit{Algebra}} não existe a necessidade de inclusão de parêntesis entre as palavras reservadas  \textbf{do} e  \textbf{while}.\par 
+
+  Tal como requerido, deverá ser também possível o aninhamento de instruções condicionais.\par 
+  Podemos então aceitar como exemplo de input válido o seguinte código:
+  \lstinputlisting[language=C]{exemplos/5_ciclo.c} %input de um ficheiro
+
+
+
+
+  \subsubsection{Expressões Regulares e acções resultantes}
+
+  Tomando por base o ficheiro Flex  presente na seção \ref{flex1}, podemos proceder à adição de expressões regulares por forma a produzir os tokens necessários para o correcto reconhecimento pela GIC.
+  \lstinputlisting[language=Yacc]{flex/flex_3_condicionais.y} %input de um ficheiro
+
+
+  \subsubsection{Produções da GIC}
+  \label{yacc2}
+  Tomando por base o ficheiro Yacc presente na seção \ref{yacc1}, podemos proceder à adição de produções por forma a reconhecer as estruturas de programa válidas até ao momento.
+
+  \lstinputlisting[language=Yacc]{yacc/yacc_3_condicionais.y} %input de um ficheiro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \chapter{Conclusão} \label{concl}
+
+
+
+
+
+  Um olhar mais atento às expressão regulares definidas até ao momento permitem-nos identificar um outro tipo de token -- \textbf{string}, até ao momento não apresentado. Denote que na nossa linguagem não é permitido realizar operações sobre strings (como concatenação ou comparação), apenas será permitir escrever as mesmas no standard output.\par Nas secções futuras iremos abordar o tipo string de uma forma mais aprofundada.
+
+
+
+
+
+  Relativamente ao estado final do projecto acredito que foram cumpridos todos os requisitos, sendo que o segundo exercício foi sem dúvida o mais desafiante dada a enorme quantidade de dados e o tipo de dados em si a serem analisados. Reconhecer por si só quais as sequências de caracteres  válidas foi um desafio.\par Naturalmente que a partir da alínea 2.2.b a alínea 2.2.c foi de extrema facilidade, uma vez que todo o trabalho de análise já estava realizado. \par 
+  Foi ainda tido em conta a possiblidade de recuperar de erros de leitura na alínea 2.2.b o que facilitou o input correct de dados e posterior tratamento.
+  O recurso à biblioteca Glib, recomendada pelo professor José João num aula laboratorial permitiu-me ambientar ainda mais com código desenvolvido por terceiros  e sua correcta análise e integração nos meus projectos.\par 
+  Faço um balanço positivo do trabalho prático, pois, apesar de ser extremamente "time consuming" retirei muito conhecimento no que da análise de dados e processamento de linguagens diz respeito.
+
+  \appendix
+  \chapter{Código do Programa da alínea 1a}
+  \label{completo1a}
+  % \lstinputlisting{owl_graph.l} %input de um ficheiro
+
+  \newpage
+  \chapter{Código do Programa da alínea 2a}
+  \label{completo2a}
+  %    \lstinputlisting{bib_norm_1.l} %input de um ficheiro
+
+  \newpage
+  \chapter{Código do Programa da alínea 2b}
+  \label{completo2b}
   %  \lstinputlisting{bib_norm_2.l} %input de um ficheiro
 
 
-      \newpage
-      \chapter{Código do Programa da alínea 3a}
-    \label{completo2c}
- %   \lstinputlisting{bib_norm_3.l} %input de um ficheiro
+  \newpage
+  \chapter{Código do Programa da alínea 3a}
+  \label{completo2c}
+  %   \lstinputlisting{bib_norm_3.l} %input de um ficheiro
 
 
 
-      \end{document}
+  \end{document}
 
 
 
-    \end{document} 
+  \end{document} 

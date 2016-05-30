@@ -34,11 +34,11 @@ conditional0:
 		pushg 0
 		pushg 2
 		supeq	//relational superior or equal
-						// +++ Relational AND BEGIN +++
+						// +++ Logical AND BEGIN +++
 		mul
 		pushi 2
 		mod
-						// --- Relational AND END ---
+						// --- Logical AND END ---
 		jz inelse0
 inthen0:
 		pushgp
@@ -57,11 +57,11 @@ conditional1:
 		pushg 1
 		pushg 2
 		supeq	//relational superior or equal
-						// +++ Relational AND BEGIN +++
+						// +++ Logical AND BEGIN +++
 		mul
 		pushi 2
 		mod
-						// --- Relational AND END ---
+						// --- Logical AND END ---
 		jz inelse1
 inthen1:
 		pushgp
@@ -82,11 +82,11 @@ conditional2:
 		pushg 2
 		pushg 1
 		sup	//relational superior
-						// +++ Relational AND BEGIN +++
+						// +++ Logical AND BEGIN +++
 		mul
 		pushi 2
 		mod
-						// --- Relational AND END ---
+						// --- Logical AND END ---
 		jz inelse2
 inthen2:
 		pushgp

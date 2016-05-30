@@ -89,9 +89,6 @@ void assert_declared_var( char* varname, var_type type);
 
 %token TYPE_INT
 %token TYPE_FUNCTION
-%token INNER_MATRIX
-
-/* identifiers */
 
 %token PL_IF PL_THEN PL_ELSE
 %token PL_DO PL_WHILE
@@ -99,7 +96,6 @@ void assert_declared_var( char* varname, var_type type);
 %token PL_READ
 %token PL_CALL
 %token PL_RETURN
-
 
 %nonassoc PL_THEN
 %nonassoc PL_ELSE 
@@ -274,29 +270,29 @@ Logical_Expressions : Logical_Expressions Logical_Expression
 
 Logical_Expression : '!' Relational_Expression 
                    {
-                     printf("\t\t\t\t\t\t// +++ Relational NOT BEGIN +++\n");
+                     printf("\t\t\t\t\t\t// +++ Logical NOT BEGIN +++\n");
                      printf("\t\tpushi 1\n");
                      printf("\t\tadd\n");
                      printf("\t\tpushi 2\n");
                      printf("\t\tmod\n");
-                     printf("\t\t\t\t\t\t// --- Relational NOT END ---\n");
+                     printf("\t\t\t\t\t\t// --- Logical NOT END ---\n");
                    }
                    | Relational_Expression
                    | Logical_Expression '|''|' Relational_Expression 
                    {
-                     printf("\t\t\t\t\t\t// +++ Relational OR BEGIN +++\n");
+                     printf("\t\t\t\t\t\t// +++ Logical OR BEGIN +++\n");
                      printf("\t\tadd\n");
                      printf("\t\tpushi 2\n");
                      printf("\t\tmod\n");
-                     printf("\t\t\t\t\t\t// --- Relational OR END ---\n");
+                     printf("\t\t\t\t\t\t// --- Logical OR END ---\n");
                    }
                    | Logical_Expression '&''&' Relational_Expression
                    {
-                     printf("\t\t\t\t\t\t// +++ Relational AND BEGIN +++\n");
+                     printf("\t\t\t\t\t\t// +++ Logical AND BEGIN +++\n");
                      printf("\t\tmul\n");
                      printf("\t\tpushi 2\n");
                      printf("\t\tmod\n");
-                     printf("\t\t\t\t\t\t// --- Relational AND END ---\n");
+                     printf("\t\t\t\t\t\t// --- Logical AND END ---\n");
                    }
                    ;
 
