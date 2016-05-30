@@ -14,7 +14,10 @@
 
 \usepackage{listings}
 
-
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
 \lstset{
   keepspaces=true,  
@@ -425,49 +428,51 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \subsubsection{Operações sobre inteiros}
 
   \begin{table}[H]
-  \label{table:operacoes_inteiros}
-  \centering
-  \begin{tabular}{ | l | l |  }
+    \label{table:operacoes_inteiros}
+\centering
+  \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
+  
+  
   \hline
-  Instrução & Descrição
+  Instrução & Argumentos & Descrição
   \\ \hline \hline
 
-  ADD &  tira da pilha n e m que devem ser inteiros e empilha o resultado
+  ADD & & tira da pilha n e m que devem ser inteiros e empilha o resultado
   m + n
   \\ \hline 
 
-  SUB & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  SUB & & tira da pilha n e m que devem ser inteiros e empilha o resultado
   m - n
   \\ \hline
 
-  MUL &  tira da pilha n e m que devem ser inteiros e empilha o resultado
+  MUL & &  tira da pilha n e m que devem ser inteiros e empilha o resultado
   m $×$ n
   \\ \hline
 
-  DIV & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  DIV & & tira da pilha n e m que devem ser inteiros e empilha o resultado
   m$/$n
   \\ \hline 
 
-  MOD&  tira da pilha n e m que devem ser inteiros e empilha o resultado
+  MOD& &  tira da pilha n e m que devem ser inteiros e empilha o resultado
   m mod n
   \\ \hline 
 
-  NOT&  tira da pilha n que deve ser um inteiro e empilha o resultado n = 0
+  NOT& &  tira da pilha n que deve ser um inteiro e empilha o resultado n = 0
   \\ \hline 
 
-  INF & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  INF & & tira da pilha n e m que devem ser inteiros e empilha o resultado
   m $<$ n
   \\ \hline
 
-  INFEQ & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  INFEQ & & tira da pilha n e m que devem ser inteiros e empilha o resultado
   m  $<=$n
   \\ \hline 
 
-  SUP & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  SUP & & tira da pilha n e m que devem ser inteiros e empilha o resultado
   m $>$ n
   \\ \hline 
 
-  SUPEQ & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  SUPEQ & & tira da pilha n e m que devem ser inteiros e empilha o resultado
   m $>=$ n
   \\ \hline 
   \end{tabular}
@@ -476,14 +481,13 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \subsubsection{Operações sobre endereços}
 
   \begin{table}[H]
-  \label{table:operacoes_inteiros}
-  \centering
-  \begin{tabular}{ | l | l |  }
+    \label{table:operacoes_enderecos}
+\centering
+  \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
-  Instrução & Descrição
+  Instrução & Argumentos & Descrição
   \\ \hline \hline
-
-  PADD  &  tira da pilha n que deve ser um inteiro e a que deve ser um endereço
+  PADD  & &  tira da pilha n que deve ser um inteiro e a que deve ser um endereço
   e empilha o endereço a + n
   \\ \hline 
 
@@ -495,14 +499,14 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \subsubsection{Igualdade}
 
   \begin{table}[H]
-  \label{table:operacoes_inteiros}
-  \centering
-  \begin{tabular}{ | l | l |  }
+    \label{table:igualdade}
+\centering
+  \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
-  Instrução & Descrição
+  Instrução & Argumentos & Descrição
   \\ \hline \hline
 
-  EQUAL   &  tira da pilha n seguido de m que devem ser do mesmo tipo e empilha
+  EQUAL   & &  tira da pilha n seguido de m que devem ser do mesmo tipo e empilha
   o resultado de n = m
   \\ \hline 
 
@@ -515,15 +519,16 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \subsubsection{Conversões}
 
 
-  \begin{table}[H]
-  \label{table:operacoes_inteiros}
-  \centering
-  \begin{tabular}{ | l | l |  }
+ \begin{table}[H]
+    \label{table:conversoes}
+\centering
+  \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
-  Instrução & Descrição
+  Instrução & Argumentos & Descrição
   \\ \hline \hline
-
-  ATOI   &  retira da pilha o endereço duma string e empilha a sua conversão
+  
+  
+  ATOI   &   & retira da pilha o endereço duma string e empilha a sua conversão
   em inteiro. Tal falha quando a string não representa um inteiro.
   \\ \hline 
 
@@ -534,37 +539,37 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
 
   \subsubsection{Manipular dados}
 
-  \begin{table}[H]
-  \label{table:operacoes_inteiros}
-  \centering
-  \begin{tabular}{ | l | l |  }
+ \begin{table}[H]
+    \label{table:manipular_dados}
+\centering
+  \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
-  Instrução & Descrição
+  Instrução & Argumentos & Descrição
   \\ \hline \hline
 
-  PUSHI n inteiro   &  empilha n
+  PUSHI & n inteiro   &  empilha n
   \\ \hline 
-  PUSHN n inteiro   &  empilha n vezes o valor inteiro 0
+  PUSHN  & n inteiro   &  empilha n vezes o valor inteiro 0
 
   \\ \hline 
-  PUSHS n string   &  arquiva n na zona das strings e empilha o endereço
+  PUSHS & n string   &  arquiva n na zona das strings e empilha o endereço
   \\ \hline 
-  PUSHG n inteiro   &  empilha o valor localizado em gp[n]
+  PUSHG & n inteiro   &  empilha o valor localizado em gp[n]
   \\ \hline 
-  PUSHGP   &  empilha o valor do registo gp
+  PUSHGP   & &  empilha o valor do registo gp
   \\ \hline 
-  LOAD n inteiro   &  retira da pilha um endereço a e empilha o valor na pilha ou
+  LOAD  & n inteiro   &  retira da pilha um endereço a e empilha o valor na pilha ou
   no heap (dependendo do tipo de a) em a[n]
   \\ \hline 
-  LOADN   &  retira da pilha um inteiro n, um endereço a e empilha o valor
+  LOADN  &  &  retira da pilha um inteiro n, um endereço a e empilha o valor
   na pilha ou no heap (dependendo do tipo de a) em a[n]
   \\ \hline 
-  STOREG n inteiro   &  retira um valor da pilha e arquiva-a na pilha em gp[n]
+  STOREG & n inteiro   &  retira um valor da pilha e arquiva-a na pilha em gp[n]
   \\ \hline 
-  STORE n inteiro   &  retira da pilha um valor v e um endereço a, arquiva v
+  STORE & n inteiro   &  retira da pilha um valor v e um endereço a, arquiva v
 em a[n]na pilha ou na heap (dependendo do tipo de a)
   \\ \hline 
-  STOREN   &  retira da pilha um valor v, um inteiro n e um endereço
+  STOREN   & &  retira da pilha um valor v, um inteiro n e um endereço
   a, arquiva v no endereço a[n] na pilha ou na heap
   \\ \hline 
 
@@ -574,91 +579,96 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
   \subsubsection{Input-Output}
 
   \begin{table}[H]
-  \label{table:operacoes_inteiros}
-  \centering
-  \begin{tabular}{ | l | l |  }
+    \label{table:input}
+\centering
+  \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
-  Instrução & Descrição
+  Instrução & Argumentos & Descrição
   \\ \hline \hline
-
-  WRITEI   &  retira um inteiro da pilha e imprime o valor na saída standard
+  WRITEI   & &  retira um inteiro da pilha e imprime o valor na saída standard
   \\ \hline 
-  WRITES   &  retira um endereço de uma string da pilha e imprime a string correspondente
-  \\ \hline 
+  WRITES  &  &  retira um endereço de uma string da pilha e imprime a string correspondente
   na saída standard
-  READ   &  lê uma string do teclado (concluída por um "$\backslash$n") e arquiva esta
+    \\ \hline 
+  READ  &  &  lê uma string do teclado (concluída por um "$\backslash$n") e arquiva esta
   string (sem o "$\backslash$n") na heap e coloca (empilha) o endereço na pilha..
   \\ \hline 
-
   \end{tabular}
   \end{table}
-
-
-
 
   \subsubsection{Operações de controlo}
 
-
-  \begin{table}[H]
-  \label{table:operacoes_inteiros}
-  \centering
-  \begin{tabular}{ | l | l |  }
+ \begin{table}[H]
+    \label{table:controlo}
+\centering
+  \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
-  Instrução & Descrição
+  Instrução & Argumentos & Descrição
   \\ \hline \hline
 
-  JUMP &  label etiqueta atribui ao registo pc o endereço no código que corresponde a
+  JUMP &  label etiqueta &  atribui ao registo pc o endereço no código que corresponde a
   label   (pode ser um inteiro ou um valor simbólico).
   \\ \hline 
-  JZ label etiqueta &  retira da pilha um valor. Se este for nulo então é atribuido
+  JZ & label etiqueta &  retira da pilha um valor. Se este for nulo então é atribuido
   ao registo pc o endereço correspondente à label, incrementa
-  \\ \hline 
   simplesmente pc de 1, caso contrário.
-  PUSHA label etiqueta &  empilha o endereço de programa correspondente a etiqueta
+    \\ \hline 
+
+  PUSHA & label etiqueta &  empilha o endereço de programa correspondente a etiqueta
   label
   \\ \hline 
 
-  CALL &  retira da pilha um endereço de programa a, salvaguarda pc e fp na
+  CALL &  & retira da pilha um endereço de programa a, salvaguarda pc e fp na
   pilha das chamadas, afecta a fp o valor corrente de sp e a pc o valor
   de a.
   \\ \hline 
-  RETURN &  afecta a sp o valor corrente de fp, restaura da pilha de chamadas
+  RETURN & &  afecta a sp o valor corrente de fp, restaura da pilha de chamadas
   os valores de fp e de pc, incrementa pc de 1 por forma a encontrar
   a instrução a seguir a chamada.
   \\ \hline 
-
-
   \end{tabular}
   \end{table}
-
-
 
   \subsubsection{Inicialização e fim}
 
-  \begin{table}[H]
-  \label{table:operacoes_inteiros}
-  \centering
-  \begin{tabular}{ | l | l |  }
+ \begin{table}[H]
+    \label{table:inicializacao}
+\centering
+  \begin{tabular}{ | L{2cm} | L{2cm} |  R{10cm} | }
   \hline
-  Instrução & Descrição
+  Instrução &  Argumentos & Descrição
   \\ \hline \hline
 
-  START &  Afecta o valor de sp a fp
+  START &  &  Afecta o valor de sp a fp
   \\ \hline 
-  NOP &  não faz nada.
+  NOP &  & não faz nada.
   \\ \hline 
-  ERR x string &  levanta um erro com a mensagem x.
+  ERR & x string &  levanta um erro com a mensagem x.
   \\ \hline 
-  STOP &  pára a execução do programa
+  STOP & &  pára a execução do programa
   \\ \hline 
 
   \end{tabular}
   \end{table}
 
+  \subsubsection{Operações necessárias e não presentes em instruções da VM}
 
+Existem operações lógicas e relacionais que não estão disponíveis na VM, nomeadamente:
+
+\begin{itemize}
+\item Negação Lógica
+\item OR Lógico
+\item AND Lógico
+\item NOT EQUAL Lógico
+\end{itemize}
+
+No entanto recorrendo a instruções presentes nas tabelas \ref{table:operacoes_inteiros} e \ref{table:manipular_dados}, referentes a operações sobre inteiros e a manipulação de dados, conseguimos obter o comportamento lógico dessas mesmas operações.\par 
+Relativamente às instruções de controlo de fluxo seria útil a presença da instrução \textbf{jnz} 
+que deveria retirar da pilha um valor e se esse fosse não nulo então seria atribuído  ao registo pc o endereço correspondente à label. No entanto esta lacuna é também contornável como veremos nas secções seguintes do relatório.
 
 
   \chapter{Geração de Código Máquina -- de Produções a Assembly }
+
 
   \chapter{ Testes às funcionalidades da Algebra}
 
