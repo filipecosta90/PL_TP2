@@ -28,8 +28,8 @@
     numbersep=5pt,
     breaklines=true,
     frame=tB,
-    mathescape=true,
-    escapeinside={(*@}{@*)}
+   % mathescape=true
+   escapeinside={(*@}{@*)}
 }
 
 %%                                                       -*- LaTeX -*-
@@ -670,16 +670,59 @@ que deveria retirar da pilha um valor e se esse fosse não nulo então seria atrib
   \chapter{Geração de Código Máquina -- de Produções a Assembly }
 
 
-  \chapter{ Testes às funcionalidades da Algebra}
+Especificadas as instruções disponíveis na máquina virtual, assim como a sua forma de funcionamento, resta-nos incluir nas produções da gramática independente de contexto a geração de código máquina correspondente. 
+
+\section{Métodos e variáveis auxiliares à geração de código máquina}
+Por forma a implementar correctamente as funcionalidades propostas, é necessário o conhecimento de alguns dados gerais do programa a ser analisado. \par 
+Relativamente às variáveis necessitamos de possuir informação relativamente ao seu tipo (se é inteiro atómico, array, matriz ou função), tamanho total ocupado, dimensões (quando aplicável), 	e posição relativamente ao global pointer.\par 
+Ora tal informação é guardada no array de estruturas var\_table, que possui capacidade para armazenar dados relativos a 1000 variáveis. O array \textbf{ia[x]}\footnote{Tal solução foi pensada tendo por base forma de representação de matrizes esparsas CSR, daí advindo o nome da variável.} permite de forma rápida saber qual o tamanho total ocupado pela variável presente no índice x da var\_table.\par
+ É mantido também estado sobre o número de condicionais e ciclos abertos e declarados até ao momento.\par
+ De seguida apresentam-se todas a variáveis auxiliares assim como a assinatura das funções às quais se recorre para implementar todas as funcionalidades.
+ 
+   \lstinputlisting[language=C]{yacc/algebric_code.y} %input de um ficheiro
+
+À medida que formos recorrendo às funções auxiliares iremos apresentar o respectivo código C.
+
+\section{Geração de código máquina nas produções}
+
+\subsection{Início e término do programa}
+Comecemos pela inclusão das instruções \textbf{START} e \textbf{STOP}. Estas iniciam e param a máquina virtual. Assim sendo, as mesmas serão incluídas na produção:
+
+  \lstinputlisting[language=Yacc]{yacc/yacc_6_start_stop.y} %input de um ficheiro
+
+Sendo o seguinte código associado à produção:
+
+  \lstinputlisting[language=Yacc]{yacc/yacc_6_start_stop_code.y} %input de um ficheiro
+
+\subsection{Declarações de variáveis}
+Sempre que são reconhecidas as produções de declarações de variáveis é necessário alocar o espaço correspondente às mesmas na stack. Ora, assim sendo, o conjunto de instruções de código máquina que permitirão a correcta declaração de variáveis será incluído nas produções:
+\lstinputlisting[language=Yacc]{yacc/yacc_7_declaracao.y} %input de um ficheiro
+
+Sendo o seguinte código associado à produção:
+\lstinputlisting[language=Yacc]{yacc/yacc_7_declaracao_code.y} %input de um ficheiro
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{ Testes às funcionalidades da Algebra}
 
 
   \chapter{Conclusão}
   \label{concl}
-
-
-
 
   Relativamente ao estado final do projecto acredito que foram cumpridos todos os requisitos, sendo que o segundo exercício foi sem dúvida o mais desafiante dada a enorme quantidade de dados e o tipo de dados em si a serem analisados. Reconhecer por si só quais as sequências de caracteres  válidas foi um desafio.\par Naturalmente que a partir da alínea 2.2.b a alínea 2.2.c foi de extrema facilidade, uma vez que todo o trabalho de análise já estava realizado. \par 
   Foi ainda tido em conta a possiblidade de recuperar de erros de leitura na alínea 2.2.b o que facilitou o input correct de dados e posterior tratamento.

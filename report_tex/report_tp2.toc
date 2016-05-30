@@ -34,9 +34,13 @@
 \contentsline {subsubsection}{\numberline {3.1.1.8}Inicializa\c c\~ao e fim}{26}
 \contentsline {subsubsection}{\numberline {3.1.1.9}Opera\c c\~oes necess\'arias e n\~ao presentes em instru\c c\~oes da VM}{26}
 \contentsline {chapter}{\numberline {4}Gera\c c\~ao de C\'odigo M\'aquina -- de Produ\c c\~oes a Assembly }{27}
-\contentsline {chapter}{\numberline {5} Testes \`as funcionalidades da Algebra}{28}
-\contentsline {chapter}{\numberline {6}Conclus\~ao}{29}
-\contentsline {chapter}{\numberline {A}C\'odigo do Programa da al\IeC {\'\i }nea 1a}{30}
-\contentsline {chapter}{\numberline {B}C\'odigo do Programa da al\IeC {\'\i }nea 2a}{31}
-\contentsline {chapter}{\numberline {C}C\'odigo do Programa da al\IeC {\'\i }nea 2b}{32}
-\contentsline {chapter}{\numberline {D}C\'odigo do Programa da al\IeC {\'\i }nea 3a}{33}
+\contentsline {section}{\numberline {4.1}M\'etodos e vari\'aveis auxiliares \`a gera\c c\~ao de c\'odigo m\'aquina}{27}
+\contentsline {section}{\numberline {4.2}Gera\c c\~ao de c\'odigo m\'aquina nas produ\c c\~oes}{29}
+\contentsline {subsection}{\numberline {4.2.1}In\IeC {\'\i }cio e t\'ermino do programa}{29}
+\contentsline {subsection}{\numberline {4.2.2}Declara\c c\~oes de vari\'aveis}{29}
+\contentsline {chapter}{\numberline {5} Testes \`as funcionalidades da Algebra}{31}
+\contentsline {chapter}{\numberline {6}Conclus\~ao}{32}
+\contentsline {chapter}{\numberline {A}C\'odigo do Programa da al\IeC {\'\i }nea 1a}{33}
+\contentsline {chapter}{\numberline {B}C\'odigo do Programa da al\IeC {\'\i }nea 2a}{34}
+\contentsline {chapter}{\numberline {C}C\'odigo do Programa da al\IeC {\'\i }nea 2b}{35}
+\contentsline {chapter}{\numberline {D}C\'odigo do Programa da al\IeC {\'\i }nea 3a}{36}
