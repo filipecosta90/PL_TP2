@@ -179,7 +179,7 @@ aritméticas, relacionais e lógicas.
 \end{itemize} 
 
 \subsection{Uma introdução às variáveis}
-Temos então que as variáveis poderão ser de 3 tipos: inteiros simples, arrays de inteiros, e matrizes de inteiros. Dessa premissa sabemos à partida que o código gerado para a nossa máquina virtual terá que suportar o tipo de variável inteiro. Sabemos ainda que os tipos de dados mais complexos (arrays e matrizes) apenas é permita a realização de operações de indexação. \par
+Temos então que as variáveis poderão ser de 3 tipos: inteiros simples, arrays de inteiros, e matrizes de inteiros. Dessa premissa sabemos à partida que o código gerado para a nossa máquina virtual terá que suportar o tipo de variável inteiro. Sabemos ainda que aos tipos de dados mais complexos (arrays e matrizes) apenas é permita a realização de operações de indexação. \par
 Na nossa linguagem de programação por questões de estruturação e percepção, teremos como premissa que as variáveis deverão ser declaradas no início do programa, não podendo haver re-declarações, nem utilizações sem declaração prévia. Não será permitida a declaração e associação de um valor inteiro na mesma instrução(à lá C). Achamos essa solução pouco elegante. 
 Assim, todas as variáveis terão o valor zero após a declaração.\par
 Podemos então aceitar como exemplo as declarações do tipo:
@@ -237,7 +237,7 @@ int yywrap(){
 }
 \end{lstlisting}
 
-Como é perceptível pela expressão regular correspondente, vulgo \lstinline${letter}({letter}|{digit}|\_)*$, as variáveis do tipo inteiro terão sempre de ser iniciadas por uma letra (maiúscula ou minúscula), sendo que como segundo caracter poderão ter um número, letra, ou \_.\par Um olhar mais atento às expressão regulares definidas até ao momento permitem-nos identificar um outro tipo de variável -- \textbf{string}, até ao momento não apresentada. Denote que na nossa linguagem não é permitido realizar operações sobre strings (como concatenação ou comparação), apenas será permitir ler e escrever 
+Como é perceptível pela expressão regular correspondente, vulgo \lstinline${letter}({letter}|{digit}|\_)*$, as variáveis do tipo inteiro terão sempre de ser iniciadas por uma letra (maiúscula ou minúscula), sendo que como segundo caracter poderão ter um número, letra, ou \_.\par Um olhar mais atento às expressão regulares definidas até ao momento permitem-nos identificar um outro tipo de token -- \textbf{string}, até ao momento não apresentado. Denote que na nossa linguagem não é permitido realizar operações sobre strings (como concatenação ou comparação), apenas será permitir escrever as mesmas no standard output.\par Nas secções futuras iremos abordar o tipo string de uma forma mais aprofundada.
 
 \subsubsection{Produções da GIC}
 
