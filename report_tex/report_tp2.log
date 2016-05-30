@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  30 MAY 2016 13:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  30 MAY 2016 16:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -126,25 +126,43 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 (./report_tp2.aux
 
-LaTeX Warning: Label `yacc2' multiply defined.
+LaTeX Warning: Label `table:operacoes_inteiros' multiply defined.
+
+
+LaTeX Warning: Label `table:operacoes_inteiros' multiply defined.
+
+
+LaTeX Warning: Label `table:operacoes_inteiros' multiply defined.
+
+
+LaTeX Warning: Label `table:operacoes_inteiros' multiply defined.
+
+
+LaTeX Warning: Label `table:operacoes_inteiros' multiply defined.
+
+
+LaTeX Warning: Label `table:operacoes_inteiros' multiply defined.
+
+
+LaTeX Warning: Label `table:operacoes_inteiros' multiply defined.
 
 )
 \openout1 = `report_tp2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 118.
-LaTeX Font Info:    ... okay on input line 118.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
 \c@lstlisting=\count99
  (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -208,13 +226,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 120.
+(Font)              <17.28> on input line 112.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 120.
+(Font)              <12> on input line 112.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 120.
+(Font)              <8> on input line 112.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 120.
+(Font)              <6> on input line 112.
 
 [1
 
@@ -224,24 +242,24 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 4.
-)
+ [1
+
+])
 \tf@toc=\write3
 \openout3 = `report_tp2.toc'.
 
- [1
-
-]
+ [2]
 Cap\'{\i }tulo 1.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 131.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 123.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 131.
- [2
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 123.
+ [3
 
-] [3]
+] [4]
 Cap\'{\i }tulo 2.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/09/06 1.5e listings language file
@@ -249,7 +267,7 @@ File: lstlang1.sty 2014/09/06 1.5e listings language file
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
 )
-(./exemplos/1_variaveis.c) (./exemplos/2_variaveis.c [4
+(./exemplos/1_variaveis.c) (./exemplos/2_variaveis.c [5
 
 ])
 (./flex/flex_1_variaveis.l
@@ -265,31 +283,66 @@ File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 13.
 )
-(./yacc/yacc_1_variaveis.y [5]
+(./yacc/yacc_1_variaveis.y [6]
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
-) [6] (./exemplos/3_instrucoes.c)
-(./yacc/yacc_2_instrucoes.y [7] [8]) (./exemplos/4_condicional.c [9])
-(./exemplos/5_ciclo.c) (./flex/flex_3_condicionais.y [10])
-(./yacc/yacc_3_condicionais.y [11] [12]) [13]
+) [7] (./exemplos/3_instrucoes.c)
+(./yacc/yacc_2_instrucoes.y [8] [9]) (./exemplos/4_condicional.c [10])
+(./exemplos/5_ciclo.c) (./flex/flex_3_condicionais.y [11])
+(./yacc/yacc_3_condicionais.y [12] [13]) (./exemplos/6_input.c) [14]
+(./exemplos/7_output.c) (./flex/flex_4_input_output.l [15])
+(./yacc/yacc_4_input_output.y [16] [17]) [18] (./flex/flex_5_funcoes.l)
+[19] (./yacc/yacc_5_funcoes.y [20] [21]) [22]
 Cap\'{\i }tulo 3.
-[14
+[23
+
+]
+Overfull \hbox (122.49039pt too wide) in paragraph at lines 521--531
+ [][] 
+ []
+
+
+Overfull \hbox (108.75432pt too wide) in paragraph at lines 540--572
+ [][] 
+ []
+
+[24]
+Overfull \hbox (207.7684pt too wide) in paragraph at lines 579--594
+ [][] 
+ []
+
+
+Overfull \hbox (497.96317pt too wide) in paragraph at lines 605--632
+ [][] 
+ []
+
+[25]
+Cap\'{\i }tulo 4.
+[26
+
+]
+Cap\'{\i }tulo 5.
+[27
+
+]
+Cap\'{\i }tulo 6.
+[28
 
 ]
 Ap\^endice A.
-[15
+[29
 
 ]
 Ap\^endice B.
-[16
+[30
 
 ]
 Ap\^endice C.
-[17
+[31
 
 ]
 Ap\^endice D.
-[18
+[32
 
 ] (./report_tp2.aux)
 
@@ -297,13 +350,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4537 strings out of 493089
- 65117 string characters out of 6134842
- 372327 words of memory out of 5000000
- 7930 multiletter control sequences out of 15000+600000
+ 4603 strings out of 493089
+ 66205 string characters out of 6134842
+ 396260 words of memory out of 5000000
+ 7978 multiletter control sequences out of 15000+600000
  11614 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,6n,52p,494b,1707s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,8n,52p,494b,1707s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
@@ -321,10 +374,10 @@ e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
 015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
 15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on report_tp2.pdf (19 pages, 225370 bytes).
+Output written on report_tp2.pdf (33 pages, 273304 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
+ 179 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

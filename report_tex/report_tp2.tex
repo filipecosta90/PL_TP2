@@ -3,11 +3,19 @@
 %
 
 \documentclass{report}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
 \usepackage[portuges]{babel}
 \usepackage[latin1]{inputenc}
 
 \usepackage{url}
+
 \usepackage{listings}
+
+
+
 \lstset{
   keepspaces=true,  
     tabsize=2,
@@ -20,22 +28,6 @@
     mathescape=true,
     escapeinside={(*@}{@*)}
 }
-
-
-\lstdefinestyle{customc}{
-  belowcaptionskip=1\baselineskip,
-    breaklines=true,
-    frame=L,
-    xleftmargin=\parindent,
-    language=C,
-    showstringspaces=false,
-    basicstyle=\footnotesize\ttfamily,
-    keywordstyle=\bfseries\color{green!40!black},
-    commentstyle=\itshape\color{purple!40!black},
-    identifierstyle=\color{blue},
-    stringstyle=\color{orange},
-}
-
 
 %%                                                       -*- LaTeX -*-
 %% Language definition of Yacc/Bison for listings package
@@ -287,44 +279,394 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   Podemos então aceitar como exemplo de input válido o seguinte código:
   \lstinputlisting[language=C]{exemplos/5_ciclo.c} %input de um ficheiro
 
-
-
-
   \subsubsection{Expressões Regulares e acções resultantes}
+  \label{flex3}
 
   Tomando por base o ficheiro Flex  presente na seção \ref{flex1}, podemos proceder à adição de expressões regulares por forma a produzir os tokens necessários para o correcto reconhecimento pela GIC.
   \lstinputlisting[language=Yacc]{flex/flex_3_condicionais.y} %input de um ficheiro
 
 
   \subsubsection{Produções da GIC}
-  \label{yacc2}
+  \label{yacc3}
   Tomando por base o ficheiro Yacc presente na seção \ref{yacc1}, podemos proceder à adição de produções por forma a reconhecer as estruturas de programa válidas até ao momento.
 
   \lstinputlisting[language=Yacc]{yacc/yacc_3_condicionais.y} %input de um ficheiro
 
 
+  \subsection{Uma introdução às instruções de leitura do  standard input e escrita no standard output}
+  \label{introducao_input_output}
+
+
+  \subsubsection{Instruções de leitura do standard input}
+  \label{introducao_input}
+  Por forma à \textbf{\textit{Algebra}} poder efectuar operações de leitura do standard input, é necessária a inclusão de instruções que permitam a leitura de inteiros, e atribuição do valor inteiro a uma variável. \par Consideramos que só fará sentido ler dados do standard input se os mesmos foram atribuídos. "Ler por Ler" do Standard Input não representa nenhuma mais valia para a linguagem. \par 
+  Podemos então aceitar como exemplo de input válido o seguinte código:
+
+  \lstinputlisting[language=C]{exemplos/6_input.c} %input de um ficheiro
+
+  \subsubsection{Instruções de escrita no standard output}
+  \label{introducao_output}
+  Uma instrução de escrita no standard output permitirá ao programador imprimir o valor de variáveis do tipo inteiro atómicas, variáveis do tipo array e matriz, assim como de valores inteiros directamente, e ainda de variáveis do tipo string, vulgo uma sequência de caracteres iniciada por " e terminada por ". \par 
+  Denote que na nossa linguagem não é permitido realizar operações sobre strings (como concatenação ou comparação), apenas será permitir escrever as mesmas no standard output.\par
+  Ora, retomando o exemplo da seção \ref{introducao_input}, podemos agora torná-lo mais completo com adição de instruções de escrita no standard input.
+  \lstinputlisting[language=C]{exemplos/7_output.c} %input de um ficheiro
+
+  \subsubsection{Expressões Regulares e acções resultantes}
+  \label{flex4}
+
+  Tomando por base o ficheiro Flex  presente na seção \ref{flex3}, podemos proceder à adição de expressões regulares por forma a produzir os tokens necessários para o correcto reconhecimento pela GIC.
+  \lstinputlisting[language=Yacc]{flex/flex_4_input_output.l} %input de um ficheiro
+
+
+  \subsubsection{Produções da GIC}
+  \label{yacc4}
+  Tomando por base o ficheiro Yacc presente na seção \ref{yacc3}, podemos proceder à adição de produções por forma a reconhecer as estruturas de programa válidas até ao momento.
+
+  \lstinputlisting[language=Yacc]{yacc/yacc_4_input_output.y} %input de um ficheiro
+
+  Possuímos neste momento todas as ferramentas necessárias para a escrita de programas na linguagem de alto nível \textbf{\textit{Algebra}} que recorram aos seguintes requisitos:
+
+  \begin{itemize}
+  \item declarar e manusear variáveis atómicas do tipo inteiro, com os quais se podem realizar as habituais operações aritméticas, relacionais e lógicas.
+  \item declarar e manusear variáveis estruturadas do tipo array e matrizes de inteiros, em relação aos quais  é apenas permitida a operação de indexação. 
+  \item efetuar instruções algorítmicas básicas como a atribuição de expressões a variáveis.
+  \item ler do standard input e escrever no standard output.
+  \item  efetuar instruções para controlo do fluxo de execução -- condicional e cíclica -- que possam ser aninhadas.
+  \end{itemize} 
+
+  Resta-nos passar à adição de funcionalidades que permitam definir e invocar subprogramas sem parâmetros mas que possam retornar um resultado atómico.
+
+
+  \subsection{Uma introdução aos subprogramas}
+  \label{introducao_subprogramas}
+  Por  forma a definir e invocar subprogramas sem parâmetros mas que possam retornar um resultado atómico, é necessária a inclusão de instruções que permitam a declaração de blocos de código que apenas serão executados quando invocada a função onde estes estão inscritos.\par 
+  Ora, mantendo a premissa de estruturação e percepção já existente, decidimos que as declarações de funções terão de ocorrer depois das declarações de variáveis, e antes do início do programa principal. \par 
+  Não será permitida redeclaração de funções, nem utilização de funções no programa principal sem declaração prévia.  \par 
+  Entendemos que especificamente para a na nossa linguagem de alto nível, todos os subprogramas retornam sempre uma variável com valor inteiro. 
+  Tendo em conta o descrito anteriormente, para criarmos um subprograma, deveremos recorrer a instruções do tipo: 
+  \begin{center}
+  \textbf{declare} nome\_função ( ) \{ \par  Instruções \par  \textbf{return} valor\_inteiro ; \}
+  \end{center}
+
+  Para invocarmos um subprograma, deveremos a instruções do tipo:
+
+  \begin{center}
+  variável = \textbf{call} nome\_função ( ) ; 
+  \end{center}
+
+
+  \subsubsection{Expressões Regulares e acções resultantes}
+  \label{flex5}
+
+  Tomando por base o ficheiro Flex  presente na seção \ref{flex4}, podemos proceder à adição de expressões regulares por forma a produzir os tokens necessários para o correcto reconhecimento pela GIC.
+  \lstinputlisting[language=Yacc]{flex/flex_5_funcoes.l} %input de um ficheiro
+
+  \subsubsection{Produções da GIC}
+  \label{yacc5}
+  Tomando por base o ficheiro Yacc presente na seção \ref{yacc4}, podemos proceder à adição de produções por forma a reconhecer as estruturas de programa válidas até ao momento.
+
+  \lstinputlisting[language=Yacc]{yacc/yacc_5_funcoes.y} %input de um ficheiro
+
+  Concluímos neste momento o estudo sobre a linguagem \textbf{\textit{Algebra}}, e consequentemente a gramática independente de contexto e analisador léxico. 
+
+  \chapter{Introdução à Máquina Virtual}
+
+  Concluída a gramática independente de contexto e o analisador léxico, o próximo passo será dar a conhecer a máquina para a qual pretendemos gera código máquina. Trata-se duma maquina de pilhas, composta duma pilha de execução, duma pilha de chamadas, duma zona de código, de duas heaps e de
+  quatro registos.\par 
+
+  A pilha de execução contém valores, que podem ser inteiros, reais ou endereços.\par
+  As duas heaps contêm, respectivamente, cadeias de caracteres (strings) e blocos estruturados.\par
+  Cada um destes tipos de dados é referenciado por endereços. Cada bloco estruturado contem um certo número de valores (do mesmo tipo dos valores que se podem encontrar na pilha).
+  Um endereço pode apontar para quatro tipos de informação: para código, para a pilha, para um bloco estruturado ou para uma string.
+  Três registos permitam o acesso a diferentes partes da pilha:
+  \begin{itemize}
+  \item  O registo sp (stack pointer) aponta para o topo corrente da pilha. Ele aponta para a primeira célula livre da pilha.
+  \item  O registo fp (frame pointer) aponta para o endereço de base das variáveis locais.
+  \item  O registo gp contem o endereço de base das variáveis globais.
+  \end{itemize}
+  A máquina possui um registo pc que aponta para a instrução corrente (da zona de código) por executar.\par 
+  A pilha de chamada permite guardar as chamadas: contém pares de apontadores (i, f). O endereço i guarda o registo de instrução pc e f o registo fp.
+
+  \section{As instruções}
+
+  As instruções são designadas por um nome e podem aceitar um ou dois parâmetros. Estes podem ser:
+  \begin{itemize}
+  \item constantes inteiras.
+  \item  constantes reais.
+  \item cadeias de caracteres delimitadas por aspas. Estas cadeias de caracteres seguem as mesmas regras de formatação que as cadeias da linguagem C 
+  (em particular no que diz respeito aos caracteres especiais como $\backslash $ ", $\backslash $ n ou $\backslash $$\backslash $ ).
+  \item uma etiqueta simbólica designando uma zona no código.
+  \end{itemize}
+
+  Para o caso específico da linguagem de alto nível que nos propomos a desenvolver temos especial interesse em instruções que lidem com:
+
+  \begin{itemize}
+  \item constantes inteiras.
+\item cadeias de caracteres delimitadas por aspas. (apenas necessárias para as operações de leitura e escrita)
+  \item uma etiqueta simbólica designando uma zona no código.
+  \end{itemize}
+
+
+  \subsection{Operações de base e assunções}
+  Por forma a gerarmos correctamente código máquina devemos ter em consideração os seguintes pontos:
+
+  \begin{itemize}
+
+  \item   As operações aritméticas  envolvem os valores do topo e do sub-topo da pilha. \par 
+  Neste caso quando a operação envolvida é executada, os dois argumentos são retiradas da pilha
+(refira-se à secção das convenções para perceber o que é retirar valores da pilha) 
+  e o resultado é então empilhado. \par 
+  \item O resultado duma operação de comparação é um inteiro que vale 0 ou 1. 
+  \item  O inteiro 0 representa o valor booleano falso enquanto o valor 1 representa o valor verdade.
+  \end{itemize}
+
+  De todas as operações disponíveis, apresentamos de seguida aquelas sobre as quais a GIC irá incluir na geração de código máquina. Atente na separação por tipo de operação:
+
+  \subsubsection{Operações sobre inteiros}
+
+  \begin{table}[H]
+  \label{table:operacoes_inteiros}
+  \centering
+  \begin{tabular}{ | l | l |  }
+  \hline
+  Instrução & Descrição
+  \\ \hline \hline
+
+  ADD &  tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m + n
+  \\ \hline 
+
+  SUB & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m - n
+  \\ \hline
+
+  MUL &  tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m $×$ n
+  \\ \hline
+
+  DIV & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m$/$n
+  \\ \hline 
+
+  MOD&  tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m mod n
+  \\ \hline 
+
+  NOT&  tira da pilha n que deve ser um inteiro e empilha o resultado n = 0
+  \\ \hline 
+
+  INF & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m $<$ n
+  \\ \hline
+
+  INFEQ & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m  $<=$n
+  \\ \hline 
+
+  SUP & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m $>$ n
+  \\ \hline 
+
+  SUPEQ & tira da pilha n e m que devem ser inteiros e empilha o resultado
+  m $>=$ n
+  \\ \hline 
+  \end{tabular}
+  \end{table}
+
+  \subsubsection{Operações sobre endereços}
+
+  \begin{table}[H]
+  \label{table:operacoes_inteiros}
+  \centering
+  \begin{tabular}{ | l | l |  }
+  \hline
+  Instrução & Descrição
+  \\ \hline \hline
+
+  PADD  &  tira da pilha n que deve ser um inteiro e a que deve ser um endereço
+  e empilha o endereço a + n
+  \\ \hline 
+
+  \end{tabular}
+  \end{table}
+
+
+
+  \subsubsection{Igualdade}
+
+  \begin{table}[H]
+  \label{table:operacoes_inteiros}
+  \centering
+  \begin{tabular}{ | l | l |  }
+  \hline
+  Instrução & Descrição
+  \\ \hline \hline
+
+  EQUAL   &  tira da pilha n seguido de m que devem ser do mesmo tipo e empilha
+  o resultado de n = m
+  \\ \hline 
+
+  \end{tabular}
+  \end{table}
 
 
 
 
+  \subsubsection{Conversões}
+
+
+  \begin{table}[H]
+  \label{table:operacoes_inteiros}
+  \centering
+  \begin{tabular}{ | l | l |  }
+  \hline
+  Instrução & Descrição
+  \\ \hline \hline
+
+  ATOI   &  retira da pilha o endereço duma string e empilha a sua conversão
+  em inteiro. Tal falha quando a string não representa um inteiro.
+  \\ \hline 
+
+  \end{tabular}
+  \end{table}
+
+
+
+  \subsubsection{Manipular dados}
+
+  \begin{table}[H]
+  \label{table:operacoes_inteiros}
+  \centering
+  \begin{tabular}{ | l | l |  }
+  \hline
+  Instrução & Descrição
+  \\ \hline \hline
+
+  PUSHI n inteiro   &  empilha n
+  \\ \hline 
+  PUSHN n inteiro   &  empilha n vezes o valor inteiro 0
+
+  \\ \hline 
+  PUSHS n string   &  arquiva n na zona das strings e empilha o endereço
+  \\ \hline 
+  PUSHG n inteiro   &  empilha o valor localizado em gp[n]
+  \\ \hline 
+  PUSHGP   &  empilha o valor do registo gp
+  \\ \hline 
+  LOAD n inteiro   &  retira da pilha um endereço a e empilha o valor na pilha ou
+  no heap (dependendo do tipo de a) em a[n]
+  \\ \hline 
+  LOADN   &  retira da pilha um inteiro n, um endereço a e empilha o valor
+  na pilha ou no heap (dependendo do tipo de a) em a[n]
+  \\ \hline 
+  STOREG n inteiro   &  retira um valor da pilha e arquiva-a na pilha em gp[n]
+  \\ \hline 
+  STORE n inteiro   &  retira da pilha um valor v e um endereço a, arquiva v
+em a[n]na pilha ou na heap (dependendo do tipo de a)
+  \\ \hline 
+  STOREN   &  retira da pilha um valor v, um inteiro n e um endereço
+  a, arquiva v no endereço a[n] na pilha ou na heap
+  \\ \hline 
+
+  \end{tabular}
+  \end{table}
+
+  \subsubsection{Input-Output}
+
+  \begin{table}[H]
+  \label{table:operacoes_inteiros}
+  \centering
+  \begin{tabular}{ | l | l |  }
+  \hline
+  Instrução & Descrição
+  \\ \hline \hline
+
+  WRITEI   &  retira um inteiro da pilha e imprime o valor na saída standard
+  \\ \hline 
+  WRITES   &  retira um endereço de uma string da pilha e imprime a string correspondente
+  \\ \hline 
+  na saída standard
+  READ   &  lê uma string do teclado (concluída por um "$\backslash$n") e arquiva esta
+  string (sem o "$\backslash$n") na heap e coloca (empilha) o endereço na pilha..
+  \\ \hline 
+
+  \end{tabular}
+  \end{table}
 
 
 
 
+  \subsubsection{Operações de controlo}
+
+
+  \begin{table}[H]
+  \label{table:operacoes_inteiros}
+  \centering
+  \begin{tabular}{ | l | l |  }
+  \hline
+  Instrução & Descrição
+  \\ \hline \hline
+
+  JUMP &  label etiqueta atribui ao registo pc o endereço no código que corresponde a
+  label   (pode ser um inteiro ou um valor simbólico).
+  \\ \hline 
+  JZ label etiqueta &  retira da pilha um valor. Se este for nulo então é atribuido
+  ao registo pc o endereço correspondente à label, incrementa
+  \\ \hline 
+  simplesmente pc de 1, caso contrário.
+  PUSHA label etiqueta &  empilha o endereço de programa correspondente a etiqueta
+  label
+  \\ \hline 
+
+  CALL &  retira da pilha um endereço de programa a, salvaguarda pc e fp na
+  pilha das chamadas, afecta a fp o valor corrente de sp e a pc o valor
+  de a.
+  \\ \hline 
+  RETURN &  afecta a sp o valor corrente de fp, restaura da pilha de chamadas
+  os valores de fp e de pc, incrementa pc de 1 por forma a encontrar
+  a instrução a seguir a chamada.
+  \\ \hline 
+
+
+  \end{tabular}
+  \end{table}
+
+
+
+  \subsubsection{Inicialização e fim}
+
+  \begin{table}[H]
+  \label{table:operacoes_inteiros}
+  \centering
+  \begin{tabular}{ | l | l |  }
+  \hline
+  Instrução & Descrição
+  \\ \hline \hline
+
+  START &  Afecta o valor de sp a fp
+  \\ \hline 
+  NOP &  não faz nada.
+  \\ \hline 
+  ERR x string &  levanta um erro com a mensagem x.
+  \\ \hline 
+  STOP &  pára a execução do programa
+  \\ \hline 
+
+  \end{tabular}
+  \end{table}
 
 
 
 
+  \chapter{Geração de Código Máquina -- de Produções a Assembly }
+
+  \chapter{ Testes às funcionalidades da Algebra}
 
 
-  \chapter{Conclusão} \label{concl}
 
 
-
-
-
-  Um olhar mais atento às expressão regulares definidas até ao momento permitem-nos identificar um outro tipo de token -- \textbf{string}, até ao momento não apresentado. Denote que na nossa linguagem não é permitido realizar operações sobre strings (como concatenação ou comparação), apenas será permitir escrever as mesmas no standard output.\par Nas secções futuras iremos abordar o tipo string de uma forma mais aprofundada.
-
+  \chapter{Conclusão}
+  \label{concl}
 
 
 
@@ -349,16 +691,9 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \label{completo2b}
   %  \lstinputlisting{bib_norm_2.l} %input de um ficheiro
 
-
   \newpage
   \chapter{Código do Programa da alínea 3a}
   \label{completo2c}
   %   \lstinputlisting{bib_norm_3.l} %input de um ficheiro
 
-
-
   \end{document}
-
-
-
-  \end{document} 
