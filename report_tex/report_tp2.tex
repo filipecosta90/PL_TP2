@@ -33,10 +33,10 @@
 
     \def\darius{\textsf{Darius}\xspace}
     \def\java{\texttt{Java}\xspace}
-    \def\pe{\emph{Publicação Eletrónica}\xspace}
+    \def\pe{\emph{Publicaï¿½ï¿½o Eletrï¿½nica}\xspace}
 
 
-    \title{Processamento de Linguagens (3º ano de Curso)\\ \textbf{Trabalho Prático N 2}\\ Relatório de Desenvolvimento}
+    \title{Processamento de Linguagens (3ï¿½ ano de Curso)\\ \textbf{Trabalho Prï¿½tico N 2}\\ Relatï¿½rio de Desenvolvimento}
     \author{Filipe Costa Oliveira\\ a57816  }
     \date{\today}
 
@@ -48,32 +48,40 @@
 
     \tableofcontents
 
-    \chapter{Introdução} \label{intro}
+    \chapter{Introduï¿½ï¿½o} \label{intro}
 
-    O presente trabalho prático foca-se no desenvolvimento de  um compilador, que tem como fonte uma linguagem de alto nível (também esta desenvolvida especificamente para este trabalho prático) , gerando código para uma máquina de stack virtual. \par 
-    Um compilador comum divide o processo de tradução em várias fases. Para o propósito específico desta unidade curricular iremos focar-nos nas seguintes:
+    O presente trabalho prï¿½tico foca-se no desenvolvimento de  um compilador, que tem como fonte uma linguagem de alto nï¿½vel (tambï¿½m esta desenvolvida especificamente para este trabalho prï¿½tico) , gerando cï¿½digo para uma mï¿½quina de stack virtual. \par 
+    Um compilador comum divide o processo de traduï¿½ï¿½o em vï¿½rias fases. Para o propï¿½sito especï¿½fico desta unidade curricular iremos focar-nos nas seguintes:
     \begin{itemize}
-    \item 1ª Fase de tradução -- Análise Léxica, que agrupa sequências de caracteres em tokens. Recorreremos nesta fase à definição das expressões regulares que permitem definir os tokens.
-    \item 2ª Fase de tradução --  Reconhecimento(Parsing) da estrutura gramatical do programa, através do agrupamento dos tokens em produções. Recorreremos à definição de uma gramática independente de contexto por forma a definir as estruturas de programa válidas a reconhecer pelo parser. Denote que juntamente com o parsing é realizada a análise semântica, assim como a geração de código associando regras às produções anteriormente descritas.
+    \item 1ï¿½ Fase de traduï¿½ï¿½o -- Anï¿½lise Lï¿½xica, que agrupa sequï¿½ncias de caracteres em tokens. Recorreremos nesta fase ï¿½ definiï¿½ï¿½o das expressï¿½es regulares que permitem definir os tokens.
+    \item 2ï¿½ Fase de traduï¿½ï¿½o --  Reconhecimento(Parsing) da estrutura gramatical do programa, atravï¿½s do agrupamento dos tokens em produï¿½ï¿½es. Recorreremos ï¿½ definiï¿½ï¿½o de uma gramï¿½tica independente de contexto por forma a definir as estruturas de programa vï¿½lidas a reconhecer pelo parser. Denote que juntamente com o parsing ï¿½ realizada a anï¿½lise semï¿½ntica, assim como a geraï¿½ï¿½o de cï¿½digo associando regras ï¿½s produï¿½ï¿½es anteriormente descritas.
     \end{itemize} 
-    Começaremos portanto por definir uma linguagem de programação imperativa simples, que chamaremos Algebra. A Algebra permitirá:
+    Comeï¿½aremos portanto por definir uma linguagem de programaï¿½ï¿½o imperativa simples, que chamaremos Algebra. A Algebra permitirï¿½:
     \begin{itemize}
-    \item declarar e manusear variáveis atómicas do tipo inteiro, com os quais se podem realizar as habituais operações
-aritméticas, relacionais e lógicas.
-    \item declarar e manusear variáveis estruturadas do tipo array (a 1 ou 2 dimensões) de inteiros, em relação aos quais  é apenas permitida a operação de indexação. Aos arrays de duas dimensões, por se tratar de uma linguagem algébrica, chamaremos matrizes, dada a fácil associação a este tipo de variável à sua definição análoga da álgebra linear.
-    \item efetuar instruções algorítmicas básicas como a atribuição de expressões a variáveis.
+    \item declarar e manusear variï¿½veis atï¿½micas do tipo inteiro, com os quais se podem realizar as habituais operaï¿½ï¿½es
+aritmï¿½ticas, relacionais e lï¿½gicas.
+    \item declarar e manusear variï¿½veis estruturadas do tipo array (a 1 ou 2 dimensï¿½es) de inteiros, em relaï¿½ï¿½o aos quais  ï¿½ apenas permitida a operaï¿½ï¿½o de indexaï¿½ï¿½o. Aos arrays de duas dimensï¿½es, por se tratar de uma linguagem algï¿½brica, chamaremos matrizes, dada a fï¿½cil associaï¿½ï¿½o a este tipo de variï¿½vel ï¿½ sua definiï¿½ï¿½o anï¿½loga da ï¿½lgebra linear.
+    \item efetuar instruï¿½ï¿½es algorï¿½tmicas bï¿½sicas como a atribuiï¿½ï¿½o de expressï¿½es a variï¿½veis.
 \item ler do standard input e escrever no standard output.
-\item  efetuar instruções para controlo do fluxo de execução -- condicional e cíclica -- que possam ser aninhadas.
-\item definir e invocar subprogramas sem parâmetros mas que possam retornar um resultado atómico.
+\item  efetuar instruï¿½ï¿½es para controlo do fluxo de execuï¿½ï¿½o -- condicional e cï¿½clica -- que possam ser aninhadas.
+\item definir e invocar subprogramas sem parï¿½metros mas que possam retornar um resultado atï¿½mico.
     \end{itemize} 
   
-Na nossa linguagem de programação por questões de estruturação e percepção, teremos como premissa que as varíaveis deverão ser declaradas no início do programa, não podendo haver re-declarações, nem utilizações sem declaração prévia. Não será permitida a declaração e associação de um valor inteiro na mesma instrução. Achamos essa solução pouco elegante. Assim, todas as variáveis terão o valor zero após a declaração.\par 
+Na nossa linguagem de programaï¿½ï¿½o por questï¿½es de estruturaï¿½ï¿½o e percepï¿½ï¿½o, teremos como premissa que as varï¿½aveis deverï¿½o ser declaradas no inï¿½cio do programa, nï¿½o podendo haver re-declaraï¿½ï¿½es, nem utilizaï¿½ï¿½es sem declaraï¿½ï¿½o prï¿½via. Nï¿½o serï¿½ permitida a declaraï¿½ï¿½o e associaï¿½ï¿½o de um valor inteiro na mesma instruï¿½ï¿½o. Achamos essa soluï¿½ï¿½o pouco elegante. Assim, todas as variï¿½veis terï¿½o o valor zero apï¿½s a declaraï¿½ï¿½o.\par 
 
-Será desenvolvido portanto o compilador para a Algebra, com base na GIC criada acima e recurso ao Gerador Yacc/ Flex.O compilador de Algebra irá gerar pseudo-código, Assembly da Máquina Virtual VM cuja documentação completaestá disponibilizada em anexo.\par
-Por forma a facilitar e validar o trabalho, à medida que as funcionalidades forem descritas serão apensados  exemplos ilustrativos. \par 
-Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte diversos e respectivo código produzido), que tentam testar de uma forma mais alargadas as funcionalidades da Algebra, sendo estes:
+Serï¿½ desenvolvido portanto o compilador para a Algebra, com base na GIC criada acima e recurso ao Gerador Yacc/ Flex.
+O compilador de Algebra irï¿½ gerar pseudo-cï¿½digo, Assembly da Mï¿½quina Virtual VM cuja documentaï¿½ï¿½o completa
+estï¿½ disponibilizada em anexo.\par
+Por forma a facilitar e validar o trabalho, ï¿½ medida que as funcionalidades forem descritas serï¿½o apensados  exemplos ilustrativos. \par 
+Por fim, serï¿½o apresentados um conjunto de testes mais complexos(programas-fonte diversos e respectivo cï¿½digo produzido), que tentam testar de uma forma mais alargadas as funcionalidades da Algebra, sendo estes:
 \begin{itemize}
-\item lidos 3 números, escrever o maior deles. \item ler N (valor dado) números e calcular e imprimir o seu somatório. \item contar e imprimir os números pares de uma sequência de N números dados. \item ler e armazenar os elementos de um vetor de comprimento N, imprimido os valores por ordem crescente após fazera ordenação do array por trocas diretas. \item ler e armazenar os elementos de uma matriz NxM, calculando e imprimindo de seguida a média e máximo dessa matriz.\item  invocar e usar num programa  uma função.
+\item lidos 3 nï¿½meros, escrever o maior deles.
+ \item ler N (valor dado) nï¿½meros e calcular e imprimir o seu somatï¿½rio.
+ \item contar e imprimir os nï¿½meros pares de uma sequï¿½ncia de N nï¿½meros dados.
+ \item ler e armazenar os elementos de um vetor de comprimento N, imprimido os valores por ordem crescente apï¿½s fazer
+a ordenaï¿½ï¿½o do array por trocas diretas.
+ \item ler e armazenar os elementos de uma matriz NxM, calculando e imprimindo de seguida a mï¿½dia e mï¿½ximo dessa matriz.
+\item  invocar e usar num programa  uma funï¿½ï¿½o.
 
     \end{itemize} 
 
@@ -81,13 +89,13 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
 
     \chapter{Filtro de Texto com o Flex para ler uma ontologia descrita em OWL}
     \label{filtro}
-    \section{Concepção/desenho da Resolução}
-    Tal como descrito anteriormente o problema será resolvido com recurso à ferramenta Flex. Pretendemos então analisar uma ontologia descrita em OWL e  desenhar um grafo que ligue os conceitos entre si. Denote que a ontologia descrita em OWL não passa de um dialecto XML, sendo portanto standardizada a forma como extraímos os dados. \par 
-    Apesar da linguagem OWL ser extremamente extensa, apenas nos interessam a identificação das classes propriamente ditas e as relações entre estas, por forma a podermos desenhar o grafo que descreve a ontologia.\par 
+    \section{Concepï¿½ï¿½o/desenho da Resoluï¿½ï¿½o}
+    Tal como descrito anteriormente o problema serï¿½ resolvido com recurso ï¿½ ferramenta Flex. Pretendemos entï¿½o analisar uma ontologia descrita em OWL e  desenhar um grafo que ligue os conceitos entre si. Denote que a ontologia descrita em OWL nï¿½o passa de um dialecto XML, sendo portanto standardizada a forma como extraï¿½mos os dados. \par 
+    Apesar da linguagem OWL ser extremamente extensa, apenas nos interessam a identificaï¿½ï¿½o das classes propriamente ditas e as relaï¿½ï¿½es entre estas, por forma a podermos desenhar o grafo que descreve a ontologia.\par 
 
-    \section{Padrões de frases a encontrar, através de ER}
+    \section{Padrï¿½es de frases a encontrar, atravï¿½s de ER}
     Podemos considerar que no contexto do problema apresentado temos especial interesse nos axiomas de propriedades de dados, objectos, e classes.
-    Assim, os axiomas passíveis de serem incluídos no grafo serão:
+    Assim, os axiomas passï¿½veis de serem incluï¿½dos no grafo serï¿½o:
     \begin{itemize}
     \item \textbf{Axiomas de Objetos}
     \begin{verbatim}
@@ -116,7 +124,7 @@ DisjointClasses | DisjointUnion
 
 \end{itemize}
 
-que serão convertidos nas seguintes definições de expressões regulares a serem utilizadas no Flex:
+que serï¿½o convertidos nas seguintes definiï¿½ï¿½es de expressï¿½es regulares a serem utilizadas no Flex:
 \begin{lstlisting}
 OBJ_PROP_AXIOM SubObjectPropertyOf|EquivalentObjectProperties|DisjointObjectProperties|InverseObjectProperties|ObjectPropertyDomain|ObjectPropertyRange|FunctionalObjectProper
 
@@ -126,8 +134,8 @@ CLA_PROP_AXIOM SubClassOf|EquivalentClasses|DisjointClasses|DisjointUnion
 \end{lstlisting}
 
 
-\subsection{Comutação de contextos em Flex através de start conditions}
-Por forma a realizar a correta análise dos padrões de texto foi necessário adicionar start conditions às regras das expressões regulares. Deste modo, apresenta-se a lista de todas as start conditions utilizadas e sua breve descrição:
+\subsection{Comutaï¿½ï¿½o de contextos em Flex atravï¿½s de start conditions}
+Por forma a realizar a correta anï¿½lise dos padrï¿½es de texto foi necessï¿½rio adicionar start conditions ï¿½s regras das expressï¿½es regulares. Deste modo, apresenta-se a lista de todas as start conditions utilizadas e sua breve descriï¿½ï¿½o:
 
 \begin{lstlisting}
 
@@ -136,26 +144,26 @@ Por forma a realizar a correta análise dos padrões de texto foi necessário adici
 
 \begin{itemize}
 \item  IN\_PROP  -- define o contexto de leitura de Axiomas de Objetos 
-\item RELATION -- define o contexto de inicio da leitura de Relação de Objetos 
-\item RELATION\_BEG\_END -- define o contexto de inicio  da leitura do primeiro e segundo objectos na Relação de Objetos 
+\item RELATION -- define o contexto de inicio da leitura de Relaï¿½ï¿½o de Objetos 
+\item RELATION\_BEG\_END -- define o contexto de inicio  da leitura do primeiro e segundo objectos na Relaï¿½ï¿½o de Objetos 
 
 
 
 \vspace{1cm}
 \item IN\_DATA -- define o contexto de leitura de Axiomas de Dados
-\item DATA -- define o contexto do início da leitura dos  Dados
+\item DATA -- define o contexto do inï¿½cio da leitura dos  Dados
 \item DATA\_BEG\_END -- define o contexto de inicio  da leitura da classe envolvida no Axioma de Dados 
 \item VALUE -- define o contexto de inicio  da leitura do datatype envolvido no Axioma de Dados 
 
 \vspace{1cm}
 
 \item IN\_CLASS -- define o contexto de leitura de Axiomas de Classes
-\item CLASS\_BEG\_END -- define o contexto de inicio  da leitura da primeira e segunda classes na Relação de Classes 
+\item CLASS\_BEG\_END -- define o contexto de inicio  da leitura da primeira e segunda classes na Relaï¿½ï¿½o de Classes 
 \end{itemize}
 
-\subsection{Expressões Regulares e acções resultantes}
+\subsection{Expressï¿½es Regulares e acï¿½ï¿½es resultantes}
 \label{1er}
-Definidas as start conditions, resta-nos explicitar todas as expressões regulares, incluindo aquelas que dão início à comutação entre contextos do flex.
+Definidas as start conditions, resta-nos explicitar todas as expressï¿½es regulares, incluindo aquelas que dï¿½o inï¿½cio ï¿½ comutaï¿½ï¿½o entre contextos do flex.
 \begin{lstlisting}
 [^<> ]*<{DAT_PROP_AXIOM}> { BEGIN IN_DATA; }
 [^<> ]*<{OBJ_PROP_AXIOM}> { BEGIN IN_PROP; }
@@ -222,9 +230,9 @@ else{
 \end{lstlisting}
 
 
-\section{Codificação e Testes}
+\section{Codificaï¿½ï¿½o e Testes}
 \subsection{Estruturas de Dados e bibliotecas utilizadas}
-Como pode verificar, não existem estruturas de dados complexas para a resolução deste problema, sendo que são apenas utilizadas strings para guardar temporariamente os valores dos dados em relação. De seguida explicitam-se todas as variáveis e bilbliotecas utilizadas:
+Como pode verificar, nï¿½o existem estruturas de dados complexas para a resoluï¿½ï¿½o deste problema, sendo que sï¿½o apenas utilizadas strings para guardar temporariamente os valores dos dados em relaï¿½ï¿½o. De seguida explicitam-se todas as variï¿½veis e bilbliotecas utilizadas:
 \begin{lstlisting}
 %{
 #include <stdio.h>
@@ -247,8 +255,8 @@ Como pode verificar, não existem estruturas de dados complexas para a resolução 
 
   \end{lstlisting}
 
-  \subsection{Métodos Adicionais}
-  Como poderá constatar na seção \ref{1er} existem 3 métodos adicionais invocados no final da leitura completa dos axiomas de objectos, classes e dados, sendo eles de seguida explicitados:
+  \subsection{Mï¿½todos Adicionais}
+  Como poderï¿½ constatar na seï¿½ï¿½o \ref{1er} existem 3 mï¿½todos adicionais invocados no final da leitura completa dos axiomas de objectos, classes e dados, sendo eles de seguida explicitados:
 
   \begin{lstlisting}
   void print_class(){
@@ -276,10 +284,10 @@ void print_prop(){
   end=NULL;
 }
 \end{lstlisting}
-Os métodos por si só são elucidativos, sendo que a impressão é realizada conforme a linguagem Dotty.
+Os mï¿½todos por si sï¿½ sï¿½o elucidativos, sendo que a impressï¿½o ï¿½ realizada conforme a linguagem Dotty.
 
 \subsection{Main}
-Dada a simplicidade das estruturas de dados, o método main é também bastante simples, de seguida explicitado:
+Dada a simplicidade das estruturas de dados, o mï¿½todo main ï¿½ tambï¿½m bastante simples, de seguida explicitado:
 \begin{lstlisting}
 int main(int argc, char** argv){
   graph_print();
@@ -288,10 +296,10 @@ int main(int argc, char** argv){
   return (0);
 }
 \end{lstlisting}
-O código completo da ferramenta é passível de consulta na seção \ref{completo1a} na página \pageref{completo1a}.
+O cï¿½digo completo da ferramenta ï¿½ passï¿½vel de consulta na seï¿½ï¿½o \ref{completo1a} na pï¿½gina \pageref{completo1a}.
 
 \section{Testes realizados e Resultados}
-Foi realizado um script da shell com vista a facilmente ilustrar as funcionalidades da ferramenta, sendo que essas mesma script lê o ficheiro exemplo test1.xml , criando o ficheiro ex1.gv e, a partir deste o ficheiro ex1.png, demonstrado na figura \ref{fig:ex1}.
+Foi realizado um script da shell com vista a facilmente ilustrar as funcionalidades da ferramenta, sendo que essas mesma script lï¿½ o ficheiro exemplo test1.xml , criando o ficheiro ex1.gv e, a partir deste o ficheiro ex1.png, demonstrado na figura \ref{fig:ex1}.
 \subsection{Shell Script}
 \begin{lstlisting}
 #!bin/sh
@@ -404,7 +412,7 @@ echo "done"
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\columnwidth]{PNG/ex1}
-\caption{Grafo exemplo criado com as relações entre classes a partir da análise do ficheiro test1.xml }
+\caption{Grafo exemplo criado com as relaï¿½ï¿½es entre classes a partir da anï¿½lise do ficheiro test1.xml }
 \label{fig:ex1}
 \end{figure}
 
@@ -415,21 +423,21 @@ echo "done"
 \label{normalizador}
 
 
-\section{Concepção/desenho da Resolução}
-Tal como descrito anteriormente o problema será resolvido com recurso à ferramenta Flex. 
-Pretendemos então analisar documentos BibTeX e:
+\section{Concepï¿½ï¿½o/desenho da Resoluï¿½ï¿½o}
+Tal como descrito anteriormente o problema serï¿½ resolvido com recurso ï¿½ ferramenta Flex. 
+Pretendemos entï¿½o analisar documentos BibTeX e:
 
 \begin {itemize}
 \item fazer a contagem das categorias(phDThesis, Misc, InProceeding, etc.) que ocorrem no documento, produzindo um documento em formato HTML com o nome das categorias encontradas e respectivas contagens;
-\item Desenvolva uma ferramenta de normalização (sempre que um campo está entre aspas, trocar para chavetas e escrever o nome dos autores no formato "N. Apelido"), fazendo ainda uma ferramenta de pretty-printing que indente corretamente cada campo, escreva um autor por linha e colocando sempre no início os campos autor e título.
+\item Desenvolva uma ferramenta de normalizaï¿½ï¿½o (sempre que um campo estï¿½ entre aspas, trocar para chavetas e escrever o nome dos autores no formato "N. Apelido"), fazendo ainda uma ferramenta de pretty-printing que indente corretamente cada campo, escreva um autor por linha e colocando sempre no inï¿½cio os campos autor e tï¿½tulo.
 \item Construir um Grafo que mostre, para um dado autor (escolhido pelo utilizador) todos os autores que publicam
-normalmente com o autor em causa, recorrendo uma vez mais à linguagem Dot do GraphViz2.
+normalmente com o autor em causa, recorrendo uma vez mais ï¿½ linguagem Dot do GraphViz2.
 \end{itemize}
-Para foram produzidos 3 ficheiros (bib\_norm\_1.l, bib\_norm\_2.l, bib\_norm\_3.l), um para cada alínea por forma a tornar de mais fácil compreensão o papel de cada expressão regular, start condition, ou estrutura de dados na solução geral. Facilmente se combinam os 3 ficheiros em 1, mas dado o propósito académico da ferramenta julgo ser fulcral a compreensão do anteriormente descrito em cada ficheiro e alínea do problema.
+Para foram produzidos 3 ficheiros (bib\_norm\_1.l, bib\_norm\_2.l, bib\_norm\_3.l), um para cada alï¿½nea por forma a tornar de mais fï¿½cil compreensï¿½o o papel de cada expressï¿½o regular, start condition, ou estrutura de dados na soluï¿½ï¿½o geral. Facilmente se combinam os 3 ficheiros em 1, mas dado o propï¿½sito acadï¿½mico da ferramenta julgo ser fulcral a compreensï¿½o do anteriormente descrito em cada ficheiro e alï¿½nea do problema.
 
-\section{alínea a) ficheiro bib\_norm\_1.l }
-\subsection{Padrões de frases a encontrar, através de ER}
-Podemos considerar que no contexto do problema apresentado temos interesse apenas na contagem das categorias, que serão facilmente encontradas com base nas seguintes definições de expressões regulares a serem utilizadas no Flex:
+\section{alï¿½nea a) ficheiro bib\_norm\_1.l }
+\subsection{Padrï¿½es de frases a encontrar, atravï¿½s de ER}
+Podemos considerar que no contexto do problema apresentado temos interesse apenas na contagem das categorias, que serï¿½o facilmente encontradas com base nas seguintes definiï¿½ï¿½es de expressï¿½es regulares a serem utilizadas no Flex:
 
 \begin{lstlisting}
 LETRA [A-Za-z]
@@ -439,9 +447,9 @@ ID ({LETRA_NUM}|:)+
 \end{lstlisting}
 
 
-\subsubsection{Expressões Regulares e acções resultantes}
+\subsubsection{Expressï¿½es Regulares e acï¿½ï¿½es resultantes}
 
-Resta-nos explicitar todas as expressões regulares e respectivas acções resultantes:
+Resta-nos explicitar todas as expressï¿½es regulares e respectivas acï¿½ï¿½es resultantes:
 
 \begin{lstlisting}
 %%
@@ -464,10 +472,10 @@ Resta-nos explicitar todas as expressões regulares e respectivas acções resultan
 \end{lstlisting}
 
 
-\subsection{Codificação }
+\subsection{Codificaï¿½ï¿½o }
 \subsubsection{Estruturas de Dados e bibliotecas utilizadas}
-Como pode verificar foi necessário recorrer a  estruturas de dados complexas para a resolução deste problema, nomeadamente hash tables. Ora, segundo o conselho do professor José João, foi reutilizado código da biblioteca da GLib, biblioteca essa extremamente otimizada.
-De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
+Como pode verificar foi necessï¿½rio recorrer a  estruturas de dados complexas para a resoluï¿½ï¿½o deste problema, nomeadamente hash tables. Ora, segundo o conselho do professor Josï¿½ Joï¿½o, foi reutilizado cï¿½digo da biblioteca da GLib, biblioteca essa extremamente otimizada.
+De seguida explicitam-se todas as variï¿½veis e bibliotecas utilizadas:
 \begin{lstlisting}
 %{
   /*
@@ -491,8 +499,8 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
   %}
   \end{lstlisting}
 
-  \subsubsection{Métodos Adicionais}
-  Como poderá constatar na seção \ref{1er} existe 1 método adicional invocado no final da leitura ficheiro, tendo por função imprimir o par ( chave -- valor ) num formato de lista HTML, sendo a chave a categoria BibTeX e o valor o número de ocorrências da mesma no ficheiro:
+  \subsubsection{Mï¿½todos Adicionais}
+  Como poderï¿½ constatar na seï¿½ï¿½o \ref{1er} existe 1 mï¿½todo adicional invocado no final da leitura ficheiro, tendo por funï¿½ï¿½o imprimir o par ( chave -- valor ) num formato de lista HTML, sendo a chave a categoria BibTeX e o valor o nï¿½mero de ocorrï¿½ncias da mesma no ficheiro:
 
   \begin{lstlisting}
   static void print_key_value(gpointer key, gpointer value, gpointer userdata){
@@ -503,7 +511,7 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
 \end{lstlisting}
 
 \subsubsection{Main}
-Dada a simplicidade do analisador, o método main é também bastante simples, apenas imprimindo as tags HTML e inicializando a hashtable. Passaremos de seguida a explicitá-lo:
+Dada a simplicidade do analisador, o mï¿½todo main ï¿½ tambï¿½m bastante simples, apenas imprimindo as tags HTML e inicializando a hashtable. Passaremos de seguida a explicitï¿½-lo:
 \begin{lstlisting}
 
 int main(){
@@ -515,7 +523,7 @@ int main(){
   return (0);
 }
 \end{lstlisting}
-O código completo da ferramenta é passível de consulta na seção \ref{completo2a} na página \pageref{completo2a}.
+O cï¿½digo completo da ferramenta ï¿½ passï¿½vel de consulta na seï¿½ï¿½o \ref{completo2a} na pï¿½gina \pageref{completo2a}.
 
 
 
@@ -523,9 +531,9 @@ O código completo da ferramenta é passível de consulta na seção \ref{completo2a}
 %%%%%%%%%%%%%%%%
 
 
-\section{alínea b) ficheiro bib\_norm\_2.l }
-\subsection{Padrões de frases a encontrar, através de ER}
-Podemos considerar que no contexto do problema apresentado temos interesse em todos os campos de cada entrada, sendo que teremos de tratar especialmente os campos author e title. Tal tarefa é facilitada com base nas seguintes definições de expressões regulares a serem utilizadas no Flex:
+\section{alï¿½nea b) ficheiro bib\_norm\_2.l }
+\subsection{Padrï¿½es de frases a encontrar, atravï¿½s de ER}
+Podemos considerar que no contexto do problema apresentado temos interesse em todos os campos de cada entrada, sendo que teremos de tratar especialmente os campos author e title. Tal tarefa ï¿½ facilitada com base nas seguintes definiï¿½ï¿½es de expressï¿½es regulares a serem utilizadas no Flex:
 
 \begin{lstlisting}
 LETRA [A-Za-z]
@@ -543,16 +551,16 @@ AUTHOR_BREAK [^=]+(\"|\})
 \end{lstlisting}
 
 
-\subsubsection{Comutação de contextos em Flex através de start conditions}
-Por forma a realizar a correta análise dos padrões de texto foi necessário adicionar start conditions às regras das expressões regulares. Deste modo, apresenta-se a lista de todas as start conditions utilizadas:
+\subsubsection{Comutaï¿½ï¿½o de contextos em Flex atravï¿½s de start conditions}
+Por forma a realizar a correta anï¿½lise dos padrï¿½es de texto foi necessï¿½rio adicionar start conditions ï¿½s regras das expressï¿½es regulares. Deste modo, apresenta-se a lista de todas as start conditions utilizadas:
 
 \begin{lstlisting}
 %x INSIDE IN_AUTHOR IN_FIELD_TXT IN_FIELD_NUM AUTHOR_DIV START_AUTHOR
 \end{itemize}
 
-\subsubsection{Expressões Regulares e acções resultantes}
+\subsubsection{Expressï¿½es Regulares e acï¿½ï¿½es resultantes}
 \label{2ber}
-Definidas as start conditions, resta-nos explicitar todas as expressões regulares, incluindo aquelas que dão início à comutação entre contextos do flex.
+Definidas as start conditions, resta-nos explicitar todas as expressï¿½es regulares, incluindo aquelas que dï¿½o inï¿½cio ï¿½ comutaï¿½ï¿½o entre contextos do flex.
 \begin{lstlisting}
 %%
 
@@ -691,10 +699,10 @@ BEGIN AUTHOR_DIV;
 
 
 
-\subsection{Codificação }
+\subsection{Codificaï¿½ï¿½o }
 \subsubsection{Estruturas de Dados e bibliotecas utilizadas}
-Como pode verificar foi necessário recorrer a  estruturas de dados complexas para a resolução deste problema, nomeadamente hash tables. Ora, segundo o conselho do professor José João, foi reutilizado código da biblioteca da GLib, biblioteca essa extremamente otimizada.
-De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
+Como pode verificar foi necessï¿½rio recorrer a  estruturas de dados complexas para a resoluï¿½ï¿½o deste problema, nomeadamente hash tables. Ora, segundo o conselho do professor Josï¿½ Joï¿½o, foi reutilizado cï¿½digo da biblioteca da GLib, biblioteca essa extremamente otimizada.
+De seguida explicitam-se todas as variï¿½veis e bibliotecas utilizadas:
 \begin{lstlisting}
 %{
   /*
@@ -730,8 +738,8 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
   %}
   \end{lstlisting}
 
-  \subsubsection{Métodos Adicionais}
-  Como poderá constatar na seção \ref{1er} existe 1 métodos adicional invocado no final da leitura de cada entrada do ficheiro, tendo por função imprimir o registo num formato normalizado:
+  \subsubsection{Mï¿½todos Adicionais}
+  Como poderï¿½ constatar na seï¿½ï¿½o \ref{1er} existe 1 mï¿½todos adicional invocado no final da leitura de cada entrada do ficheiro, tendo por funï¿½ï¿½o imprimir o registo num formato normalizado:
 
   \begin{lstlisting}
   %{
@@ -790,7 +798,7 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
     \end{lstlisting}
 
     \subsubsection{Main}
-    O método main é também bastante simples, apenas inicializando as hashtables. Passaremos de seguida a explicitá-lo:
+    O mï¿½todo main ï¿½ tambï¿½m bastante simples, apenas inicializando as hashtables. Passaremos de seguida a explicitï¿½-lo:
       \begin{lstlisting}
     int main(){
       txt_fields_table = g_hash_table_new(g_str_hash, g_str_equal);
@@ -800,7 +808,7 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
       return (0);
     }
     \end{lstlisting}
-    O código completo da ferramenta é passível de consulta na seção \ref{completo2b} na página \pageref{completo2a}.
+    O cï¿½digo completo da ferramenta ï¿½ passï¿½vel de consulta na seï¿½ï¿½o \ref{completo2b} na pï¿½gina \pageref{completo2a}.
 
 
       %%%%%%%%%%%%%%%%%
@@ -808,9 +816,9 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
       %%%%%%%%%%%%%%%%%
 
 
-      \section{alínea c) ficheiro bib\_norm\_3.l }
-    \subsection{Padrões de frases a encontrar, através de ER}
-    Podemos considerar que no contexto do problema apresentado temos interesse no campo author de cada  entrada, ou seja, podemos reaproveitar grande parte do trabalho desenvolvido na alínea anterior. Tal tarefa é facilitada com base nas seguintes definições de expressões regulares a serem utilizadas no Flex:
+      \section{alï¿½nea c) ficheiro bib\_norm\_3.l }
+    \subsection{Padrï¿½es de frases a encontrar, atravï¿½s de ER}
+    Podemos considerar que no contexto do problema apresentado temos interesse no campo author de cada  entrada, ou seja, podemos reaproveitar grande parte do trabalho desenvolvido na alï¿½nea anterior. Tal tarefa ï¿½ facilitada com base nas seguintes definiï¿½ï¿½es de expressï¿½es regulares a serem utilizadas no Flex:
 
       \begin{lstlisting}
     LETRA [A-Za-z]
@@ -824,16 +832,16 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
       \end{lstlisting}
 
 
-    \subsubsection{Comutação de contextos em Flex através de start conditions}
-    Por forma a realizar a correta análise dos padrões de texto foi necessário adicionar start conditions às regras das expressões regulares. Deste modo, apresenta-se a lista de todas as start conditions utilizadas:
+    \subsubsection{Comutaï¿½ï¿½o de contextos em Flex atravï¿½s de start conditions}
+    Por forma a realizar a correta anï¿½lise dos padrï¿½es de texto foi necessï¿½rio adicionar start conditions ï¿½s regras das expressï¿½es regulares. Deste modo, apresenta-se a lista de todas as start conditions utilizadas:
 
       \begin{lstlisting}
     %x INSIDE IN_AUTHOR IN_FIELD_TXT IN_FIELD_NUM AUTHOR_DIV START_AUTHOR
       \end{itemize}
 
-    \subsubsection{Expressões Regulares e acções resultantes}
+    \subsubsection{Expressï¿½es Regulares e acï¿½ï¿½es resultantes}
     \label{2cer}
-    Definidas as start conditions, resta-nos explicitar todas as expressões regulares, incluindo aquelas que dão início à comutação entre contextos do flex.
+    Definidas as start conditions, resta-nos explicitar todas as expressï¿½es regulares, incluindo aquelas que dï¿½o inï¿½cio ï¿½ comutaï¿½ï¿½o entre contextos do flex.
       \begin{lstlisting}
     %%
 
@@ -900,10 +908,10 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
 
 
 
-  \subsection{Codificação }
+  \subsection{Codificaï¿½ï¿½o }
   \subsubsection{Estruturas de Dados e bibliotecas utilizadas}
-  Como pode verificar foi necessário recorrer a  estruturas de dados complexas para a resolução deste problema, nomeadamente hash tables. Ora, segundo o conselho do professor José João, foi reutilizado código da biblioteca da GLib, biblioteca essa extremamente otimizada.
-    De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
+  Como pode verificar foi necessï¿½rio recorrer a  estruturas de dados complexas para a resoluï¿½ï¿½o deste problema, nomeadamente hash tables. Ora, segundo o conselho do professor Josï¿½ Joï¿½o, foi reutilizado cï¿½digo da biblioteca da GLib, biblioteca essa extremamente otimizada.
+    De seguida explicitam-se todas as variï¿½veis e bibliotecas utilizadas:
     \begin{lstlisting}
   %{
 
@@ -936,8 +944,8 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
     %}
     \end{lstlisting}
 
-    \subsubsection{Métodos Adicionais}
-    Como poderá constatar na seção \ref{1er} existem 2 métodos adicionais. Um (check\_authors()) invocado no final da leitura de cada entrada do ficheiro, tendo por função verificar se o autor em causa está referenciado no artigo e se sim, calcular o mapa dos seus co-autores. O outro método (graph\_print()) é invocado aquando da impressão do grafo no format Dot:
+    \subsubsection{Mï¿½todos Adicionais}
+    Como poderï¿½ constatar na seï¿½ï¿½o \ref{1er} existem 2 mï¿½todos adicionais. Um (check\_authors()) invocado no final da leitura de cada entrada do ficheiro, tendo por funï¿½ï¿½o verificar se o autor em causa estï¿½ referenciado no artigo e se sim, calcular o mapa dos seus co-autores. O outro mï¿½todo (graph\_print()) ï¿½ invocado aquando da impressï¿½o do grafo no format Dot:
 
       \begin{lstlisting}
 
@@ -984,7 +992,7 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
     \end{lstlisting}
 
     \subsubsection{Main}
-    O método main é também bastante simples. Primeiramente  inicializa as hashtables, sendo que de seguida coloca na variável author\_name o valor do author a procurar artigos com co-autores. Após a leitura do ficheiro imprime  no formato da linguagem Dot o grafo de co-autorias. Passaremos de seguida a explicitá-lo:
+    O mï¿½todo main ï¿½ tambï¿½m bastante simples. Primeiramente  inicializa as hashtables, sendo que de seguida coloca na variï¿½vel author\_name o valor do author a procurar artigos com co-autores. Apï¿½s a leitura do ficheiro imprime  no formato da linguagem Dot o grafo de co-autorias. Passaremos de seguida a explicitï¿½-lo:
       \begin{lstlisting}
     int main(int argc, char** argv){
       authors_table = g_hash_table_new(g_str_hash, g_str_equal);
@@ -995,7 +1003,7 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
       return (0);
     }
     \end{lstlisting}
-    O código completo da ferramenta é passível de consulta na seção \ref{completo2c} na página \pageref{completo2c}.
+    O cï¿½digo completo da ferramenta ï¿½ passï¿½vel de consulta na seï¿½ï¿½o \ref{completo2c} na pï¿½gina \pageref{completo2c}.
 
 
 
@@ -1005,8 +1013,8 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
 
 
       \section{Testes realizados e Resultados}
-    Foi realizado um script da shell com vista a facilmente ilustrar as funcionalidades da ferramenta, sendo que essas mesma script lê o ficheiro exemplo lp.bib , criando os ficheiros ex2a.html, ex2b.bib e ex2c.gv. A partir do ficheiro ex2c.gv cria ainda o ficheiro ex2c.png, demonstrado na figura \ref{fig:ex2c}. 
-      Na figura \ref{fig:ex2a} poderá ainda ver a página html exemplo resultante.
+    Foi realizado um script da shell com vista a facilmente ilustrar as funcionalidades da ferramenta, sendo que essas mesma script lï¿½ o ficheiro exemplo lp.bib , criando os ficheiros ex2a.html, ex2b.bib e ex2c.gv. A partir do ficheiro ex2c.gv cria ainda o ficheiro ex2c.png, demonstrado na figura \ref{fig:ex2c}. 
+      Na figura \ref{fig:ex2a} poderï¿½ ainda ver a pï¿½gina html exemplo resultante.
 
       \subsubsection{Shell Script}
     \begin{lstlisting}
@@ -1058,19 +1066,19 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
 
 
 
-    \subsubsection{Página HTML exemplo resultante da alínea 2a }
+    \subsubsection{Pï¿½gina HTML exemplo resultante da alï¿½nea 2a }
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\columnwidth]{PNG/ex2a}
-    \caption{Página HTML exemplo resultante da alínea 2a a partir da leitura do ficheiro lp.bib}
+    \caption{Pï¿½gina HTML exemplo resultante da alï¿½nea 2a a partir da leitura do ficheiro lp.bib}
     \label{fig:ex2a}
     \end{figure}
 
-    \subsubsection{Grafo exemplo resultante da alínea 2c}
+    \subsubsection{Grafo exemplo resultante da alï¿½nea 2c}
     \begin{figure}[H]
       \centering
       \includegraphics[width=\columnwidth]{PNG/ex2c}
-    \caption{Grafo exemplo criado com as relações de co-autoria do autor P.Henriques a partir da leitura do ficheiro lp.bib}
+    \caption{Grafo exemplo criado com as relaï¿½ï¿½es de co-autoria do autor P.Henriques a partir da leitura do ficheiro lp.bib}
     \label{fig:ex2c}
     \end{figure}
 
@@ -1079,31 +1087,31 @@ De seguida explicitam-se todas as variáveis e bibliotecas utilizadas:
 
 
 
-    \chapter{Conclusão} \label{concl}
+    \chapter{Conclusï¿½o} \label{concl}
 
-    Relativamente ao estado final do projecto acredito que foram cumpridos todos os requisitos, sendo que o segundo exercício foi sem dúvida o mais desafiante dada a enorme quantidade de dados e o tipo de dados em si a serem analisados. Reconhecer por si só quais as sequências de caracteres  válidas foi um desafio.\par Naturalmente que a partir da alínea 2.2.b a alínea 2.2.c foi de extrema facilidade, uma vez que todo o trabalho de análise já estava realizado. \par 
-      Foi ainda tido em conta a possiblidade de recuperar de erros de leitura na alínea 2.2.b o que facilitou o input correct de dados e posterior tratamento.
-      O recurso à biblioteca Glib, recomendada pelo professor José João num aula laboratorial permitiu-me ambientar ainda mais com código desenvolvido por terceiros  e sua correcta análise e integração nos meus projectos.\par 
-      Faço um balanço positivo do trabalho prático, pois, apesar de ser extremamente "time consuming" retirei muito conhecimento no que da análise de dados e processamento de linguagens diz respeito.
+    Relativamente ao estado final do projecto acredito que foram cumpridos todos os requisitos, sendo que o segundo exercï¿½cio foi sem dï¿½vida o mais desafiante dada a enorme quantidade de dados e o tipo de dados em si a serem analisados. Reconhecer por si sï¿½ quais as sequï¿½ncias de caracteres  vï¿½lidas foi um desafio.\par Naturalmente que a partir da alï¿½nea 2.2.b a alï¿½nea 2.2.c foi de extrema facilidade, uma vez que todo o trabalho de anï¿½lise jï¿½ estava realizado. \par 
+      Foi ainda tido em conta a possiblidade de recuperar de erros de leitura na alï¿½nea 2.2.b o que facilitou o input correct de dados e posterior tratamento.
+      O recurso ï¿½ biblioteca Glib, recomendada pelo professor Josï¿½ Joï¿½o num aula laboratorial permitiu-me ambientar ainda mais com cï¿½digo desenvolvido por terceiros  e sua correcta anï¿½lise e integraï¿½ï¿½o nos meus projectos.\par 
+      Faï¿½o um balanï¿½o positivo do trabalho prï¿½tico, pois, apesar de ser extremamente "time consuming" retirei muito conhecimento no que da anï¿½lise de dados e processamento de linguagens diz respeito.
 
       \appendix
-      \chapter{Código do Programa da alínea 1a}
+      \chapter{Cï¿½digo do Programa da alï¿½nea 1a}
     \label{completo1a}
     \lstinputlisting{owl_graph.l} %input de um ficheiro
 
       \newpage
-      \chapter{Código do Programa da alínea 2a}
+      \chapter{Cï¿½digo do Programa da alï¿½nea 2a}
     \label{completo2a}
     \lstinputlisting{bib_norm_1.l} %input de um ficheiro
 
       \newpage
-      \chapter{Código do Programa da alínea 2b}
+      \chapter{Cï¿½digo do Programa da alï¿½nea 2b}
     \label{completo2b}
     \lstinputlisting{bib_norm_2.l} %input de um ficheiro
 
 
       \newpage
-      \chapter{Código do Programa da alínea 3a}
+      \chapter{Cï¿½digo do Programa da alï¿½nea 3a}
     \label{completo2c}
     \lstinputlisting{bib_norm_3.l} %input de um ficheiro
 
