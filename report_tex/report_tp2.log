@@ -1,0 +1,537 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  31 MAY 2016 01:38
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**report_tp2.tex
+(./report_tp2.tex
+LaTeX2e <2015/01/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2014/09/25 3.9l The Babel package
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel-portuges/portuges.ldf
+Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2014/09/25 3.9l Babel common definitions
+\babel@savecnt=\count88
+\U@D=\dimen103
+)
+Package babel Info: Making " an active character on input line 145.
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2015/03/17 v1.2c Input encoding file
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2015/03/31 v1.8m multicolumn formatting (FMi)
+\c@tracingmulticols=\count89
+\mult@box=\box26
+\multicol@leftmargin=\dimen104
+\c@unbalance=\count90
+\c@collectmore=\count91
+\doublecol@number=\count92
+\multicoltolerance=\count93
+\multicolpretolerance=\count94
+\full@width=\dimen105
+\page@free=\dimen106
+\premulticols=\dimen107
+\postmulticols=\dimen108
+\multicolsep=\skip43
+\multicolbaselineskip=\skip44
+\partial@page=\box27
+\last@line=\box28
+\maxbalancingoverflow=\dimen109
+\mult@rightbox=\box29
+\mult@grightbox=\box30
+\mult@gfirstbox=\box31
+\mult@firstbox=\box32
+\@tempa=\box33
+\@tempa=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\c@columnbadness=\count95
+\c@finalcolumnbadness=\count96
+\last@try=\dimen110
+\multicolovershoot=\dimen111
+\multicolundershoot=\dimen112
+\mult@nat@firstbox=\box50
+\colbreak@box=\box51
+\mc@col@check@num=\count97
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/listings.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+\lst@mode=\count98
+\lst@gtempboxa=\box52
+\lst@token=\toks17
+\lst@length=\count99
+\lst@currlwidth=\dimen113
+\lst@column=\count100
+\lst@pos=\count101
+\lst@lostspace=\dimen114
+\lst@width=\dimen115
+\lst@newlines=\count102
+\lst@lineno=\count103
+\lst@maxwidth=\dimen116
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+\c@lstnumber=\count104
+\lst@skipnumbers=\count105
+\lst@framebox=\box53
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2014/09/06 1.5e listings configuration
+))
+Package: listings 2014/09/06 1.5e (Carsten Heinz)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/array.sty
+Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen117
+\extrarowheight=\dimen118
+\NC@list=\toks18
+\extratabsurround=\skip45
+\backup@length=\skip46
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 94.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count106
+))
+\Gin@req@height=\dimen119
+\Gin@req@width=\dimen120
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count107
+\float@exts=\toks19
+\float@box=\box54
+\@float@everytoks=\toks20
+\@floatcapt=\box55
+)
+(./report_tp2.aux)
+\openout1 = `report_tp2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+\c@lstlisting=\count108
+
+(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count109
+\scratchdimen=\dimen121
+\scratchbox=\box56
+\nofMPsegments=\count110
+\nofMParguments=\count111
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count112
+\MPscratchDim=\dimen122
+\MPnumerator=\count113
+\makeMPintoPDFobject=\count114
+\everyMPtoPDFconversion=\toks22
+) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 89.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 89.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 89.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 89.
+
+[1
+
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(./report_tp2.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+ [1
+
+] [2])
+\tf@toc=\write3
+\openout3 = `report_tp2.toc'.
+
+ [3]
+Cap\'{\i }tulo 1.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 100.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 100.
+ [4
+
+] [5]
+Cap\'{\i }tulo 2.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2014/09/06 1.5e listings language file
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+)
+(./exemplos/1_variaveis.c) (./exemplos/2_variaveis.c [6
+
+])
+(./flex/flex_1_variaveis.l
+LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 7.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 13.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <8> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 13.
+)
+(./yacc/yacc_1_variaveis.y [7]
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
+) [8] (./exemplos/3_instrucoes.c)
+(./yacc/yacc_2_instrucoes.y [9] [10]) (./exemplos/4_condicional.c [11])
+(./exemplos/5_ciclo.c) (./flex/flex_3_condicionais.y [12])
+(./yacc/yacc_3_condicionais.y [13] [14]) (./exemplos/6_input.c) [15]
+(./exemplos/7_output.c) (./flex/flex_4_input_output.l [16])
+(./yacc/yacc_4_input_output.y [17] [18]) [19] (./flex/flex_5_funcoes.l)
+[20] (./yacc/yacc_5_funcoes.y [21] [22]) [23]
+Cap\'{\i }tulo 3.
+[24
+
+] [25] [26] [27]
+Cap\'{\i }tulo 4.
+(./yacc/algebric_code.y [28
+
+]) [29] (./yacc/yacc_6_start_stop.y)
+(./yacc/yacc_6_start_stop_code.y) (./yacc/yacc_7_declaration.y)
+(./yacc/yacc_7_declaration_code.y) (./yacc/assert_no_redeclared_var.c) [30]
+(./yacc/compile_error.c) (./yacc/insert_int.c) (./yacc/insert_array.c)
+(./yacc/insert_matrix.c) [31] (./yacc/yacc_8_function_declaration.y)
+(./yacc/yacc_8_function_declaration_code.y) (./yacc/insert_function.c) [32]
+(./yacc/assert_declared_var.c) (./yacc/yacc_9_assignement.y)
+(./yacc/yacc_9_assignement_code.y) (./yacc/yacc_11_arithmetic_expression.y
+[33]) (./yacc/yacc_11_arithmetic_expression_code.y) (./exemplos/8_matriz.c)
+[34] <PNG/matriz-00.png, id=131, 600.3228pt x 904.8204pt>
+File: PNG/matriz-00.png Graphic file (type png)
+
+<use PNG/matriz-00.png>
+Package pdftex.def Info: PNG/matriz-00.png used on input line 757.
+(pdftex.def)             Requested size: 102.42834pt x 154.36969pt.
+ <PNG/matriz-01.png, id=133, 600.3228pt x 904.8204pt>
+File: PNG/matriz-01.png Graphic file (type png)
+
+<use PNG/matriz-01.png>
+Package pdftex.def Info: PNG/matriz-01.png used on input line 764.
+(pdftex.def)             Requested size: 102.42834pt x 154.36969pt.
+ <PNG/matriz-02.png, id=134, 600.3228pt x 904.8204pt>
+File: PNG/matriz-02.png Graphic file (type png)
+
+<use PNG/matriz-02.png>
+Package pdftex.def Info: PNG/matriz-02.png used on input line 771.
+(pdftex.def)             Requested size: 102.42834pt x 154.36969pt.
+ <PNG/matriz-03.png, id=135, 600.3228pt x 904.8204pt>
+File: PNG/matriz-03.png Graphic file (type png)
+
+<use PNG/matriz-03.png>
+Package pdftex.def Info: PNG/matriz-03.png used on input line 779.
+(pdftex.def)             Requested size: 102.42834pt x 154.36969pt.
+ [35 <./PNG/matriz-00.png> <./PNG/matriz-01.png> <./PNG/matriz-02.png>] (./yacc
+/yacc_17_vectors.y) (./yacc/yacc_17_vectors_code.y
+[36 <./PNG/matriz-03.png>]) (./yacc/global_pos.c) (./yacc/is_vector.c)
+(./yacc/get_matrix_nclos.c) [37]
+<PNG/vm_8_matriz.png, id=150, 1557.82pt x 912.40875pt>
+File: PNG/vm_8_matriz.png Graphic file (type png)
+
+<use PNG/vm_8_matriz.png>
+Package pdftex.def Info: PNG/vm_8_matriz.png used on input line 808.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ (./yacc/yacc_10_read_stdin.y)
+(./yacc/yacc_10_read_stdin_code.y) [38 <./PNG/vm_8_matriz.png>]
+(./yacc/yacc_12_logical_expression.y) (./yacc/yacc_12_logical_expression_code.y
+) [39] (./yacc/yacc_13_relational_expression.y)
+(./yacc/yacc_13_relational_expression_code.y) (./yacc/yacc_14_conditional.y
+[40]) (./yacc/yacc_14_conditional_code.y [41]) (./yacc/open_conditional.c)
+(./yacc/close_cycle.c) (./yacc/current_conditional.c) (./yacc/yacc_15_cycle.y)
+(./yacc/yacc_15_cycle_code.y [42]) (./yacc/open_cycle.c) (./yacc/close_cycle.c)
+[43]
+Cap\'{\i }tulo 5.
+[44
+
+] (./examples_algebra/3_numeros.txt) (./examples_vm/3_numeros.vm [45])
+[46] <PNG/3_numeros.png, id=180, 1557.82pt x 912.40875pt>
+File: PNG/3_numeros.png Graphic file (type png)
+
+<use PNG/3_numeros.png>
+Package pdftex.def Info: PNG/3_numeros.png used on input line 941.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ [47 <./PNG/3_numeros.png>]
+(./examples_algebra/somatorio.txt) (./examples_vm/somatorio.vm) [48]
+<PNG/somatorio.png, id=189, 1557.82pt x 912.40875pt>
+File: PNG/somatorio.png Graphic file (type png)
+ <use PNG/somatorio.png>
+Package pdftex.def Info: PNG/somatorio.png used on input line 963.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+
+[49 <./PNG/somatorio.png>] (./examples_algebra/sequencia.txt)
+(./examples_vm/sequencia.vm [50]) [51]
+<PNG/sequencia.png, id=201, 1557.82pt x 912.40875pt>
+File: PNG/sequencia.png Graphic file (type png)
+ <use PNG/sequencia.png>
+Package pdftex.def Info: PNG/sequencia.png used on input line 986.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+
+[52 <./PNG/sequencia.png>] (./examples_algebra/array_crescente.txt)
+(./examples_vm/array_crescente.vm [53] [54]) [55]
+<PNG/array_crescente.png, id=216, 1557.82pt x 912.40875pt>
+File: PNG/array_crescente.png Graphic file (type png)
+
+<use PNG/array_crescente.png>
+Package pdftex.def Info: PNG/array_crescente.png used on input line 1012.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ [56 <./PNG/array_crescente.png>]
+(./examples_algebra/media_maximo_matriz.txt)
+(./examples_vm/media_maximo_matriz.vm [57]) [58]
+<PNG/media_maximo_matriz.png, id=227, 1557.82pt x 912.40875pt>
+File: PNG/media_maximo_matriz.png Graphic file (type png)
+
+<use PNG/media_maximo_matriz.png>
+Package pdftex.def Info: PNG/media_maximo_matriz.png used on input line 1037.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ [59 <./PNG/media_maximo_matriz.png>]
+(./examples_algebra/funcao.txt) (./examples_vm/funcao.vm) [60] [61]
+<PNG/funcao.png, id=239, 1557.82pt x 912.40875pt>
+File: PNG/funcao.png Graphic file (type png)
+ <use PNG/funcao.png>
+Package pdftex.def Info: PNG/funcao.png used on input line 1061.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ [62 <./PNG/funcao.png>] (./examples_algebra/teste_ifs.txt) (./examples_vm/test
+e_ifs.vm) [63] <PNG/teste_ifs.png, id=247, 1557.82pt x 912.40875pt>
+File: PNG/teste_ifs.png Graphic file (type png)
+
+<use PNG/teste_ifs.png>
+Package pdftex.def Info: PNG/teste_ifs.png used on input line 1083.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ [64 <./PNG/teste_ifs.png>]
+(./examples_algebra/variavel_nao_declarada.txt)
+(./examples_vm/variavel_nao_declarada.vm) [65]
+<PNG/variavel_nao_declarada.png, id=255, 1557.82pt x 912.40875pt>
+File: PNG/variavel_nao_declarada.png Graphic file (type png)
+
+<use PNG/variavel_nao_declarada.png>
+Package pdftex.def Info: PNG/variavel_nao_declarada.png used on input line 1109
+.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ [66 <./PNG/variavel_nao_declarada.png>]
+(./examples_algebra/variavel_re_declarada.txt)
+(./examples_vm/variavel_re_declarada.vm) [67]
+<PNG/variavel_re_declarada.png, id=264, 1557.82pt x 912.40875pt>
+File: PNG/variavel_re_declarada.png Graphic file (type png)
+
+<use PNG/variavel_re_declarada.png>
+Package pdftex.def Info: PNG/variavel_re_declarada.png used on input line 1132.
+
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ [68 <./PNG/variavel_re_declarada.png>]
+(./examples_algebra/erro_sintatico.txt) (./examples_vm/erro_sintatico.vm)
+[69] <PNG/erro_sintatico.png, id=272, 1557.82pt x 912.40875pt>
+File: PNG/erro_sintatico.png Graphic file (type png)
+
+<use PNG/erro_sintatico.png>
+Package pdftex.def Info: PNG/erro_sintatico.png used on input line 1154.
+(pdftex.def)             Requested size: 512.1496pt x 299.9542pt.
+ [70 <./PNG/erro_sintatico.png>]
+Cap\'{\i }tulo 6.
+
+./report_tp2.tex:1169: LaTeX Error: \begin{multicols*} on input line 1140 ended
+ by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1169   \end{document}
+                       
+? 
+[71
+
+] (./report_tp2.aux) )
+(\end occurred inside a group at level 10)
+
+### semi simple group (level 10) entered at line 1140 (\begingroup)
+### semi simple group (level 9) entered at line 1118 (\begingroup)
+### semi simple group (level 8) entered at line 1095 (\begingroup)
+### semi simple group (level 7) entered at line 1069 (\begingroup)
+### semi simple group (level 6) entered at line 1047 (\begingroup)
+### semi simple group (level 5) entered at line 1023 (\begingroup)
+### semi simple group (level 4) entered at line 997 (\begingroup)
+### semi simple group (level 3) entered at line 972 (\begingroup)
+### semi simple group (level 2) entered at line 949 (\begingroup)
+### semi simple group (level 1) entered at line 927 (\begingroup)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 5325 strings out of 493089
+ 78896 string characters out of 6134842
+ 463277 words of memory out of 5000000
+ 8518 multiletter control sequences out of 15000+600000
+ 11614 words of font info for 40 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 37i,11n,52p,552b,1890s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmbx8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+bxti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+0.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
+pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><
+/usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on report_tp2.pdf (72 pages, 2855982 bytes).
+PDF statistics:
+ 340 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+

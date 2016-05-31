@@ -1,0 +1,27 @@
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 2.                                                                   
+// Ler N (valor dado) numeros e calcular e imprimir o seu somatorio
+
+int qtos_numeros;
+int actual;
+int somatorio;
+int i;
+
+print "quantos numeros?: ";
+qtos_numeros = read();
+do {
+  print "insira numero(";
+  print i;
+  print "): ";
+  actual = read();
+  somatorio = somatorio + actual;
+  i = i+1;
+} while ( i < qtos_numeros )
+
+print " somatorio :";
+print somatorio;
+

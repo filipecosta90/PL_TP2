@@ -1,0 +1,48 @@
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 5.                                                                   
+// ler e armazenar os elementos de uma matriz NxM 
+// calcular e imprimir a media e maximo dessa matriz
+
+int matrix[2,3];
+int coluna_actual;
+int linha_actual;
+int valor_actual;
+int media;
+int maximo;
+int somatorio;
+int numeros_lidos;
+
+do {
+  do{
+
+    print "insira M( ";
+    print linha_actual;
+    print " , ";
+    print coluna_actual;
+    print " ): ";
+    valor_actual = read();
+    if ( valor_actual > maximo ) then {
+      maximo = valor_actual;
+    }
+    numeros_lidos = numeros_lidos + 1;
+    somatorio = somatorio + valor_actual;
+    coluna_actual = coluna_actual + 1;
+
+  } while( coluna_actual < 3 )
+
+  coluna_actual = 0;
+  linha_actual = linha_actual +1;
+
+} while ( linha_actual < 2 )
+
+media = somatorio / numeros_lidos;
+print "media: ";
+print media;
+
+print "maximo: ";
+print maximo;
+

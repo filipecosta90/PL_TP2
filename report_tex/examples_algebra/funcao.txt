@@ -1,0 +1,31 @@
+// Universidade do Minho, Dpto Informatica                                      
+// UC Processamento de Linguagens.                                              
+// Maio 2016, Filipe Oliveira                                                   
+//                                                                              
+// Trabalho pratico 2                                                           
+// Exemplo 6.                                                                   
+// invocar e usar num programa seu uma função 
+
+int a;
+int b;
+int aux;
+int resultado;
+
+declare maior(){
+  if (a > b) then {
+    aux = a;
+  }
+  else {
+    aux = b;
+  }
+  return aux;
+}
+
+print "introduza a: ";
+a = read();
+print "introduza b: ";
+b = read();
+resultado = call maior();
+print "maior :";
+print resultado;
+
