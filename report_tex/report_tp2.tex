@@ -31,7 +31,7 @@
     breaklines=true,
     frame=tB,
     % mathescape=true
-     % escapeinside={(*@}{@*)}
+      % escapeinside={(*@}{@*)}
 }
 
 %%                                                       -*- LaTeX -*-
@@ -100,7 +100,7 @@ Um compilador comum divide o processo de tradução em várias fases. Para o propós
 \item 1ª Fase de tradução -- Análise Léxica, que agrupa sequências de caracteres em tokens. Recorreremos nesta fase à definição das expressões regulares que permitem definir os tokens.
 \item 2ª Fase de tradução --  Reconhecimento(Parsing) da estrutura gramatical do programa, através do agrupamento dos tokens em produções. Recorreremos à definição de uma gramática independente de contexto por forma a definir as estruturas de programa válidas a reconhecer pelo parser. Denote que juntamente com o parsing é realizada a análise semântica, assim como a geração de código associando regras às produções anteriormente descritas.
 \end{itemize} 
-Começaremos portanto por definir uma linguagem de programação imperativa simples, que chamaremos Algebra. A Algebra permitirá:
+Começaremos portanto por definir uma linguagem de programação imperativa simples, que chamaremos \textbf{\textit{Algebra}}. A \textbf{\textit{Algebra}} permitirá:
 \begin{itemize}
 \item declarar e manusear variáveis atómicas do tipo inteiro, com os quais se podem realizar as habituais operações
 aritméticas, relacionais e lógicas.
@@ -111,12 +111,12 @@ aritméticas, relacionais e lógicas.
 \item definir e invocar subprogramas sem parâmetros mas que possam retornar um resultado atómico.
 \end{itemize} 
 
-Na nossa linguagem de programação por questões de estruturação e percepção, teremos como premissa que as varíaveis deverão ser declaradas no início do programa, não podendo haver re-declarações, nem utilizações sem declaração prévia. Não será permitida a declaração e associação de um valor inteiro na mesma instrução. Achamos essa solução pouco elegante. Assim, todas as variáveis terão o valor zero após a declaração.\par 
+Na nossa linguagem de programação por questões de estruturação e percepção, teremos como premissa que as variáveis deverão ser declaradas no início do programa, não podendo haver re-declarações, nem utilizações sem declaração prévia. Não será permitida a declaração e associação de um valor inteiro na mesma instrução. Achamos essa solução pouco elegante. Assim, todas as variáveis terão o valor zero após a declaração.\par 
 
-Será desenvolvido portanto o compilador para a Algebra, com base na GIC criada acima e recurso ao Gerador Yacc/ Flex.
-O compilador de Algebra irá gerar pseudo-código, Assembly da Máquina Virtual VM cuja documentação completa está disponibilizada em anexo.\par
+Será desenvolvido portanto o compilador para a \textbf{\textit{Algebra}}, com base na GIC criada acima e recurso ao Gerador Yacc/ Flex.
+O compilador de \textbf{\textit{Algebra}} irá gerar pseudo-código, Assembly da Máquina Virtual VM cuja documentação completa está disponibilizada em anexo.\par
 Por forma a facilitar e validar o trabalho, à medida que as funcionalidades forem descritas serão apensados  exemplos ilustrativos. \par 
-Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte diversos e respectivo código produzido), que tentam testar de uma forma mais alargadas as funcionalidades da Algebra, sendo estes:
+Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte diversos e respectivo código produzido), que tentam testar de uma forma mais alargadas as funcionalidades da \textbf{\textit{Algebra}}, sendo estes:
 \begin{itemize}
 \item lidos 3 números, escrever o maior deles.
 \item ler N (valor dado) números e calcular e imprimir o seu somatório.
@@ -128,13 +128,13 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \end{itemize} 
 
 
-  \chapter{Concepção da Linguagem Algebra}
+  \chapter{Concepção da Linguagem \textbf{\textit{Algebra}}}
   \label{concepcao}
 
   \section{Concepção/desenho da Resolução}
 
 
-  Comecemos por descrever as funcionalidades da linguagem Algebra. Tal como descrito anteriormente a Algebra permitirá:
+  Comecemos por descrever as funcionalidades da linguagem \textbf{\textit{Algebra}}. Tal como descrito anteriormente a \textbf{\textit{Algebra}} permitirá:
   \begin{itemize}
 
   \item declarar e manusear variáveis atómicas do tipo inteiro, com os quais se podem realizar as habituais operações aritméticas, relacionais e lógicas.
@@ -192,7 +192,7 @@ Por fim, serão apresentados um conjunto de testes mais complexos(programas-fonte
   \item Divisão Inteira : '/'
   \item Resto da Divisão Inteira : '%'
   \end{itemize}
-  \item Relaccional
+  \item Relacional
   \begin{itemize}
   \item Igualdade : '=''='
   \item Diferença : '!''='
@@ -583,7 +583,7 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
   JUMP &  label etiqueta &  atribui ao registo pc o endereço no código que corresponde a
   label   (pode ser um inteiro ou um valor simbólico).
   \\ \hline 
-  JZ & label etiqueta &  retira da pilha um valor. Se este for nulo então é atribuido
+  JZ & label etiqueta &  retira da pilha um valor. Se este for nulo então é atribuído
   ao registo pc o endereço correspondente à label, incrementa
   simplesmente pc de 1, caso contrário.
   \\ \hline 
@@ -782,7 +782,7 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
   \end{figure}
 
 
-  Agora com este conhecimento relativo à forma como os dados estão posicionados podemos analisar o conjuto de produções responsáveis por traduzir esta forma de acesso em instruções de código máquina:
+  Agora com este conhecimento relativo à forma como os dados estão posicionados podemos analisar o conjunto de produções responsáveis por traduzir esta forma de acesso em instruções de código máquina:
   \lstinputlisting[language=Yacc]{yacc/yacc_17_vectors.y} %input de um ficheiro
 
   Sendo o seguinte código associado à produção:
@@ -847,7 +847,7 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
   No seguimento do sucedido na seção \ref{logical_expression} foi também para este tipo de produções necessário proceder à inclusão de instruções de código máquina que conjugadas tenham o comportamento lógico da negação de igualdade. Para os restantes operadores relacionais existiam instruções relacionais directamente presentes na linguagem máquina.\par 
 
 
- \subsection{Instruções condicionais }
+  \subsection{Instruções condicionais }
 
   Sempre que são reconhecidas as produções que reflectem instruções condicionais é necessário incluir os código máquina que permitam fluxos de execução distintos. Tal é realizado recorrendo a labels e à análise do valor lógico da condição em teste. Em caso de valor lógico 1 (verdade) é efectuado um salto para a label \textbf{inthen[nº do condicional]}. Quando se verifica o valor lógico 0 (falso) na condição é efectuado um salto para a label \textbf{inelse[nº do condicional]}.\par 
   O conjunto de instruções de código máquina que permitirão a correcta ordem de execução de fluxos de instruções com base em instruções condicionais serão incluídas nas seguintes produções:
@@ -857,7 +857,7 @@ em a[n]na pilha ou na heap (dependendo do tipo de a)
   \lstinputlisting[language=Yacc]{yacc/yacc_14_conditional_code.y} %input de um ficheiro
 
 
-Ora, o código C adicionado às produções recorre a 3 métodos auxiliares ainda não definidos. De seguida apresentam-se os mesmos:
+  Ora, o código C adicionado às produções recorre a 3 métodos auxiliares ainda não definidos. De seguida apresentam-se os mesmos:
   \subsubsection{Método auxiliar: int open\_conditional();}
   \label{open_conditional}
   \lstinputlisting[language=C]{yacc/open_conditional.c} %input de um ficheiro
@@ -866,7 +866,7 @@ Ora, o código C adicionado às produções recorre a 3 métodos auxiliares ainda não
   \label{close_conditional}
   \lstinputlisting[language=C]{yacc/close_cycle.c} %input de um ficheiro
 
- \subsubsection{Método auxiliar: int current\_conditional();}
+  \subsubsection{Método auxiliar: int current\_conditional();}
   \label{current_conditional}
   \lstinputlisting[language=C]{yacc/current_conditional.c} %input de um ficheiro
 
@@ -884,7 +884,7 @@ Ora, o código C adicionado às produções recorre a 3 métodos auxiliares ainda não
   Sendo o seguinte código associado à produção:
   \lstinputlisting[language=Yacc]{yacc/yacc_15_cycle_code.y} %input de um ficheiro
 
-Ora, o código C adicionado às produções recorre a 2 métodos auxiliares ainda não definidos. De seguida apresentam-se os mesmos:
+  Ora, o código C adicionado às produções recorre a 2 métodos auxiliares ainda não definidos. De seguida apresentam-se os mesmos:
   \subsubsection{Método auxiliar: int open\_cycle();}
   \label{open_cycle}
   \lstinputlisting[language=C]{yacc/open_cycle.c} %input de um ficheiro
@@ -899,44 +899,44 @@ Ora, o código C adicionado às produções recorre a 2 métodos auxiliares ainda não
 
   \chapter{ Testes às funcionalidades da Algebra}
 
-Realizada a tradução entre produções e código máquina, e exemplificada a forma de acesso aos dado na stack para os dados de maior complexidade, resta-nos passar à produção de testes a todas as funcionalidades descritas até ao momento. É também importante confirmar que as medidas de previsão de erros e garantia de estabilidade aos programas gerados funcionam correctamente.\par 
-Serão apresentados um conjunto de testes mais complexos(programas-fonte diversos e respectivo código produzido), que tentam testar de uma forma mais alargadas as funcionalidades da Algebra, sendo estes:
-\begin{itemize}
-\item Lidos 3 números, escrever o maior deles.
-\item Ler N (valor dado) números e calcular e imprimir o seu somatório.
-\item Contar e imprimir os números pares de uma sequência de N números dados.
-\item Ler e armazenar os elementos de um vetor de comprimento N, 
+  Realizada a tradução entre produções e código máquina, e exemplificada a forma de acesso aos dado na stack para os dados de maior complexidade, resta-nos passar à produção de testes a todas as funcionalidades descritas até ao momento. É também importante confirmar que as medidas de previsão de erros e garantia de estabilidade aos programas gerados funcionam correctamente.\par 
+  Serão apresentados um conjunto de testes mais complexos(programas-fonte diversos e respectivo código produzido), que tentam testar de uma forma mais alargadas as funcionalidades da Algebra, sendo estes:
+  \begin{itemize}
+  \item Lidos 3 números, escrever o maior deles.
+  \item Ler N (valor dado) números e calcular e imprimir o seu somatório.
+  \item Contar e imprimir os números pares de uma sequência de N números dados.
+  \item Ler e armazenar os elementos de um vetor de comprimento N, 
   imprimido os valores por ordem crescente após fazer a ordenação do array por trocas diretas.
   \item Ler e armazenar os elementos de uma matriz NxM, calculando e imprimindo de seguida a média e máximo dessa matriz.
   \item Invocar e usar num programa  uma função.
   \item Testar o aninhamento de condicionais
   \end{itemize} 
-  
- Incluiremos ainda 3 testes à capacidade de deteção de erros, sendo estes:
- 
-\begin{itemize}
-\item Impressão de uma variável não declarada.
-\item Re-declaração de uma variável.
-\item Erro sintático.
+
+  Incluiremos ainda 3 testes à capacidade de deteção de erros, sendo estes:
+
+  \begin{itemize}
+  \item Impressão de uma variável não declarada.
+  \item Re-declaração de uma variável.
+  \item Erro sintático.
   \end{itemize} 
-  
-   \newpage
-   \section{ Testes às funcionalidades da Algebra}
-   
- \subsection{lidos 3 números, escrever o maior deles}
-   \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+
+  \newpage
+  \section{ Testes às funcionalidades da Algebra}
+
+  \subsection{lidos 3 números, escrever o maior deles}
+  \begin{multicols*}{2}
+  \raggedcolumns
+  \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
   \lstinputlisting[language=C]{examples_algebra/3_numeros.txt} %input de um ficheiro
   \vfill
   \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+  \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
   \lstinputlisting[language=C]{examples_vm/3_numeros.vm} %input de um ficheiro
-\end{multicols}
-\newpage
+  \end{multicols}
+  \newpage
 
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
+  \subsubsection{Exemplo de output da Máquina Virtual VM}
+  \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{PNG/3_numeros.png}
   \caption{Exemplo de output da Máquina Virtual VM, para o teste: "lidos 3 números, escrever o maior deles"}
@@ -944,226 +944,226 @@ Serão apresentados um conjunto de testes mais complexos(programas-fonte diversos
   \end{figure}
   \newpage
 
- 
- \subsection{ler N (valor dado) números e calcular e imprimir o seu somatório}
-   \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+
+  \subsection{ler N (valor dado) números e calcular e imprimir o seu somatório}
+  \begin{multicols*}{2}
+  \raggedcolumns
+  \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
   \lstinputlisting[language=C]{examples_algebra/somatorio.txt} %input de um ficheiro
   \vfill
   \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+  \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
   \lstinputlisting[language=C]{examples_vm/somatorio.vm} %input de um ficheiro
-\end{multicols}
-\newpage
+  \end{multicols}
+  \newpage
 
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
+  \subsubsection{Exemplo de output da Máquina Virtual VM}
+  \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{PNG/somatorio.png}
   \caption{Exemplo de output da Máquina Virtual VM, para o teste: "ler N (valor dado) números e calcular e imprimir o seu somatório"}
   \label{fig:teste2}
   \end{figure}
   \newpage
-  
-  
-  
- \subsection{Contar e imprimir os números pares de uma sequência de N números dados}
-   \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+
+
+
+  \subsection{Contar e imprimir os números pares de uma sequência de N números dados}
+  \begin{multicols*}{2}
+  \raggedcolumns
+  \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
   \lstinputlisting[language=C]{examples_algebra/sequencia.txt} %input de um ficheiro
   \vfill
   \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+  \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
   \lstinputlisting[language=C]{examples_vm/sequencia.vm} %input de um ficheiro
-\end{multicols}
-\newpage
+  \end{multicols}
+  \newpage
 
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
+  \subsubsection{Exemplo de output da Máquina Virtual VM}
+  \begin{figure}[H]
   \centering
   \includegraphics[width=1\columnwidth]{PNG/sequencia.png}
   \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Contar e imprimir os números pares de uma sequência de N números dados"}
   \label{fig:teste3}
   \end{figure}
   \newpage
-  
-  
-  
-  
- \subsection{Ler e armazenar os elementos de um vetor de comprimento N
-  imprimido os valores por ordem crescente após fazer a ordenação do array por trocas diretas}
+
+
+
+
+  \subsection{Ler e armazenar os elementos de um vetor de comprimento N
+    imprimido os valores por ordem crescente após fazer a ordenação do array por trocas diretas}
     \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
-  \lstinputlisting[language=C]{examples_algebra/array_crescente.txt} %input de um ficheiro
-  \vfill
-  \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
-  \lstinputlisting[language=C]{examples_vm/array_crescente.vm} %input de um ficheiro
-\end{multicols}
-\newpage
+    \raggedcolumns
+    \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+    \lstinputlisting[language=C]{examples_algebra/array_crescente.txt} %input de um ficheiro
+    \vfill
+    \columnbreak
+    \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+    \lstinputlisting[language=C]{examples_vm/array_crescente.vm} %input de um ficheiro
+    \end{multicols}
+    \newpage
 
-  \subsubsection{Exemplo de output da Máquina Virtual VM}
+    \subsubsection{Exemplo de output da Máquina Virtual VM}
 
- \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\columnwidth]{PNG/array_crescente.png}
-  \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Ler e armazenar os elementos de um vetor de comprimento N
-  imprimido os valores por ordem crescente após fazer a ordenação do array por trocas diretas"}
-  \label{fig:teste4}
-  \end{figure}
-  \newpage
-  
-  
-  
-  
-   \subsection{Ler e armazenar os elementos de uma matriz NxM, calculando e imprimindo de seguida a média e máximo dessa matriz}
-     \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
-  \lstinputlisting[language=C]{examples_algebra/media_maximo_matriz.txt} %input de um ficheiro
-  \vfill
-  \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
-  \lstinputlisting[language=C]{examples_vm/media_maximo_matriz.vm} %input de um ficheiro
-\end{multicols}
-\newpage
-
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\columnwidth]{PNG/media_maximo_matriz.png}
-  \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Ler e armazenar os elementos de uma matriz NxM, calculando e imprimindo de seguida a média e máximo dessa matriz"}
-  \label{fig:teste5}
-  \end{figure}
-  \newpage
-  
-  
-  
-  
- \subsection{Invocar e usar num programa uma função}
-   \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
-  \lstinputlisting[language=C]{examples_algebra/funcao.txt} %input de um ficheiro
-  \vfill
-  \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
-  \lstinputlisting[language=C]{examples_vm/funcao.vm} %input de um ficheiro
-\end{multicols}
-\newpage
-
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\columnwidth]{PNG/funcao.png}
-  \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Invocar e usar num programa uma função"}
-  \label{fig:teste6}
-  \end{figure}
-  \newpage
-  
-  
-  \subsection{Testar o aninhamento de condicionais}
-   \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
-  \lstinputlisting[language=C]{examples_algebra/teste_ifs.txt} %input de um ficheiro
-  \vfill
-  \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
-  \lstinputlisting[language=C]{examples_vm/teste_ifs.vm} %input de um ficheiro
-\end{multicols}
-\newpage
-
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\columnwidth]{PNG/teste_ifs.png}
-  \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Testar o aninhamento de condicionais"}
-  \label{fig:teste7}
-  \end{figure}
-  \newpage
-  
-  
-  
-     \section{Testes às capacidades de deteção de erros}
-     
-
- \subsection{Impressão de uma variável não declarada}
-   \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
-  \lstinputlisting[language=C]{examples_algebra/variavel_nao_declarada.txt} %input de um ficheiro
-  \vfill
-  \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
-  \lstinputlisting[language=C]{examples_vm/variavel_nao_declarada.vm} %input de um ficheiro
-\end{multicols}
-\newpage
-
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\columnwidth]{PNG/variavel_nao_declarada.png}
-  \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Impressão de uma variável não declarada"}
-  \label{fig:teste8}
-  \end{figure}
-  \newpage
-  
-  
-  
- \subsection{Re-declaração de uma variável}
-   \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
-  \lstinputlisting[language=C]{examples_algebra/variavel_re_declarada.txt} %input de um ficheiro
-  \vfill
-  \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
-  \lstinputlisting[language=C]{examples_vm/variavel_re_declarada.vm} %input de um ficheiro
-\end{multicols}
-\newpage
-
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\columnwidth]{PNG/variavel_re_declarada.png}
-  \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Re-declaração de uma variável"}
-  \label{fig:teste9}
-  \end{figure}
-  \newpage
-  
-  
- \subsection{Erro sintático}
-   \begin{multicols*}{2}
-   \raggedcolumns
- \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
-  \lstinputlisting[language=C]{examples_algebra/erro_sintatico.txt} %input de um ficheiro
-  \vfill
-  \columnbreak
- \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
-  \lstinputlisting[language=C]{examples_vm/erro_sintatico.vm} %input de um ficheiro
-\end{multicols}
-\newpage
-
- \subsubsection{Exemplo de output da Máquina Virtual VM}
- \begin{figure}[H]
-  \centering
-  \includegraphics[width=1\columnwidth]{PNG/erro_sintatico.png}
-  \caption{Exemplo de output da Máquina Virtual VM, para o teste: Erro sintático}
-  \label{fig:teste10}
-  \end{figure}
-  \newpage
-  
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=1\columnwidth]{PNG/array_crescente.png}
+    \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Ler e armazenar os elementos de um vetor de comprimento N
+      imprimido os valores por ordem crescente após fazer a ordenação do array por trocas diretas"}
+      \label{fig:teste4}
+      \end{figure}
+      \newpage
 
 
-  \chapter{Conclusão}
-  \label{concl}
 
-  Relativamente ao estado final do projecto acreditamos que foram cumpridos todos os requisitos, sendo que a compreensão da máquina virtual e o seu funcionamento pode ser considerada a parte mais penosa do mesmo. Acreditamos que a presença de instruções adicionais na mesma iria facilitar e permitir o desenvolvimento de outras funcionalidades (mais avançadas) no programa.  Em adição, achamos que noção de stack e frame pointer para chamadas de funções dentro do programa  principal ainda precisa de ser mais trabalhada. \par 
-    Foi ainda tido em conta a possiblidade de existência de erros de leitura e de compilação o que tornou o compilador mais robusto. No entanto deveria ser dado mais ênfase ao mesmo. \par 
-    Relativamente às estruturas de dados utilizados, acreditamos que as mesmas são de grande simplicidade quando comparadas com o trabalho prático -- uma vez que o objectivo deste trabalho era traduzir operações complexas em código máquina -- não faria de todo sentido guardar estado ou tentar "aldrabar" de qualquer forma os limites da máquina virtual.\par 
-    O balanço  do trabalho prático é extremamente, pois, apesar de ser extremamente "time consuming" permite  aplicação de muito do conhecimento retido da Unidade Curricular de Processamento de Linguagens, no que da análise de dados, análise léxica, parsing, e GIC's diz respeito.
-  \end{document}
+
+      \subsection{Ler e armazenar os elementos de uma matriz NxM, calculando e imprimindo de seguida a média e máximo dessa matriz}
+      \begin{multicols*}{2}
+      \raggedcolumns
+      \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+      \lstinputlisting[language=C]{examples_algebra/media_maximo_matriz.txt} %input de um ficheiro
+      \vfill
+      \columnbreak
+      \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+      \lstinputlisting[language=C]{examples_vm/media_maximo_matriz.vm} %input de um ficheiro
+      \end{multicols}
+      \newpage
+
+      \subsubsection{Exemplo de output da Máquina Virtual VM}
+      \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\columnwidth]{PNG/media_maximo_matriz.png}
+      \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Ler e armazenar os elementos de uma matriz NxM, calculando e imprimindo de seguida a média e máximo dessa matriz"}
+      \label{fig:teste5}
+      \end{figure}
+      \newpage
+
+
+
+
+      \subsection{Invocar e usar num programa uma função}
+      \begin{multicols*}{2}
+      \raggedcolumns
+      \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+      \lstinputlisting[language=C]{examples_algebra/funcao.txt} %input de um ficheiro
+      \vfill
+      \columnbreak
+      \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+      \lstinputlisting[language=C]{examples_vm/funcao.vm} %input de um ficheiro
+      \end{multicols}
+      \newpage
+
+      \subsubsection{Exemplo de output da Máquina Virtual VM}
+      \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\columnwidth]{PNG/funcao.png}
+      \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Invocar e usar num programa uma função"}
+      \label{fig:teste6}
+      \end{figure}
+      \newpage
+
+
+      \subsection{Testar o aninhamento de condicionais}
+      \begin{multicols*}{2}
+      \raggedcolumns
+      \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+      \lstinputlisting[language=C]{examples_algebra/teste_ifs.txt} %input de um ficheiro
+      \vfill
+      \columnbreak
+      \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+      \lstinputlisting[language=C]{examples_vm/teste_ifs.vm} %input de um ficheiro
+      \end{multicols}
+      \newpage
+
+      \subsubsection{Exemplo de output da Máquina Virtual VM}
+      \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\columnwidth]{PNG/teste_ifs.png}
+      \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Testar o aninhamento de condicionais"}
+      \label{fig:teste7}
+      \end{figure}
+      \newpage
+
+
+
+      \section{Testes às capacidades de deteção de erros}
+
+
+      \subsection{Impressão de uma variável não declarada}
+      \begin{multicols*}{2}
+      \raggedcolumns
+      \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+      \lstinputlisting[language=C]{examples_algebra/variavel_nao_declarada.txt} %input de um ficheiro
+      \vfill
+      \columnbreak
+      \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+      \lstinputlisting[language=C]{examples_vm/variavel_nao_declarada.vm} %input de um ficheiro
+      \end{multicols}
+      \newpage
+
+      \subsubsection{Exemplo de output da Máquina Virtual VM}
+      \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\columnwidth]{PNG/variavel_nao_declarada.png}
+      \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Impressão de uma variável não declarada"}
+      \label{fig:teste8}
+      \end{figure}
+      \newpage
+
+
+
+      \subsection{Re-declaração de uma variável}
+      \begin{multicols*}{2}
+      \raggedcolumns
+      \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+      \lstinputlisting[language=C]{examples_algebra/variavel_re_declarada.txt} %input de um ficheiro
+      \vfill
+      \columnbreak
+      \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+      \lstinputlisting[language=C]{examples_vm/variavel_re_declarada.vm} %input de um ficheiro
+      \end{multicols}
+      \newpage
+
+      \subsubsection{Exemplo de output da Máquina Virtual VM}
+      \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\columnwidth]{PNG/variavel_re_declarada.png}
+      \caption{Exemplo de output da Máquina Virtual VM, para o teste: "Re-declaração de uma variável"}
+      \label{fig:teste9}
+      \end{figure}
+      \newpage
+
+
+      \subsection{Erro sintático}
+      \begin{multicols*}{2}
+      \raggedcolumns
+      \subsubsection{Código em linguagem de alto nível \textbf{\textit{Algebra}}}
+      \lstinputlisting[language=C]{examples_algebra/erro_sintatico.txt} %input de um ficheiro
+      \vfill
+      \columnbreak
+      \subsubsection{Código em \textbf{\textit{Assembly}} da Máquina Virtual VM }
+      \lstinputlisting[language=C]{examples_vm/erro_sintatico.vm} %input de um ficheiro
+      \end{multicols}
+      \newpage
+
+      \subsubsection{Exemplo de output da Máquina Virtual VM}
+      \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\columnwidth]{PNG/erro_sintatico.png}
+      \caption{Exemplo de output da Máquina Virtual VM, para o teste: Erro sintático}
+      \label{fig:teste10}
+      \end{figure}
+      \newpage
+
+
+
+      \chapter{Conclusão}
+      \label{concl}
+
+      Relativamente ao estado final do projecto acreditamos que foram cumpridos todos os requisitos, sendo que a compreensão da máquina virtual e o seu funcionamento pode ser considerada a parte mais penosa do mesmo. Acreditamos que a presença de instruções adicionais na mesma iria facilitar e permitir o desenvolvimento de outras funcionalidades (mais avançadas) no programa.  Em adição, achamos que noção de stack e frame pointer para chamadas de funções dentro do programa  principal ainda precisa de ser mais trabalhada. \par 
+      Foi ainda tido em conta a possiblidade de existência de erros de leitura e de compilação o que tornou o compilador mais robusto. No entanto deveria ser dado mais ênfase ao mesmo. \par 
+      Relativamente às estruturas de dados utilizados, acreditamos que as mesmas são de grande simplicidade quando comparadas com o trabalho prático -- uma vez que o objectivo deste trabalho era traduzir operações complexas em código máquina -- não faria de todo sentido guardar estado ou tentar "aldrabar" de qualquer forma os limites da máquina virtual.\par 
+      O balanço  do trabalho prático é extremamente, pois, apesar de ser extremamente "time consuming" permite  aplicação de muito do conhecimento retido da Unidade Curricular de Processamento de Linguagens, no que da análise de dados, análise léxica, parsing, e GIC's diz respeito.
+      \end{document}
